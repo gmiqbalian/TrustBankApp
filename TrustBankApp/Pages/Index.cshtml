@@ -1,0 +1,114 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<!-- Masthead-->
+<header class="masthead">
+    <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+        <div class="d-flex justify-content-center">
+            <div class="text-center">
+                <h1 class="mx-auto my-0 text-uppercase">Trust Your Bank</h1>
+                <h2 class="text-white-50 mx-auto mt-2 mb-5 fs-1">A bank for your sake</h2>
+                @*<a class="btn btn-primary" href="#about">Get Started</a>*@
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- About-->
+<section class="about-section text-center" id="about">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8">
+                <div class="card-group">
+                    <div class="card">
+                        <a asp-page="/"><img src="~/assets/img/sweden.png" class="card-img-top" alt="sweden-flag"></a>
+                        <div class="card-body">
+                            <h1 class="card-title text-center">Sweden</h1>
+                            <h5><i class="fa-solid fa-user"></i></h5>
+                            <h5 class="card-title">
+                                @Model.StatsSweden.Clients
+                            </h5>
+                            <h5>Clients</h5>
+                            <h5><i class="fa-solid fa-landmark"></i></h5>
+                            <h5 class="card-title">
+                                @Model.StatsSweden.Accounts
+                            </h5>
+                            <h5>Accounts</h5>
+                            <h5><i class="fa-solid fa-coins"></i></h5>
+                            <h5 class="card-title">
+                                @string.Format("{0:n0}", @Model.StatsSweden.Capital) kr
+                            </h5>
+                            <h5>Capital</h5>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a asp-page="/"><img src="~/assets/img/norway.png" class="card-img-top" alt="norway-flag"></a>
+                        <div class="card-body">
+                            <h1 class="card-title text-center">Norway</h1>
+                            <h5><i class="fa-solid fa-user"></i></h5>
+                            <h5 class="card-title">
+                                @Model.StatsSweden.Clients
+                            </h5>
+                            <h5>Clients</h5>
+                            <h5><i class="fa-solid fa-landmark"></i></h5>
+                            <h5 class="card-title">
+                                @Model.StatsSweden.Accounts
+                            </h5>
+                            <h5>Accounts</h5>
+                            <h5><i class="fa-solid fa-coins"></i></h5>
+                            <h5 class="card-title">
+                                @string.Format("{0:n0}", @Model.StatsSweden.Capital) kr
+                            </h5>
+                            <h5>Capital</h5>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a asp-page="/"><img src="~/assets/img/denmark.png" class="card-img-top" alt="denmark-flag"></a>
+                        <div class="card-body">
+                            <h1 class="card-title text-center">Denmark</h1>
+                            <h5><i class="fa-solid fa-user"></i></h5>
+                            <h5 class="card-title">
+                                @Model.StatsSweden.Clients
+                            </h5>
+                            <h5>Clients</h5>
+                            <h5><i class="fa-solid fa-landmark"></i></h5>
+                            <h5 class="card-title">
+                                @Model.StatsSweden.Accounts
+                            </h5>
+                            <h5>Accounts</h5>
+                            <h5><i class="fa-solid fa-coins"></i></h5>
+                            <h5 class="card-title">
+                                @string.Format("{0:n0}", @Model.StatsSweden.Capital) kr
+                            </h5>
+                            <h5>Capital</h5>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a asp-page="/"><img src="~/assets/img/finland.png" class="card-img-top" alt="finland-flag"></a>
+                        <div class="card-body">
+                            <h1 class="card-title text-center">Finland</h1>
+                            <h5><i class="fa-solid fa-user"></i></h5>
+                            <h5 class="card-title">
+                                @Model.StatsSweden.Clients
+                            </h5>
+                            <h5>Clients</h5>
+                            <h5><i class="fa-solid fa-landmark"></i></h5>
+                            <h5 class="card-title">
+                                @Model.StatsSweden.Accounts
+                            </h5>
+                            <h5>Accounts</h5>
+                            <h5><i class="fa-solid fa-coins"></i></h5>
+                            <h5 class="card-title">
+                                @string.Format("{0:n0}", @Model.StatsSweden.Capital) kr
+                            </h5>
+                            <h5>Capital</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</section>

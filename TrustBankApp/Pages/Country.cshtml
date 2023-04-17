@@ -1,0 +1,31 @@
+﻿@page
+@model TrustBankApp.Pages.CountryModel
+@{
+}
+
+<div class="container mt-5 p-5">
+    <h1>@Model.CountryName</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">
+                    Balance
+                </th>
+                <th scope="col">
+                    Country
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var account in Model.Accounts)
+            {
+                <tr>
+                    <td>@account.AccountId</td>
+                    <td>@account.Balance</td>
+                    <td>@account.Country</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
