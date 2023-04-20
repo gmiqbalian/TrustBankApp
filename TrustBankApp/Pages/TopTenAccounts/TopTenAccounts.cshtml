@@ -1,0 +1,49 @@
+﻿@page
+@model TrustBankApp.Pages.TopTenAccounts.TopTenAccountsModel
+@{
+}
+
+
+<section class="mt-5 pt-5 w-100 bg-dark d-flex flex-column" style="border: 1px solid red;">
+
+    <div class="text-light pt-5 bg-dark" style="border: 1px solid green; padding-left: 200px;">
+        <h1 class="fs-1 fw-bolder">TOP TEN ACCOUNTS</h1>
+        <p class="fs-4 lh-sm fw-bold">List of Top 10 Accounts for @Model.Country.ToUpper()</p>
+    </div>
+    <div class="" style="border: 1px solid green; padding-left: 200px">
+        <a class="btn btn-warning">Back</a>
+    </div>
+
+    <div class="table-responsive align-self-center" style="border: 1px solid green;">
+        <table class="m-0" id="country-table" style="">
+            <thead class="">
+                <tr class="fs-4">
+                    <th class="p-3" scope="col">Customer Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Social Security</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Account</th>
+                    <th scope="col">Balance</th>
+            </thead>
+            <tbody>
+                @foreach (var account in Model.TopTenAccounts)
+                {
+                    <tr class="my-5">
+                        <td>@account.CustomerId</td>
+                        <td>@account.Name</td>
+                        <td>@account.NationalId</td>
+                        <td>@account.Email</td>
+                        <td>@account.AccountId</td>
+                        <td>@account.Balance</td>                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="align-self-center" style="border: 1px solid green;">
+        <a class="btn btn-warning border-2 border-dark px-5" asp-page="/Index">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back
+        </a>
+    </div>
+</section>

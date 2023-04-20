@@ -1,4 +1,5 @@
 ﻿using TrustBankApp.Models;
+using TrustBankApp.ViewModels;
 
 namespace TrustBankApp.Services
 {
@@ -7,5 +8,6 @@ namespace TrustBankApp.Services
         int GetCustomersCountByCountry(string countryName);
         int GetAccountsCountByCountry(string countryName);
         decimal GetCapitalCountByCountry(string countryName);
+        List<TopTenAccountsViewModel> GetTopTenAccountsByCountry(string countryName);
     }
 }

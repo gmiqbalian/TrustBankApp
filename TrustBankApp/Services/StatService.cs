@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using TrustBankApp.Models;
+using TrustBankApp.ViewModels;
 
 namespace TrustBankApp.Services
 {
@@ -27,12 +29,35 @@ namespace TrustBankApp.Services
         }
         public decimal GetCapitalCountByCountry(string countryName)
         {
-            return _dbContext.Customers
+             return _dbContext.Customers
                 .Include(c => c.Dispositions)
                 .ThenInclude(d => d.Account)
                 .Where(c => c.Country == countryName)
                 .SelectMany(c => c.Dispositions)
                 .Sum(c => c.Account.Balance);
+        }
+        public List<TopTenAccountsViewModel> GetTopTenAccountsByCountry(string countryName)
+        {
+            var list = _dbContext.Customers
+                .AsQueryable()
+                .Include(x => x.Dispositions)
+                .ThenInclude(x => x.Account)
+                .Where(x => x.Country == countryName)
+                .SelectMany(x => x.Dispositions)
+                .OrderByDescending(x => x.Account.Balance)
+                .Take(10);
+            
+            return list.Select(x => new TopTenAccountsViewModel
+                {
+                    AccountId = x.AccountId,
+                    CustomerId = x.CustomerId,
+                    Name = x.Customer.Givenname + " " + x.Customer.Surname,
+                    Email = x.Customer.Emailaddress,
+                    NationalId = x.Customer.NationalId,
+                    Balance = x.Account.Balance
+                }).ToList();
+
+                
         }
     }
 }

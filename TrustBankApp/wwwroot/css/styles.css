@@ -12825,7 +12825,7 @@ body {
             }
 
 .footer {
-    padding: 5rem 0;
+    padding: 3rem 0;
 }
 
 .col-lg-8 {
@@ -12839,17 +12839,6 @@ body {
 .card {
     background: none;
     color: lightgray;
-}
-
-
-
-
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
-
-*, *:before, *:after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 
