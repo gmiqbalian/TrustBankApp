@@ -1,5 +1,5 @@
 ﻿using TrustBankApp.Infrastructure.Pagination;
-using static TrustBankApp.Pages.CustomersModel;
+using TrustBankApp.ViewModels;
 
 namespace TrustBankApp.Services
 {

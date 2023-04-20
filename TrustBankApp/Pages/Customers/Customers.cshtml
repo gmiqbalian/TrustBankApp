@@ -1,0 +1,178 @@
+﻿@page
+@model TrustBankApp.Pages.CustomersModel
+@{
+}
+
+<div class="container mt-5 pt-5 d-flex flex-column gap-3">
+    <div class="section-title border border-danger">
+        <h1>All Customers</h1>
+        <h3>Page @Model.CurrentPageNumber of @Model.TotalPages</h3>
+    </div>
+    <div class="d-flex justify-content-between border border-danger" style="border: 1px solid green;">
+        <form class=" d-flex align-items-center" method="get">
+            <div class="input-group">
+                <div class="form-outline">
+                    <input type="search" id="form1" class="form-control h-100" 
+                        asp-for="@Model.SearchText" placeholder="Id, Name, City or Address" />
+                    <input type="hidden" asp-for="@Model.Customers" />
+                </div>
+
+                <button type="submit" class="btn btn-primary p-2">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            @*<input type="text" placeholder="enter number of records per page" asp-for-pageSize="">*@
+        </form>
+        <div>
+            <a class="btn btn-warning border-2 border-dark px-3 rounded-4" asp-page="/Index">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back
+            </a>
+            <a class="btn btn-success border-2 border-dark px-3 rounded-4" asp-page="/Index">
+                <i class="fa-solid fa-plus fa-lg"></i>
+                Create New
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive border border-danger">
+        <table class="table table-dark table-striped p-0 m-0">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Id
+                        <a asp-page="/Customers/Customers" asp-route-searchText="@Model.SearchText" asp-route-sortColumn="customerId" asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Customers/Customers" asp-route-sortColumn="customerId" asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th scope="col">
+                        Natoinal Id
+                        <a asp-page="/Customers/Customers" asp-route-sortColumn="nationalId" asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Customers/Customers" asp-route-sortColumn="nationalId" asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th scope="col">
+                        Full Name
+                        <a asp-page="/Customers/Customers" asp-route-searchText="@Model.SearchText" asp-route-sortColumn="name" asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Customers/Customers" asp-route-sortColumn="name" asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th scope="col">
+                        Address
+                        <a asp-page="/Customers/Customers" asp-route-searchText="@Model.SearchText" asp-route-sortColumn="address" asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Customers/Customers" asp-route-sortColumn="address" asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th scope="col">
+                        City
+                        <a asp-page="/Customers/Customers" asp-route-searchText="@Model.SearchText" asp-route-sortColumn="city" asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Customers/Customers" asp-route-sortColumn="city" asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th scope="col">
+                        Country
+                        <a asp-page="/Customers/Customers" asp-route-sortColumn="country" asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Customers/Customers" asp-route-sortColumn="country" asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th scope="col">
+                        Detail
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach (var customer in Model.Customers.Results)
+                {
+                    <tr>
+                        <td>@customer.CustomerId</td>
+                        <td>@customer.NationalId</td>
+                        <td>@customer.FullName</td>
+                        <td>@customer.Addres</td>
+                        <td>@customer.City</td>
+                        <td>@customer.Country</td>
+                        <td>
+                            <a asp-page="/Customers/Customer" asp-route-customerId="@customer.CustomerId"><i class="fa-solid fa-circle-info"></i></a>
+                            @*<a class="btn btn-primary btn-lg" asp-page="/Customer" asp-route-customerId="@customer.CustomerId">Show Detail</a>*@
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="border border-danger">
+        <nav class="" aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                @if (Model.CurrentPageNumber != 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-page="/Customers" asp-route-pageNo=0 aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link"
+                       asp-page="/Customers"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       asp-route-pageNo="@(Model.CurrentPageNumber-1)">
+                            Previous
+                        </a>
+                    </li>
+                }
+
+                @for (var i = Model.Customers.StartPage; i <= Model.Customers.EndPage; i++)
+                {
+                    <li class="page-item">
+                        <a class="page-link"
+                       asp-page="/Customers"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       asp-route-startPage="@Model.StartPage"
+                       asp-route-pageNo="@i">
+                            @i
+                        </a>
+                    </li>
+
+                }
+                @if (Model.CurrentPageNumber != Model.TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link"
+                       asp-page="/Customers"
+                       asp-route-sortColumn="@Model.SortColumn"
+                       asp-route-sortOrder="@Model.SortOrder"
+                       asp-route-pageNo="@(Model.CurrentPageNumber+1)">
+                            Next
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-page="/Customers" asp-route-pageNo="@Model.TotalPages" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                }
+
+            </ul>
+        </nav>
+    </div>
+</div>
+

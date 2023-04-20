@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Models;
 using TrustBankApp.Services;
+using TrustBankApp.ViewModels;
 
 namespace TrustBankApp.Pages
 {
@@ -15,17 +16,7 @@ namespace TrustBankApp.Pages
         public CustomersModel(ICustomerService customerService)
         {
             _customerService = customerService;
-        }
-        public class CustomerViewModel
-        {
-            public int CustomerId { get; set; }
-            public string NationalId { get; set; }
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-            public string Addres { get; set; }
-            public string City { get; set; }
-            public string Country { get; set; }
-        }
+        }       
         public PagedResult<CustomerViewModel> Customers { get; set; }
         public string SortColumn { get; set; }
         public string SortOrder { get; set; }
@@ -38,7 +29,6 @@ namespace TrustBankApp.Pages
         {
             if(pageNo <= 0)            
                 pageNo = 1;
-            
 
             CurrentPageNumber = pageNo;
             SearchText = searchText;

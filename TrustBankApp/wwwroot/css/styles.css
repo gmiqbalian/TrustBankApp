@@ -12825,7 +12825,8 @@ body {
             }
 
 .footer {
-    padding: 3rem 0;
+    /*padding: 1rem 0;*/
+    margin-top: 1rem;
 }
 
 .col-lg-8 {
@@ -12843,7 +12844,7 @@ body {
 
 
 
-table {
+/*table {
     background: #000;
     border-radius: 0.25em;
     border-collapse: collapse;
@@ -12881,9 +12882,9 @@ background-image: var(--bs-gradient);
 
 .demo {
     font-family: 'Noto Sans', sans-serif;
-}
+}*/
 
-.panel {
+/*.panel {
     background: linear-gradient(to right, #2980b9, #2c3e50);
     padding: 0;
     border-radius: 10px;
@@ -13037,52 +13038,4 @@ background-image: var(--bs-gradient);
             line-height: 35px;
         }
 
-.pagination {
-    margin: 0;
-}
-
-    .pagination li a {
-        color: #fff;
-        background-color: transparent;
-        border: 2px solid transparent;
-        font-size: 18px;
-        font-weight: 500;
-        text-align: center;
-        line-height: 31px;
-        width: 35px;
-        height: 35px;
-        padding: 0;
-        margin: 0 3px;
-        border-radius: 50px;
-        transition: all 0.3s ease 0s;
-    }
-
-        .pagination li a:hover {
-            color: #fff;
-            background-color: transparent;
-            border-color: rgba(255,255,255,0.2);
-        }
-
-        .pagination li a:focus,
-        .pagination li.active a,
-        .pagination li.active a:hover {
-            color: #fff;
-            background-color: transparent;
-            border-color: #fff;
-        }
-
-    .pagination li:first-child a,
-    .pagination li:last-child a {
-        border-radius: 50%;
-    }
-
-@media only screen and (max-width:767px) {
-    .panel .panel-heading .title {
-        text-align: center;
-        margin: 0 0 10px;
-    }
-
-    .panel .panel-heading .btn_group {
-        text-align: center;
-    }
-}
+*/

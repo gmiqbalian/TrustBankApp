@@ -10,8 +10,12 @@
         <h1 class="fs-1 fw-bolder">TOP TEN ACCOUNTS</h1>
         <p class="fs-4 lh-sm fw-bold">List of Top 10 Accounts for @Model.Country.ToUpper()</p>
     </div>
-    <div class="" style="border: 1px solid green; padding-left: 200px">
-        <a class="btn btn-warning">Back</a>
+    
+    <div class="align-self-center" style="border: 1px solid green;">
+        <a class="btn btn-warning border-2 border-dark px-3 rounded-4" asp-page="/Index">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back
+        </a>   
     </div>
 
     <div class="table-responsive align-self-center" style="border: 1px solid green;">
@@ -40,10 +44,5 @@
             </tbody>
         </table>
     </div>
-    <div class="align-self-center" style="border: 1px solid green;">
-        <a class="btn btn-warning border-2 border-dark px-5" asp-page="/Index">
-            <i class="fa-solid fa-arrow-left"></i>
-            Back
-        </a>
-    </div>
+  
 </section>
