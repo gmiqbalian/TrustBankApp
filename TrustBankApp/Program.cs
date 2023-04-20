@@ -22,6 +22,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddTransient<DataInitializer>();
 builder.Services.AddTransient<ICustomerService, CustomerService>();
 builder.Services.AddTransient<IStatService, StatService>();
+builder.Services.AddTransient<IUserService, UserService>();
 
 // Lägg till min DbContext
 builder.Services.AddDbContext<TrustBankDbContext>(options =>

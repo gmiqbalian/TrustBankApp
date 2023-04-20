@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TrustBankApp.Infrastructure.Pagination;
@@ -6,6 +7,7 @@ using TrustBankApp.Services;
 
 namespace TrustBankApp.Pages
 {
+    [Authorize(Roles = "Cashier")]
     public class CustomersModel : PageModel
     {
         private readonly ICustomerService _customerService;
@@ -40,7 +42,6 @@ namespace TrustBankApp.Pages
 
             CurrentPageNumber = pageNo;
             SearchText = searchText;
-
 
             Customers = _customerService.GetCustomers(sortColumn, sortOrder, pageNo, searchText);
             

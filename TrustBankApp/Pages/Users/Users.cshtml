@@ -1,0 +1,46 @@
+﻿@page
+@model TrustBankApp.Pages.UsersModel
+@{
+}
+
+<section class="mt-5 vh-100 pt-5 w-100 bg-dark d-flex flex-column" style="border: 1px solid red;">
+
+    <div class="text-light pt-5 bg-dark" style="border: 1px solid green; padding-left: 200px">
+        <h1 class="fs-1 fw-bolder">USERS</h1>
+        <p class="fs-4 lh-sm fw-bold">List of Registered Users</p>
+    </div>
+    <div class="" style="border: 1px solid green; padding-left: 200px">
+        space for buttons
+    </div>
+
+    <div class="table-responsive align-self-center" style="border: 1px solid green">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th scope="col"></th>
+            </thead>
+            <tbody>
+                @foreach(var user in Model.Users)
+                {
+                    <tr class="my-5">
+                        <td>@user.Id</td>
+                        <td>@user.UserName</td>
+                        <td>@user.Email</td>
+                        <td>@user.Role</td>
+                        <td>
+                            <a asp-page="User" asp-route-userId="@user.Id">
+                                <i class="fa-solid fa-user-pen px-3"></i>
+                                Update
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+

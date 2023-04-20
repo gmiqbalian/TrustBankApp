@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using TrustBankApp.Models;
 using TrustBankApp.Services;
+using TrustBankApp.ViewModels;
 using static TrustBankApp.Pages.IndexModel;
 
 namespace TrustBankApp.Pages
@@ -11,18 +12,12 @@ namespace TrustBankApp.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly IStatService _statService;
-        public IndexModel(ILogger<IndexModel> logger, TrustBankDbContext dbContext, IStatService statService)
+        public IndexModel(ILogger<IndexModel> logger, IStatService statService)
         {
             _logger = logger;
             _statService = statService;
         }
-
-        public class StatViewModel
-        {
-            public int Clients { get; set; }
-            public int Accounts { get; set; }
-            public decimal Capital { get; set; }
-        }
+        
         public StatViewModel StatsSweden { get; set; } = new StatViewModel();
         public StatViewModel StatsNorway { get; set; } = new StatViewModel();
         public StatViewModel StatsFinland { get; set; } = new StatViewModel();
