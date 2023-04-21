@@ -1,8 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using TrustBankApp.Models;
-using static TrustBankApp.Pages.CustomersModel;
+using TrustBankApp.ViewModels;
 
 namespace TrustBankApp.Pages
 {
@@ -13,32 +11,6 @@ namespace TrustBankApp.Pages
         public CustomerModel(TrustBankDbContext dbContext)
         {
             _dbContext = dbContext;
-        }
-        public class CustomerDetailViewModel
-        {
-            public int CustomerId { get; set; }
-            public string NationalId { get; set; }
-            public int AccountId { get; set; }
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-            public string FullName { get; set; }
-            public string Gender { get; set; }
-            public DateTime Birthday { get; set; }
-            public string Email { get; set; }
-            public string PhoneNumber { get; set; }
-            public string Address { get; set; }
-            public string City { get; set; }
-            public string ZipCode { get; set; }
-            public string Region { get; set; }
-            public string Country { get; set; }
-            public string CountryCode { get; set; }
-            public string TelephoneCountryCode { get; set; }
-            public string TelephoneNumber { get; set; }
-            public List<Account> Accounts { get; set; }
-            public decimal TotalBalance { get; set; }
-            public int Age { get; set; }
-
-
         }
 
         public CustomerDetailViewModel Customer { get; set; } = new CustomerDetailViewModel();
@@ -54,8 +26,7 @@ namespace TrustBankApp.Pages
 
             Customer.CustomerId = customerToShow.CustomerId;
             Customer.NationalId = customerToShow.NationalId;
-            Customer.FirstName = customerToShow.Givenname;
-            Customer.LastName = customerToShow.Surname;
+            Customer.FullName = customerToShow.Givenname + " " + customerToShow.Surname;
             Customer.Email = customerToShow.Emailaddress;
             Customer.Address = customerToShow.Streetaddress;
             Customer.City = customerToShow.City;
@@ -71,6 +42,7 @@ namespace TrustBankApp.Pages
             Customer.PhoneNumber = customerToShow.Telephonecountrycode + 
                 customerToShow.Telephonenumber;
             Customer.Age = DateTime.Now.Year - Customer.Birthday.Year;
+            Customer.AccountId = customerAccounts.Select(x => x.AccountId).First();
         }
     }
 }
