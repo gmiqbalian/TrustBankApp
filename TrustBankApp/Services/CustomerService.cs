@@ -82,5 +82,25 @@ namespace TrustBankApp.Services
             
             return customerViewModelList.GetPaged(pageNo, 30);
         }
+        public void CreateNewCustomer(NewCustomerViewModel newCustomerViewModel)
+        {
+            var newCustomer = new Customer();
+
+            newCustomer.NationalId = newCustomerViewModel.NationalId;
+            newCustomer.Gender = newCustomerViewModel.Gender;
+            newCustomer.Telephonenumber = newCustomerViewModel.TelephoneNumber;
+            newCustomer.Birthday = Convert.ToDateTime(newCustomerViewModel.Birthday);
+            newCustomer.Givenname = newCustomerViewModel.GivenName;
+            newCustomer.Surname = newCustomerViewModel.SurName;
+            newCustomer.City = newCustomerViewModel.City;
+            newCustomer.Emailaddress = newCustomerViewModel.Email;
+            newCustomer.Country = newCustomerViewModel.Country;
+            newCustomer.Streetaddress = newCustomerViewModel.StreetAddress;
+            newCustomer.Zipcode = newCustomerViewModel.ZipCode;
+
+            _dbContext.Customers.Add(newCustomer);
+            _dbContext.SaveChanges();
+
+        }
     }
 }
