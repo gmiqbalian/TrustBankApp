@@ -18,11 +18,19 @@ namespace TrustBankApp.Pages.Customers
         public NewCustomerViewModel NewCustomerViewModel { get; set; } = new NewCustomerViewModel();
         public void OnGet()
         {
+            NewCustomerViewModel.GendersDropDownList = _customerService.FillGenderDropDownList();
+            NewCustomerViewModel.CountriesDropDownList = _customerService.FillCountryDropDownList();
+            NewCustomerViewModel.Birthday = DateTime.Now;
         }
         public IActionResult OnPost()
         {
-            _customerService.CreateNewCustomer(NewCustomerViewModel);
-            return RedirectToPage("/Customers/Customers");
+            if (ModelState.IsValid)
+            {
+                _customerService.CreateNewCustomer(NewCustomerViewModel);
+                return RedirectToPage("/Customers/Customers");
+            }
+
+            return Page();
         }
     }
 }

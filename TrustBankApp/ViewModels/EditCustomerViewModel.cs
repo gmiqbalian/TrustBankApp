@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TrustBankApp.ViewModels
 {
-    public class NewCustomerViewModel
+    public class EditCustomerViewModel
     {
         [Required]
         [MaxLength(100)]
@@ -38,5 +38,6 @@ namespace TrustBankApp.ViewModels
         public string Country { get; set; } = null!;
         public List<SelectListItem>? GendersDropDownList { get; set; }
         public List<SelectListItem>? CountriesDropDownList { get; set; }
+
     }
 }
