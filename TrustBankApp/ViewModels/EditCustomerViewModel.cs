@@ -5,6 +5,7 @@ namespace TrustBankApp.ViewModels
 {
     public class EditCustomerViewModel
     {
+        public int CustomerId { get; set; }
         [Required]
         [MaxLength(100)]
         public string GivenName { get; set; } = null!;
@@ -16,9 +17,7 @@ namespace TrustBankApp.ViewModels
         [Required]
         public string Gender { get; set; } = null!;
         [DataType(DataType.Date)]
-        public DateTime Birthday { get; set; }
-        [MaxLength(10)]
-        public string? TelephoneCountryCode { get; set; }
+        public DateTime Birthday { get; set; }        
         [MaxLength(25)]
         public string? TelephoneNumber { get; set; }
         [MaxLength(100)]

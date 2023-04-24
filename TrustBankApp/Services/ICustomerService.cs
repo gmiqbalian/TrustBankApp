@@ -11,6 +11,6 @@ namespace TrustBankApp.Services
         void CreateNewCustomer(NewCustomerViewModel newCustomerViewModel);
         List<SelectListItem> FillGenderDropDownList();
         List<SelectListItem> FillCountryDropDownList();
-        Customer GetCustomerById(int customerId)
+        Customer GetCustomerById(int customerId);
     }
 }

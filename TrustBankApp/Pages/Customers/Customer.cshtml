@@ -30,11 +30,12 @@
                                     <i class="fa-solid fa-arrow-left fa-lg"></i>
                                     BACK
                                 </button>
-                                <button class="btn btn-outline-warning border"
-                                        asp-page="/Customers/EditCustomer"
-                                        asp-route-customerId="@Model.Customer.CustomerId">
-                                    <i class="fas fa-edit fa-lg"></i>
-                                    EDIT
+                                <button class="btn btn-outline-warning border">
+                                    <a asp-page="/Customers/EditCustomer"
+                                       asp-route-customerId="@Model.Customer.CustomerId">
+                                        <i class="fas fa-edit fa-lg"></i>
+                                        EDIT
+                                    </a>
                                 </button>
                             </div>
                         </div>
