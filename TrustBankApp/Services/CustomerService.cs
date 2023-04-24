@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Models;
+using TrustBankApp.Models.DropDowns;
 using TrustBankApp.ViewModels;
 
 namespace TrustBankApp.Services
@@ -82,78 +83,6 @@ namespace TrustBankApp.Services
             //query = query.Skip(itemIndex).Take(30);
             
             return customerViewModelList.GetPaged(pageNo, 30);
-        }
-        public void CreateNewCustomer(NewCustomerViewModel newCustomerViewModel)
-        {
-            var newCustomer = new Customer();
-
-            newCustomer.NationalId = newCustomerViewModel.NationalId;
-            newCustomer.Gender = newCustomerViewModel.Gender.ToLower();
-            newCustomer.Telephonenumber = newCustomerViewModel.TelephoneNumber;
-            newCustomer.Birthday = Convert.ToDateTime(newCustomerViewModel.Birthday);
-            newCustomer.Givenname = newCustomerViewModel.GivenName;
-            newCustomer.Surname = newCustomerViewModel.SurName;
-            newCustomer.City = newCustomerViewModel.City;
-            newCustomer.Emailaddress = newCustomerViewModel.Email;
-            newCustomer.Country = newCustomerViewModel.Country;
-            newCustomer.Streetaddress = newCustomerViewModel.StreetAddress;
-            newCustomer.Zipcode = newCustomerViewModel.ZipCode;
-
-            switch (newCustomerViewModel.Country)
-            {
-                case "Sweden":
-                    newCustomer.CountryCode = "SE";
-                    newCustomer.Telephonecountrycode = "46";
-                    break;
-                case "Finland":
-                    newCustomer.CountryCode = "FI";
-                    newCustomer.Telephonecountrycode = "358";
-                    break;
-                case "Denmark":
-                    newCustomer.CountryCode = "DK";
-                    newCustomer.Telephonecountrycode = "45";
-                    break;
-                case "Norway":
-                    newCustomer.CountryCode = "NO";
-                    newCustomer.Telephonecountrycode = "47";
-                    break;
-            }
-
-            var account = new Account();
-            account.Created = DateTime.Now;
-            account.Frequency = "Monthly";
-
-            var disposition = new Disposition();
-            disposition.Account = account;
-            disposition.Type = "Owner";
-
-            newCustomer.Dispositions.Add(disposition);
-
-            _dbContext.Customers.Add(newCustomer);
-            _dbContext.SaveChanges();
-        }
-        public List<SelectListItem> FillGenderDropDownList()
-        {
-            return Enum.GetValues<Gender>()
-                .Select(x => new SelectListItem
-                {
-                    Text = x.ToString(),
-                    Value = x.ToString()
-                }).ToList();
-        }
-        public List<SelectListItem> FillCountryDropDownList()
-        {
-            return Enum.GetValues<Country>()
-                .Select(x => new SelectListItem
-                {
-                    Text = x.ToString(),
-                    Value = x.ToString()
-                }).ToList();
-        }
-        public Customer GetCustomerById(int customerId)
-        {
-            return _dbContext.Customers.First(x => x.CustomerId == customerId);
-
         }
     }
 }
