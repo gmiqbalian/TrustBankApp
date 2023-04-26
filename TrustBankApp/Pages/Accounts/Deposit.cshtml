@@ -1,0 +1,33 @@
+﻿@page
+@model TrustBankApp.Pages.Accounts.DepositModel
+@{
+}
+
+<div class="container mt-5 pt-5 d-flex flex-column gap-3">
+    <div class="section-title border border-danger">
+        <h1>Make a Deposit</h1>
+    </div>
+    <div class="d-flex flex-column align-items-center justify-content-between border border-danger p-lg-5 bg-dark rounded text-light" style="border: 1px solid green;">
+        <form class="" method="post">
+            <div class="input-group d-flex flex-column justify-content-center align-items-center">
+                <h1>Account Number</h1>
+                <h1>Account Number</h1>
+                <h1>Current Balance</h1>
+                <h1>Current Balance</h1>
+                <div class="form-outline">
+                    <input class="" type="text" style="width: auto;" />
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary p-2">
+                        Deposit
+                    </button>
+                    <button type="submit" class="btn btn-primary p-2" 
+                        asp-page="/Customers/Customer"
+                    >
+                        Back
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

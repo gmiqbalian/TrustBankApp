@@ -44,7 +44,8 @@
                 <ul class="navbar-nav ms-auto">
                     @if (User.IsInRole("Cashier"))
                     {                        
-                        <li class="nav-item"><a class="nav-link" asp-page="Customers/Customers">Customers</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-page="/Customers/Customers">Customers</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-page="/Accounts/Accounts">Accounts</a></li>
                     }
                     <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
                     @if (User.IsInRole("Admin"))
