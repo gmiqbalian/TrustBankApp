@@ -17,16 +17,17 @@ namespace TrustBankApp.Pages.Accounts
         public WithdrawViewModel WithdrawViewModel { get; set; } = new WithdrawViewModel();
         public void OnGet(int customerId, int accountId)
         {
-            WithdrawViewModel.CustomerId = customerId;
             WithdrawViewModel.AccountId = accountId;
-            WithdrawViewModel.Balance = _accountService.GetAccountById(accountId).Balance;
+            WithdrawViewModel.Balance = _accountService
+                .GetAccountById(accountId).Balance;
         }
         public IActionResult OnPost(int customerId, int accountId) 
         {
+            WithdrawViewModel.AccountId = accountId;
 
             if (ModelState.IsValid)
             {
-                _accountService.MakeWithdraw(WithdrawViewModel);
+                _accountService.MakeWithdrawl(WithdrawViewModel);
 
                 return RedirectToPage("/Customers/Customer", new { customerId = customerId });
             }

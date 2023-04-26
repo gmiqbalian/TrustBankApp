@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Security.Principal;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Models;
 using TrustBankApp.ViewModels;
@@ -110,7 +111,7 @@ namespace TrustBankApp.Services
                     q.Amount.ToString().Contains(searchText) ||
                     q.Balance.ToString().Contains(searchText));
             }
-            
+
             var transactionsQueryList = query.Select(x => new TransactionViewModel
             {
                 TransactionId = x.TransactionId,
@@ -125,19 +126,73 @@ namespace TrustBankApp.Services
 
         public void MakeDeposit(DepositViewModel depositViewModel)
         {
-            var accountToMakeDeposit = _dbContext.Accounts
+            var toAccount = _dbContext.Accounts
                 .First(x => x.AccountId == depositViewModel.AccountId);
 
-            accountToMakeDeposit.Balance += depositViewModel.Amount;
+            toAccount.Transactions.Add(new Transaction
+            {
+                AccountId = depositViewModel.AccountId,
+                Date = DateTime.Now,
+                Type = "Credit",
+                Operation = "Deposit to account",
+                Amount = depositViewModel.Amount,
+                Balance = toAccount.Balance
+            });
+
+            toAccount.Balance += depositViewModel.Amount;
+
             _dbContext.SaveChanges();
         }
-
-        public void MakeWithdraw(WithdrawViewModel withdrawViewModel)
+        public void MakeWithdrawl(WithdrawViewModel withdrawViewModel)
         {
-            var accountToMakeWithdraw = _dbContext.Accounts
+            var fromAccount = _dbContext.Accounts
                 .First(x => x.AccountId == withdrawViewModel.AccountId);
 
-            accountToMakeWithdraw.Balance -= withdrawViewModel.Amount;
+            fromAccount.Transactions.Add(new Transaction
+            {
+                AccountId = withdrawViewModel.AccountId,
+                Date = DateTime.Now,
+                Type = "Credit",
+                Operation = "Withdrawl",
+                Amount = withdrawViewModel.Amount,
+                Balance = fromAccount.Balance
+            });
+
+            fromAccount.Balance -= withdrawViewModel.Amount;
+
+            _dbContext.SaveChanges();
+        }
+        public void MakeTransfer(TransferViewModel transferViewModel)
+        {
+            var toAccount = GetAccountById(transferViewModel.ToAccountId);
+            var fromAccount = GetAccountById(transferViewModel.FromAccountId);
+
+            fromAccount.Balance -= transferViewModel.Amount;
+            toAccount.Balance += transferViewModel.Amount;
+            
+            toAccount.Transactions.Add(new Transaction
+            {
+                AccountId = toAccount.AccountId,
+                Date = DateTime.Now,
+                Type = "Debit",
+                Operation = "Collection from Another Bank",
+                Amount = transferViewModel.Amount,
+                Account = transferViewModel.FromAccountId.ToString(),
+                Balance = toAccount.Balance
+            });
+
+            fromAccount.Transactions.Add(new Transaction
+            {
+                AccountId = fromAccount.AccountId,
+                Date = DateTime.Now,
+                Type = "Credit",
+                Operation = "Transfer to Another Bank",
+                Amount = transferViewModel.Amount * -1,
+                Account = transferViewModel.ToAccountId.ToString(),
+                Balance = fromAccount.Balance
+            });
+
+
             _dbContext.SaveChanges();
         }
         public Account GetAccountById(int accountId)

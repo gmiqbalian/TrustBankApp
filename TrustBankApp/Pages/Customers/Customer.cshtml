@@ -146,8 +146,11 @@
                                     <a class="btn btn-info"
                                        asp-page="/Accounts/Withdrawl"
                                        asp-route-customerId="@Model.Customer.CustomerId"
-                                       asp-route-accountId="@Model.Customer.AccountId">Withdrawl</a>
-                                    <a class="btn btn-info">Transfer</a>
+                                       asp-route-accountId="@Model.Customer.AccountId">Withdraw</a>
+                                    <a class="btn btn-info"
+                                       asp-page="/Accounts/Transfer"
+                                       asp-route-customerId="@Model.Customer.CustomerId"
+                                       asp-route-accountId="@Model.Customer.AccountId">Transfer</a>
                                 </div>
                             </div>
 

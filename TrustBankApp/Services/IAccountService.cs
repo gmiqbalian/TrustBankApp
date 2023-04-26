@@ -10,7 +10,8 @@ namespace TrustBankApp.Services
         PagedResult<TransactionViewModel> GetAllTransactions(int accountId, string sortColumn, string sortOrder, int pageNo, string searchText);
         PagedResult<AccountDetailViewModel> GetAllAccounts(string sortColumn, string sortOrder, int pageNo, string searchText);
         void MakeDeposit(DepositViewModel depositViewModel);
-        void MakeWithdraw(WithdrawViewModel withdrawViewModel);
+        void MakeWithdrawl(WithdrawViewModel withdrawViewModel);
+        void MakeTransfer(TransferViewModel transferViewModel);
         Account GetAccountById(int accountId);
     }
 }

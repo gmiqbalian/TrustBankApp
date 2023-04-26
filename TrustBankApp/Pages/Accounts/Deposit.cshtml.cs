@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using TrustBankApp.Models;
 using TrustBankApp.Services;
 using TrustBankApp.ViewModels;
 
@@ -14,14 +15,16 @@ namespace TrustBankApp.Pages.Accounts
         {
             _accountService = accountService;
         }
-        public DepositViewModel DepositViewModel { get; set; }
+        public DepositViewModel DepositViewModel { get; set; } = new DepositViewModel();
 
-        public void OnGet()
+        public void OnGet(int accountId)
         {
+            DepositViewModel.AccountId = accountId;
+            DepositViewModel.Balance = _accountService
+                .GetAccountById(accountId).Balance;
         }
         public IActionResult OnPost(int customerId, int accountId)
         {
-            DepositViewModel.CustomerId = customerId;
             DepositViewModel.AccountId = accountId;
 
             if(ModelState.IsValid)
