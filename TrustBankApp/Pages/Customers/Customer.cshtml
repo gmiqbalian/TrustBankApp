@@ -60,7 +60,7 @@
                                 <h6 class="mb-0">Email</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                @Model.Customer.Email
+                                    @Model.Customer.Email
                             </div>
                         </div>
                         <hr>
@@ -69,7 +69,7 @@
                                 <h6 class="mb-0">Phone</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                @Model.Customer.PhoneNumber
+                                        @Model.Customer.PhoneNumber
                             </div>
                         </div>
                         <hr>
@@ -78,7 +78,7 @@
                                 <h6 class="mb-0">Birthday</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                @Model.Customer.Birthday
+                                            @Model.Customer.Birthday
                             </div>
                         </div>
                         <hr>
@@ -87,7 +87,7 @@
                                 <h6 class="mb-0">Address</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                @Model.Customer.Address
+                                                @Model.Customer.Address
                             </div>
                         </div>
                         <hr>
@@ -96,7 +96,7 @@
                                 <h6 class="mb-0">City</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                @Model.Customer.City
+                                                    @Model.Customer.City
                             </div>
                         </div>
                         <hr>
@@ -105,7 +105,7 @@
                                 <h6 class="mb-0">Country</h6>
                             </div>
                             <div class="d-flex gap-5 col-sm-9 text-secondary">
-                                @Model.Customer.Country
+                                                        @Model.Customer.Country
                             </div>
                         </div>
                         <hr>
@@ -118,7 +118,7 @@
                                     <h6 class="mb-0">Account Id</h6>
                                 </div>
                                 <div class="col-sm-9 fs-3 text-warning">
-                                    @Model.Customer.AccountId
+                                                                @Model.Customer.AccountId
                                 </div>
                             </div>
                             <hr>
@@ -139,8 +139,14 @@
                                     <a class="btn btn-info"
                                        asp-page="/Accounts/Transactions"
                                        asp-route-accountId="@Model.Customer.AccountId">Transactions</a>
-                                    <a class="btn btn-info">Deposit</a>
-                                    <a class="btn btn-info">Withdrawl</a>
+                                    <a class="btn btn-info"
+                                       asp-page="/Accounts/Deposit"
+                                       asp-route-customerId="@Model.Customer.CustomerId"
+                                       asp-route-accountId="@Model.Customer.AccountId">Deposit</a>
+                                    <a class="btn btn-info"
+                                       asp-page="/Accounts/Withdrawl"
+                                       asp-route-customerId="@Model.Customer.CustomerId"
+                                       asp-route-accountId="@Model.Customer.AccountId">Withdrawl</a>
                                     <a class="btn btn-info">Transfer</a>
                                 </div>
                             </div>

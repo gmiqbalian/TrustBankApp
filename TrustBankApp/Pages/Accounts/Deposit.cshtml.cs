@@ -18,11 +18,19 @@ namespace TrustBankApp.Pages.Accounts
 
         public void OnGet()
         {
-
         }
-        public void OnPost()
-        { 
+        public IActionResult OnPost(int customerId, int accountId)
+        {
+            DepositViewModel.CustomerId = customerId;
+            DepositViewModel.AccountId = accountId;
 
+            if(ModelState.IsValid)
+            {
+                _accountService.MakeDeposit(DepositViewModel);
+                return RedirectToPage("/Customers/Customer", new {customerId = customerId});
+            }
+
+            return Page();
         }
     }
 }

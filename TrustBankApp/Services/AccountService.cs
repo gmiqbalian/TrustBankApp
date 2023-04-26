@@ -123,5 +123,26 @@ namespace TrustBankApp.Services
             return transactionsQueryList.GetPaged(pageNo, 30);
         }
 
+        public void MakeDeposit(DepositViewModel depositViewModel)
+        {
+            var accountToMakeDeposit = _dbContext.Accounts
+                .First(x => x.AccountId == depositViewModel.AccountId);
+
+            accountToMakeDeposit.Balance += depositViewModel.Amount;
+            _dbContext.SaveChanges();
+        }
+
+        public void MakeWithdraw(WithdrawViewModel withdrawViewModel)
+        {
+            var accountToMakeWithdraw = _dbContext.Accounts
+                .First(x => x.AccountId == withdrawViewModel.AccountId);
+
+            accountToMakeWithdraw.Balance -= withdrawViewModel.Amount;
+            _dbContext.SaveChanges();
+        }
+        public Account GetAccountById(int accountId)
+        {
+            return _dbContext.Accounts.First(x => x.AccountId == accountId);
+        }
     }
 }
