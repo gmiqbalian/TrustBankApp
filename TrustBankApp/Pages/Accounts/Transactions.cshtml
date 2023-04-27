@@ -43,12 +43,15 @@
                         <a asp-page="/Accounts/Transactions"
                            asp-route-accountId="@Model.AccountId"
                            asp-route-searchText="@Model.SearchText"
+                           asp-route-pageNo = "@Model.CurrentPageNumber"
                            asp-route-sortColumn="transactionId"
                            asp-route-sortOrder="asc">
                             <i class="fa-solid fa-sort-up"></i>
                         </a>
                         <a asp-page="/Accounts/Transactions"
                            asp-route-accountId="@Model.AccountId"
+                           asp-route-pageNo = "@Model.CurrentPageNumber"
+                           asp-route-searchText="@Model.SearchText"
                            asp-route-sortColumn="transactionId"
                            asp-route-sortOrder="desc">
                             <i class="fa-solid fa-sort-down"></i>
@@ -58,12 +61,14 @@
                         Date
                         <a asp-page="/Accounts/Transactions"
                            asp-route-accountId="@Model.AccountId"
+                           asp-route-pageNo = "@Model.CurrentPageNumber"
                            asp-route-sortColumn="Date"
                            asp-route-sortOrder="asc">
                             <i class="fa-solid fa-sort-up"></i>
                         </a>
                         <a asp-page="/Accounts/Transactions"
                            asp-route-accountId="@Model.AccountId"
+                           asp-route-pageNo = "@Model.CurrentPageNumber"
                            asp-route-sortColumn="Date"
                            asp-route-sortOrder="desc">
                             <i class="fa-solid fa-sort-down"></i>
@@ -143,13 +148,18 @@
                 @if (Model.CurrentPageNumber != 1)
                 {
                     <li class="page-item">
-                        <a class="page-link" asp-page="/Customers" asp-route-pageNo=0 aria-label="Previous">
+                        <a class="page-link" 
+                        asp-page="/Accounts/Transactions"
+                       asp-route-accountId="@Model.AccountId"
+                        asp-route-pageNo=0 
+                        aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
                     <li class="page-item">
                         <a class="page-link"
-                       asp-page="/Customers"
+                       asp-page="/Accounts/Transactions"
+                       asp-route-accountId="@Model.AccountId"
                        asp-route-sortColumn="@Model.SortColumn"
                        asp-route-sortOrder="@Model.SortOrder"
                        asp-route-pageNo="@(Model.CurrentPageNumber-1)">
@@ -162,7 +172,8 @@
                 {
                     <li class="page-item">
                         <a class="page-link"
-                       asp-page="/Customers"
+                       asp-page="/Accounts/Transactions"
+                       asp-route-accountId="@Model.AccountId"
                        asp-route-sortColumn="@Model.SortColumn"
                        asp-route-sortOrder="@Model.SortOrder"
                        asp-route-startPage="@Model.StartPage"
@@ -176,7 +187,8 @@
                 {
                     <li class="page-item">
                         <a class="page-link"
-                       asp-page="/Customers"
+                       asp-page="/Accounts/Transactions"
+                       asp-route-accountId="@Model.AccountId"
                        asp-route-sortColumn="@Model.SortColumn"
                        asp-route-sortOrder="@Model.SortOrder"
                        asp-route-pageNo="@(Model.CurrentPageNumber+1)">
@@ -184,7 +196,10 @@
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" asp-page="/Customers" asp-route-pageNo="@Model.TotalPages" aria-label="Next">
+                        <a class="page-link"
+                       asp-page="/Accounts/Transactions"
+                       asp-route-accountId="@Model.AccountId"
+                       asp-route-pageNo="@Model.TotalPages" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>

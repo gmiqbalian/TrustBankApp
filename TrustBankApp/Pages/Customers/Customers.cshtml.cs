@@ -37,5 +37,15 @@ namespace TrustBankApp.Pages
             
             TotalPages = Customers.TotalPages;
         }
+        public IActionResult OnGetFetchInfo(int customerId)
+        {
+            var customer = _customerService.GetCustomerById(customerId);
+
+            return new JsonResult(new
+            {
+                accountId = customer.CustomerId,
+                balance = customer.Zipcode,
+            });
+        }
     }
 }

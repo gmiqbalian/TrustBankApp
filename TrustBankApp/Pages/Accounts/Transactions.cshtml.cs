@@ -32,7 +32,7 @@ namespace TrustBankApp.Pages.Accounts
             if (pageNo <= 0)
                 pageNo = 1;
 
-            SortColumn = sortColumn; 
+            SortColumn = sortColumn;
             SortOrder = sortOrder; 
             SearchText = searchText;
             CurrentPageNumber = pageNo;
@@ -40,6 +40,7 @@ namespace TrustBankApp.Pages.Accounts
             AccountId = accountId;
 
             Transactions = _accountService.GetAllTransactions(accountId, sortColumn, sortOrder, pageNo, searchText);
+            TotalPages = Transactions.TotalPages;
         }
     }
 }

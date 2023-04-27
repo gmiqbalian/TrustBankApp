@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TrustBankApp.Models;
+using TrustBankApp.Services;
 using TrustBankApp.ViewModels;
 
 namespace TrustBankApp.Pages
@@ -7,10 +9,12 @@ namespace TrustBankApp.Pages
     public class CustomerModel : PageModel
     {
         private readonly TrustBankDbContext _dbContext;
+        private readonly ICustomerService _customerService;
 
-        public CustomerModel(TrustBankDbContext dbContext)
+        public CustomerModel(TrustBankDbContext dbContext, ICustomerService customerService)
         {
             _dbContext = dbContext;
+            _customerService = customerService;
         }
 
         public CustomerDetailViewModel Customer { get; set; } = new CustomerDetailViewModel();
@@ -44,5 +48,6 @@ namespace TrustBankApp.Pages
             Customer.Age = DateTime.Now.Year - Customer.Birthday.Year;
             Customer.AccountId = customerAccounts.Select(x => x.AccountId).First();
         }
+
     }
 }
