@@ -6,14 +6,15 @@
 <div class="container mt-5 pt-5 d-flex flex-column gap-3">
     <div class="section-title border border-danger">
         <h1>All Customers</h1>
+        <h1 class="mb-3">Total Records: @Model.Customers.TotalRows</h1>
         <h3>Page @Model.CurrentPageNumber of @Model.TotalPages</h3>
     </div>
     <div class="d-flex justify-content-between border border-danger" style="border: 1px solid green;">
         <form class=" d-flex align-items-center" method="get">
             <div class="input-group">
                 <div class="form-outline">
-                    <input type="search" id="form1" class="form-control h-100" 
-                        asp-for="@Model.SearchText" placeholder="Id, Name, City or Address" />
+                    <input type="search" id="form1" class="form-control h-100"
+                           asp-for="@Model.SearchText" placeholder="Id, Name, City or Address" />
                     <input type="hidden" asp-for="@Model.Customers" />
                 </div>
 
@@ -165,7 +166,9 @@
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" asp-page="/Customers" asp-route-pageNo="@Model.TotalPages" aria-label="Next">
+                        <a class="page-link"
+                       asp-page="/Customers"
+                       asp-route-pageNo="@Model.TotalPages" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>

@@ -20,13 +20,16 @@ namespace TrustBankApp.Pages.Customers
         {
             NewCustomerViewModel.GendersDropDownList = _customerService.FillGenderDropDownList();
             NewCustomerViewModel.CountriesDropDownList = _customerService.FillCountryDropDownList();
-            NewCustomerViewModel.Birthday = DateTime.Now;
+            NewCustomerViewModel.Birthday = new DateTime(1990, 01, 01);
         }
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
                 _customerService.CreateNewCustomer(NewCustomerViewModel);
+
+                ViewData["successMessage"] = "New Customer created successfully!"; //use toastr notification service
+
                 return RedirectToPage("/Customers/Customers");
             }
 

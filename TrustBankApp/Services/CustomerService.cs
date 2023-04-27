@@ -141,7 +141,7 @@ namespace TrustBankApp.Services
             }
 
             var account = new Account();
-            account.Created = DateTime.Now;
+            account.Created = new DateTime(1990-01-01);
             account.Frequency = "Monthly";
 
             var disposition = new Disposition();
