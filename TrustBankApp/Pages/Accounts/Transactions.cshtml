@@ -125,8 +125,9 @@
 
                 </tr>
             </thead>
+
             <tbody class="table-group-divider">
-                @foreach (var transaction in Model.Transactions.Results)
+                @*@foreach (var transaction in Model.Transactions.Results)
                 {
                     <tr>
                         <td>@transaction.TransactionId</td>
@@ -136,11 +137,12 @@
                         <td>@transaction.Balance</td>
 
                     </tr>
-                }
+                }*@
 
             </tbody>
         </table>
     </div>
+    <a class="btn btn-primary" href="javascript:showMore();">Show More</a>
 
     <div class="border border-danger">
         <nav class="" aria-label="Page navigation example">
@@ -209,3 +211,34 @@
         </nav>
     </div>
 </div>
+
+
+@section Scripts {
+    <script>
+        pageNo=1;
+        document.addEventListener("DOMContentLoaded", function(){
+            showMore();
+        })
+
+        function showMore(){
+            fetch("Transactions?handler=ShowMore&pageNo=" + pageNo + "&accountId=@Model.AccountId")
+            .then((response) => response.json())
+            .then((json) => {
+                pageNo = pageNo+1;
+                json.transactions.forEach(drawElements);
+            })
+        }
+
+        function drawElements(element){
+            document.getElementByClassName('table-group-divider').innerHTML += 
+            `<tr>
+                <td>${element.TransactionId}</td>
+                <td>${element.Date.ToShortDateString()}</td>
+                <td>${element.Type}</td>
+                <td>${element.Amount}</td>
+                <td>${element.Balance}</td>
+            </tr>`
+        }
+
+    </script>
+}

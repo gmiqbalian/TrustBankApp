@@ -4,6 +4,8 @@ using static TrustBankApp.Services.AccountService;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Services;
 using TrustBankApp.ViewModels;
+using TrustBankApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace TrustBankApp.Pages.Accounts
 {
@@ -11,10 +13,12 @@ namespace TrustBankApp.Pages.Accounts
     public class TransactionsModel : PageModel
     {
         private readonly IAccountService _accountService;
+        private readonly TrustBankDbContext _dbContext;
 
-        public TransactionsModel(IAccountService accountService)
+        public TransactionsModel(IAccountService accountService, TrustBankDbContext dbContext)
         {
             _accountService = accountService;
+            _dbContext = dbContext;
         }
 
         public string SortColumn { get; set; }
@@ -41,6 +45,23 @@ namespace TrustBankApp.Pages.Accounts
 
             Transactions = _accountService.GetAllTransactions(accountId, sortColumn, sortOrder, pageNo, searchText);
             TotalPages = Transactions.TotalPages;
+        }
+        public IActionResult OnGetShowMore(int pageNo, int accountId)
+        {
+            var account = _dbContext.Accounts.Include(x => x.Transactions)
+                .Where(x => x.AccountId == accountId)
+                .SelectMany(x => x.Transactions)
+                .GetPaged(pageNo, 20)
+                .Results.Select(x => new TransactionViewModel
+                {
+                    TransactionId = x.TransactionId,
+                    Date = x.Date,
+                    Amount = x.Amount,
+                    Balance = x.Balance,
+                    Type = x.Type
+                });
+
+            return new JsonResult(new { transactions = account });
         }
     }
 }
