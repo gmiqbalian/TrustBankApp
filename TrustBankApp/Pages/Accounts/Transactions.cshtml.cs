@@ -48,7 +48,8 @@ namespace TrustBankApp.Pages.Accounts
         }
         public IActionResult OnGetShowMore(int pageNo, int accountId)
         {
-            var account = _dbContext.Accounts.Include(x => x.Transactions)
+            var account = _dbContext.Accounts
+                //.Include(x => x.Transactions)
                 .Where(x => x.AccountId == accountId)
                 .SelectMany(x => x.Transactions)
                 .GetPaged(pageNo, 20)
@@ -61,7 +62,8 @@ namespace TrustBankApp.Pages.Accounts
                     Type = x.Type
                 });
 
-            return new JsonResult(new { transactions = account });
+            return new JsonResult(new { resultList = account });
         }
     }
 }
+    
