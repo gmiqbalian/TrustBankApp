@@ -14,8 +14,8 @@ namespace TrustBankApp.Infrastructure.Validation
 
             if (number > 10 || number <= 100000)
                 return ValidationResult.Success;
-            return
-                new ValidationResult(ErrorMessage);
+            else
+                return new ValidationResult(ErrorMessage);
         }
 
     }

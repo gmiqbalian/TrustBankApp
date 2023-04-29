@@ -8,7 +8,8 @@ namespace TrustBankApp.ViewModels
         public int ToAccountId { get; set; }
         public int FromAccountId { get; set; }
         public decimal FromAccountBalance { get; set; }
-        [Range(10, 100000, ErrorMessage = "You can only transfer an amount between 1 to 100000 kr")]
+        
+        [Range(10, 100000, ErrorMessage = "The amount should be between 10 to 100000")]
         [PositiveNumber]
         public decimal Amount { get; set; }
     }

@@ -14,16 +14,20 @@
                 <h1>@Model.DepositViewModel.AccountId</h1>
                 <h1>Current Balance</h1>
                 <h1>@Model.DepositViewModel.Balance</h1>
-                <div class="form-outline">
-                    <input class="" type="text" style="width: auto;" asp-for="@Model.DepositViewModel.Amount"/>
+                <div class="d-flex flex-column mb-3">
+                    <input class="" type="text" 
+                        placeholder="10 to 100000"
+                        asp-for="@Model.DepositViewModel.Amount"/>
+                    <span class="text-danger" 
+                        asp-validation-for="@Model.DepositViewModel.Amount"></span>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-primary p-2">
                         Deposit
                     </button>
-                    <button type="submit" class="btn btn-primary p-2" 
+                    <button type="submit" class="btn btn-primary p-2"
                         asp-page="/Customers/Customer"
-                    >
+                        asp-route-customerId="@Model.DepositViewModel.CustomerId">
                         Back
                     </button>
                 </div>
@@ -31,3 +35,8 @@
         </form>
     </div>
 </div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

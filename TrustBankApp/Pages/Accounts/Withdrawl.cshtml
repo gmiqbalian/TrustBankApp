@@ -17,6 +17,7 @@
                 <div class="form-outline">
                     <input class="" type="text" style="width: auto;" 
                     asp-for="@Model.WithdrawViewModel.Amount" />
+                    <span class="text-danger" asp-validation-for="@Model.WithdrawViewModel.Amount"></span>
                 </div>
                 <div class="d-block">
                     <button type="submit" class="btn btn-primary p-2">

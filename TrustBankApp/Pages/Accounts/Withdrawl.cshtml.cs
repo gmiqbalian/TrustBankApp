@@ -26,6 +26,8 @@ namespace TrustBankApp.Pages.Accounts
         public IActionResult OnPost(int customerId, int accountId) 
         {
             WithdrawViewModel.AccountId = accountId;
+            WithdrawViewModel.Balance = _accountService
+                .GetAccountById(accountId).Balance;
 
             if (ModelState.IsValid)
             {
