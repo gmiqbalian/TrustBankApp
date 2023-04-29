@@ -21,7 +21,7 @@ namespace TrustBankApp.ViewModels
         [MaxLength(25)]
         public string? TelephoneNumber { get; set; }
         [MaxLength(100)]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
         public string? Email { get; set; }
         [Required]
         [MaxLength(100)]
@@ -31,6 +31,8 @@ namespace TrustBankApp.ViewModels
         public string City { get; set; } = null!;
         [Required]
         [MaxLength(15)]
+        [RegularExpression("^[0-9]{5}(?:-[0-9]{4})?$", ErrorMessage = "Not a valid zip")]
+
         public string ZipCode { get; set; } = null!;
         [Required]
         [MaxLength(100)]

@@ -1,11 +1,14 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 using TrustBankApp.Models;
 using TrustBankApp.Services;
 using TrustBankApp.ViewModels;
 
 namespace TrustBankApp.Pages.Accounts
 {
+    [Authorize(Roles = "Cashier")]
     [BindProperties]
     public class TransferModel : PageModel
     {

@@ -28,13 +28,14 @@
                             </label>
                             <input type="text" class="form-control"
                                    asp-for="@Model.NewCustomerViewModel.GivenName">
-                            <span asp-validation-for="@Model.NewCustomerViewModel.GivenName"></span>
+                            <span class="text-danger" 
+                                asp-validation-for="@Model.NewCustomerViewModel.GivenName"></span>
                         </div>
                         <div class="mb-3 col-12">
                             <label for="exampleInputPassword1" class="form-label">Last Name</label>
                             <input type="text" class="form-control"
                                    asp-for="@Model.NewCustomerViewModel.SurName">
-                            <span asp-validation-for="@Model.NewCustomerViewModel.SurName"></span>
+                            <span class="text-danger" asp-validation-for="@Model.NewCustomerViewModel.SurName"></span>
                         </div>
                     </div>
 
@@ -45,8 +46,9 @@
                                 Social Security
                             </label>
                             <input type="text" class="form-control" id="exampleInputEmail1"
-                                   asp-for="@Model.NewCustomerViewModel.NationalId"
-                                   aria-describedby="emailHelp">
+                                asp-for="@Model.NewCustomerViewModel.NationalId">
+                            <span class="text-danger" 
+                                asp-validation-for="@Model.NewCustomerViewModel.NationalId"></span>
                         </div>
                         <div class="mb-3 col-12">
                             <label asp-for="@Model.NewCustomerViewModel.Gender"
@@ -55,11 +57,15 @@
                                     asp-for="@Model.NewCustomerViewModel.Gender"
                                     asp-items="@Model.NewCustomerViewModel.GendersDropDownList">
                             </select>
+                            <span class="text-danger"
+                                  asp-validation-for="@Model.NewCustomerViewModel.Gender"></span>
                         </div>
                         <div class="mb-3 col-12">
                             <label asp-for="@Model.NewCustomerViewModel.Birthday" class="form-label">Birthday</label>
                             <input type="date" class="form-control" id="dateOfBirth"
                                    asp-for="@Model.NewCustomerViewModel.Birthday">
+                            <span class="text-danger"
+                                  asp-validation-for="@Model.NewCustomerViewModel.Birthday"></span>
                         </div>
                     </div>
                 </div>
@@ -71,12 +77,16 @@
                             <label asp-for="@Model.NewCustomerViewModel.StreetAddress" class="form-label">Address</label>
                             <input type="text" class="form-control" placeholder="1234 Main St"
                                    asp-for="@Model.NewCustomerViewModel.StreetAddress">
+                            <span class="text-danger"
+                                  asp-validation-for="@Model.NewCustomerViewModel.StreetAddress"></span>
                         </div>
                         <div class="mb-3 col-12">
                             <label asp-for="@Model.NewCustomerViewModel.City"
                                    class="form-label">City</label>
                             <input type="text" class="form-control"
                                    asp-for="@Model.NewCustomerViewModel.City">
+                            <span class="text-danger"
+                                  asp-validation-for="@Model.NewCustomerViewModel.City"></span>
                         </div>
                         <div class="mb-3 col-12">
                             <label asp-for="@Model.NewCustomerViewModel.Country" class="form-label">Country</label>
@@ -84,16 +94,22 @@
                                     asp-for="@Model.NewCustomerViewModel.Country"
                                     asp-items="@Model.NewCustomerViewModel.CountriesDropDownList">
                             </Select>
+                            <span class="text-danger"
+                                  asp-validation-for="@Model.NewCustomerViewModel.Country"></span>
                         </div>
                         <div class="mb-3 col-12 col-lg-6">
                             <label asp-for="@Model.NewCustomerViewModel.ZipCode" class="form-label">Zip</label>
-                            <input type="text" class="form-control" placeholder="000 00"
+                            <input type="text" class="form-control" placeholder="3-5 digits"
                                    asp-for="@Model.NewCustomerViewModel.ZipCode">
+                            <span class="text-danger"
+                                  asp-validation-for="@Model.NewCustomerViewModel.ZipCode"></span>
                         </div>
                         <div class="mb-3 col-12 col-lg-6">
                             <label asp-for="@Model.NewCustomerViewModel.TelephoneNumber" class="form-label">Tel Number</label>
                             <input type="text" class="form-control" placeholder="1234 56 78"
                                    asp-for="@Model.NewCustomerViewModel.TelephoneNumber">
+                            <span class="text-danger"
+                                  asp-validation-for="@Model.NewCustomerViewModel.TelephoneNumber"></span>
                         </div>
                     </div>
 
@@ -102,6 +118,8 @@
                             <label asp-for="@Model.NewCustomerViewModel.Email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="inputEmail"
                                    asp-for="@Model.NewCustomerViewModel.Email">
+                            <span class="text-danger"
+                                  asp-validation-for="@Model.NewCustomerViewModel.Email"></span>
                         </div>
                     </div>
                 </div>

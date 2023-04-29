@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using TrustBankApp.ViewModels;
 
 namespace TrustBankApp.Pages.Customers
 {
+    [Authorize(Roles = "Cashier")]
     [BindProperties]
     public class EditCustomerModel : PageModel
     {

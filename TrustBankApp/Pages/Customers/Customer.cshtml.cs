@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TrustBankApp.Models;
@@ -6,6 +7,7 @@ using TrustBankApp.ViewModels;
 
 namespace TrustBankApp.Pages
 {
+    [Authorize(Roles = "Cashier")]
     public class CustomerModel : PageModel
     {
         private readonly TrustBankDbContext _dbContext;

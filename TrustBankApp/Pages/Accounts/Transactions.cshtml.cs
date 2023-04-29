@@ -6,10 +6,12 @@ using TrustBankApp.Services;
 using TrustBankApp.ViewModels;
 using TrustBankApp.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace TrustBankApp.Pages.Accounts
 {
-
+    [Authorize(Roles = "Cashier")]
     public class TransactionsModel : PageModel
     {
         private readonly IAccountService _accountService;
@@ -49,7 +51,6 @@ namespace TrustBankApp.Pages.Accounts
         public IActionResult OnGetShowMore(int pageNo, int accountId)
         {
             var account = _dbContext.Accounts
-                //.Include(x => x.Transactions)
                 .Where(x => x.AccountId == accountId)
                 .SelectMany(x => x.Transactions)
                 .GetPaged(pageNo, 20)

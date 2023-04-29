@@ -1,14 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
+using TrustBankApp.Infrastructure.Validation;
 
 namespace TrustBankApp.ViewModels
 {
     public class NewCustomerViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "This field is required")]
         [MaxLength(100)]
-        public string GivenName { get; set; } = null!;
-        [Required]
+        [RegularExpression("^(?:[a-z]|[A-Z])+$", ErrorMessage = "Can not enter number in name field.")]
+        public string GivenName { get; set; }
+        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression("^(?:[a-z]|[A-Z])+$", ErrorMessage = "Can not enter number in name field.")]
         [MaxLength(100)]
         public string SurName { get; set; } = null!;
         [MaxLength(20)]
@@ -32,6 +35,7 @@ namespace TrustBankApp.ViewModels
         public string City { get; set; } = null!;
         [Required]
         [MaxLength(15)]
+        [RegularExpression("^[0-9]{3,5}$", ErrorMessage = "Not a valid zip")]
         public string ZipCode { get; set; } = null!;
         [Required]
         [MaxLength(100)]
