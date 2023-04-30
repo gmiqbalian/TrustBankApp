@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using TrustBankApp.Data;
 using TrustBankApp.Models;
 using TrustBankApp.Services;
@@ -28,6 +29,8 @@ builder.Services.AddTransient<IAccountService, AccountService>();
 // Lägg till min DbContext
 builder.Services.AddDbContext<TrustBankDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 

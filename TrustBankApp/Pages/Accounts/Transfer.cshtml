@@ -16,10 +16,16 @@
                 <h1>@Model.TransferViewModel.FromAccountBalance</h1>
                 <div class="form-outline">
                     <label asp-for="@Model.TransferViewModel.ToAccountId">To Account:</label>
-                    <input class="" type="text" style="width: auto;" asp-for="@Model.TransferViewModel.ToAccountId" />
+                    <input class="" type="text" style="width: auto;" 
+                        asp-for="@Model.TransferViewModel.ToAccountId" />
+                    <span class="text-danger" 
+                        asp-validation-for="@Model.TransferViewModel.ToAccountId"></span>
                 </div>
                 <div class="form-outline">
-                    <input class="" type="text" style="width: auto;" asp-for="@Model.TransferViewModel.Amount" />
+                    <input class="" type="text" style="width: auto;" 
+                        asp-for="@Model.TransferViewModel.Amount" />
+                    <span class="text-danger"
+                          asp-validation-for="@Model.TransferViewModel.Amount"></span>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-primary p-2">

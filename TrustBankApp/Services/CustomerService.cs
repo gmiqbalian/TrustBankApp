@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Models;
 using TrustBankApp.Models.DropDowns;
@@ -9,10 +10,12 @@ namespace TrustBankApp.Services
     public class CustomerService : ICustomerService
     {
         private readonly TrustBankDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public CustomerService(TrustBankDbContext dbContext)
+        public CustomerService(TrustBankDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public PagedResult<CustomerViewModel> GetCustomers(string sortColumn, string sortOrder, int pageNo, string searchText)
@@ -69,14 +72,14 @@ namespace TrustBankApp.Services
             }
 
             var customerViewModelList = query.Select(c => new CustomerViewModel
-                {
+            {
                     CustomerId = c.CustomerId,
                     NationalId = c.NationalId,
                     FullName = c.Givenname + " " + c.Surname,
                     Addres = c.Streetaddress,
                     City = c.City,
                     Country = c.Country,
-                });
+            });
 
             
             //var itemIndex = (pageNo - 1) * 30;
@@ -108,18 +111,6 @@ namespace TrustBankApp.Services
         {
             var newCustomer = new Customer();
 
-            newCustomer.NationalId = newCustomerViewModel.NationalId;
-            newCustomer.Gender = newCustomerViewModel.Gender.ToLower();
-            newCustomer.Telephonenumber = newCustomerViewModel.TelephoneNumber;
-            newCustomer.Birthday = Convert.ToDateTime(newCustomerViewModel.Birthday);
-            newCustomer.Givenname = newCustomerViewModel.GivenName;
-            newCustomer.Surname = newCustomerViewModel.SurName;
-            newCustomer.City = newCustomerViewModel.City;
-            newCustomer.Emailaddress = newCustomerViewModel.Email;
-            newCustomer.Country = newCustomerViewModel.Country;
-            newCustomer.Streetaddress = newCustomerViewModel.StreetAddress;
-            newCustomer.Zipcode = newCustomerViewModel.ZipCode;
-
             switch (newCustomerViewModel.Country)
             {
                 case "Sweden":
@@ -140,8 +131,10 @@ namespace TrustBankApp.Services
                     break;
             }
 
+            _mapper.Map(newCustomerViewModel, newCustomer);
+
             var account = new Account();
-            account.Created = new DateTime(1990-01-01);
+            account.Created = DateTime.Now;
             account.Frequency = "Monthly";
 
             var disposition = new Disposition();
@@ -151,6 +144,14 @@ namespace TrustBankApp.Services
             newCustomer.Dispositions.Add(disposition);
 
             _dbContext.Customers.Add(newCustomer);
+            _dbContext.SaveChanges();
+        }
+        public void EditCustomer(EditCustomerViewModel editCustomerViewModel)
+        {
+            var customerToEdit = GetCustomerById(editCustomerViewModel.CustomerId);
+
+            _mapper.Map(editCustomerViewModel, customerToEdit);
+
             _dbContext.SaveChanges();
         }
 

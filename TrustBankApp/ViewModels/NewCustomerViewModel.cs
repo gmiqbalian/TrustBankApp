@@ -26,7 +26,7 @@ namespace TrustBankApp.ViewModels
         public string? TelephoneNumber { get; set; }
         [MaxLength(100)]
         [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
-        public string? Email { get; set; }
+        public string? EmailAddress { get; set; }
         [Required]
         [MaxLength(100)]
         public string StreetAddress { get; set; } = null!;
