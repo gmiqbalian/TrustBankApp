@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Security.Principal;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Models;
 using TrustBankApp.ViewModels;
@@ -14,7 +13,22 @@ namespace TrustBankApp.Services
         {
             _dbContext = dbContext;
         }
+        public Account GetNewAccount()
+        {
+            var newAccount = new Account();
+            newAccount.Created = DateTime.Now;
+            newAccount.Frequency = "Monthly";
 
+            return newAccount;
+        }
+        public Disposition GetNewDisposition(Account forAccount)
+        {
+            var newDisposition = new Disposition();
+            newDisposition.Account = forAccount;
+            newDisposition.Type = "Owner";
+
+            return newDisposition;
+        }
         public PagedResult<AccountDetailViewModel> GetAllAccounts(string sortColumn, string sortOrder, int pageNo, string searchText)
         {
             var query = _dbContext.Accounts.AsQueryable();
@@ -199,5 +213,6 @@ namespace TrustBankApp.Services
         {
             return _dbContext.Accounts.First(x => x.AccountId == accountId);
         }
+
     }
 }

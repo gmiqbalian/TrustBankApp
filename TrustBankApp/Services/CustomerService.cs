@@ -10,6 +10,7 @@ namespace TrustBankApp.Services
     public class CustomerService : ICustomerService
     {
         private readonly TrustBankDbContext _dbContext;
+        private readonly IAccountService _accountService;
         private readonly IMapper _mapper;
 
         public CustomerService(TrustBankDbContext dbContext, IMapper mapper)
@@ -133,22 +134,38 @@ namespace TrustBankApp.Services
 
             _mapper.Map(newCustomerViewModel, newCustomer);
 
-            var account = new Account();
-            account.Created = DateTime.Now;
-            account.Frequency = "Monthly";
+            var account = _accountService.GetNewAccount();
 
-            var disposition = new Disposition();
-            disposition.Account = account;
-            disposition.Type = "Owner";
+            var disposition = _accountService.GetNewDisposition(account);
 
             newCustomer.Dispositions.Add(disposition);
 
             _dbContext.Customers.Add(newCustomer);
             _dbContext.SaveChanges();
         }
-        public void EditCustomer(EditCustomerViewModel editCustomerViewModel)
+        public void EditCustomer(EditCustomerViewModel editCustomerViewModel) //add country code and telephone code switch
         {
             var customerToEdit = GetCustomerById(editCustomerViewModel.CustomerId);
+
+            switch (editCustomerViewModel.Country)
+            {
+                case "Sweden":
+                    customerToEdit.CountryCode = "SE";
+                    customerToEdit.Telephonecountrycode = "46";
+                    break;
+                case "Finland":
+                    customerToEdit.CountryCode = "FI";
+                    customerToEdit.Telephonecountrycode = "358";
+                    break;
+                case "Denmark":
+                    customerToEdit.CountryCode = "DK";
+                    customerToEdit.Telephonecountrycode = "45";
+                    break;
+                case "Norway":
+                    customerToEdit.CountryCode = "NO";
+                    customerToEdit.Telephonecountrycode = "47";
+                    break;
+            }
 
             _mapper.Map(editCustomerViewModel, customerToEdit);
 

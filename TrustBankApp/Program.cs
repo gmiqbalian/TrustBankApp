@@ -31,6 +31,7 @@ builder.Services.AddDbContext<TrustBankDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddResponseCaching();
 
 var app = builder.Build();
 
@@ -60,5 +61,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.UseResponseCaching();
 
 app.Run();

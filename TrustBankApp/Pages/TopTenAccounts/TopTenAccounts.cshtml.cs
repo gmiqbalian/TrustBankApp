@@ -6,7 +6,8 @@ using TrustBankApp.ViewModels;
 
 namespace TrustBankApp.Pages.TopTenAccounts
 {
-    [Authorize(Roles = "Cashier")]
+    //[Authorize(Roles = "Cashier")]
+    [ResponseCache(Duration = 60, VaryByQueryKeys = new[] { "countryName" })]
     public class TopTenAccountsModel : PageModel
     {
         private readonly IStatService _statService;
