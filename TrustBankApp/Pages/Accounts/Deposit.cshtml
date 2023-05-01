@@ -22,12 +22,15 @@
                         asp-validation-for="@Model.DepositViewModel.Amount"></span>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-primary p-2">
+                    <button type="submit" class="btn btn-primary p-2"
+                        asp-route-accountId = "@Model.DepositViewModel.AccountId"
+                        asp-route-customerId="@Model.DepositViewModel.CustomerId">
                         Deposit
                     </button>
                     <button type="submit" class="btn btn-primary p-2"
                         asp-page="/Customers/Customer"
-                        asp-route-customerId="@Model.DepositViewModel.CustomerId">
+                        asp-route-customerId="@Model.DepositViewModel.CustomerId"
+                        >
                         Back
                     </button>
                 </div>

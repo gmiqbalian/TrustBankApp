@@ -23,7 +23,7 @@ namespace TrustBankApp.Pages.Accounts
             WithdrawViewModel.Balance = _accountService
                 .GetAccountById(accountId).Balance;
         }
-        public IActionResult OnPost(int customerId, int accountId) 
+        public IActionResult OnPost(int customerId, int accountId) //control that customer do not withdraw more than the balance
         {
             WithdrawViewModel.AccountId = accountId;
             WithdrawViewModel.Balance = _accountService
@@ -32,7 +32,6 @@ namespace TrustBankApp.Pages.Accounts
             if (ModelState.IsValid)
             {
                 _accountService.MakeWithdrawl(WithdrawViewModel);
-
                 return RedirectToPage("/Customers/Customer", new { customerId = customerId });
             }
 

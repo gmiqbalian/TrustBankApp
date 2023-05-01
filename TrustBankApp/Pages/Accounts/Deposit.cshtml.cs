@@ -20,8 +20,9 @@ namespace TrustBankApp.Pages.Accounts
         }
         public DepositViewModel DepositViewModel { get; set; } = new DepositViewModel();
 
-        public void OnGet(int accountId)
+        public void OnGet(int customerId, int accountId)
         {
+            DepositViewModel.CustomerId = customerId;
             DepositViewModel.AccountId = accountId;
             DepositViewModel.Balance = _accountService
                 .GetAccountById(accountId).Balance;
@@ -29,6 +30,9 @@ namespace TrustBankApp.Pages.Accounts
         public IActionResult OnPost(int customerId, int accountId)
         {
             DepositViewModel.AccountId = accountId;
+            DepositViewModel.CustomerId = customerId;
+            DepositViewModel.Balance = _accountService
+                .GetAccountById(accountId).Balance;
 
             if(ModelState.IsValid)
             {

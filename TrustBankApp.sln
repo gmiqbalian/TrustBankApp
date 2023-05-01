@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrustBankApp", "TrustBankApp\TrustBankApp.csproj", "{DDCC5CE2-5332-4DC3-ADD9-E7DEBF5F5D7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrustBankAPI", "TrustBankAPI\TrustBankAPI.csproj", "{7117F811-53DA-4A8D-A4D9-91E81801AC0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DDCC5CE2-5332-4DC3-ADD9-E7DEBF5F5D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDCC5CE2-5332-4DC3-ADD9-E7DEBF5F5D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDCC5CE2-5332-4DC3-ADD9-E7DEBF5F5D7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7117F811-53DA-4A8D-A4D9-91E81801AC0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7117F811-53DA-4A8D-A4D9-91E81801AC0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7117F811-53DA-4A8D-A4D9-91E81801AC0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7117F811-53DA-4A8D-A4D9-91E81801AC0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

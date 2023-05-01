@@ -33,21 +33,21 @@ namespace TrustBankApp.Pages
             Customer.CustomerId = customerToShow.CustomerId;
             Customer.NationalId = customerToShow.NationalId;
             Customer.FullName = customerToShow.Givenname + " " + customerToShow.Surname;
-            Customer.Email = customerToShow.Emailaddress;
+            Customer.Emailaddress = customerToShow.Emailaddress;
             Customer.Address = customerToShow.Streetaddress;
             Customer.City = customerToShow.City;
             Customer.Country = customerToShow.Country;
             Customer.CountryCode = customerToShow.CountryCode;
             Customer.Gender = customerToShow.Gender;
-            Customer.ZipCode = customerToShow.Zipcode;
-            Customer.TelephoneCountryCode = customerToShow.Telephonecountrycode;
-            Customer.TelephoneNumber = customerToShow.Telephonenumber;
+            Customer.Zipcode = customerToShow.Zipcode;
+            Customer.Telephonecountrycode = customerToShow.Telephonecountrycode;
+            Customer.Telephonenumber = customerToShow.Telephonenumber;
             Customer.Accounts = customerAccounts;
             Customer.TotalBalance = Customer.Accounts.Select(a => a.Balance).Sum();
             Customer.Birthday = Convert.ToDateTime(customerToShow.Birthday);
             Customer.PhoneNumber = customerToShow.Telephonecountrycode + 
                 customerToShow.Telephonenumber;
-            Customer.Age = DateTime.Now.Year - Customer.Birthday.Year;
+            Customer.Age = Convert.ToInt32(DateTime.Now - customerToShow.Birthday);
             Customer.AccountId = customerAccounts.Select(x => x.AccountId).First();
         }
 
