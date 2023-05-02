@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +12,7 @@ namespace TrustBankAPI.Controllers
 {
     [Route("api")]
     [ApiController]
+    [EnableCors("AllowAll")]
     public class CustomerDetailController : ControllerBase
     {
         private readonly ICustomerService _customerService;
@@ -26,8 +29,22 @@ namespace TrustBankAPI.Controllers
         public CustomerDetailViewModel Customer { get; set; } = new CustomerDetailViewModel();
         public List<TransactionViewModel> Transactions { get; set; } = new List<TransactionViewModel>();
 
+        ///<summary>
+        ///Retrieve Customer Detail by entering specific customer id.
+        ///</summary>
+        ///<returns>
+        ///Full Customer Detail for a specific Customer
+        ///</returns>
+        ///<remarks>
+        ///Endpoint(example): GET/api/customer/id
+        /// </remarks>
+        /// <response code="200">
+        /// Successfully returned customer detail
+        /// </response>
+
+        [Authorize (Roles = "Admin")]
         [HttpGet]
-        [Route("me/{id}")]
+        [Route("customer/{id}")]
         public async Task<ActionResult<CustomerDetailViewModel>> GetCustomerDetail(int id)
         {
             var customerToShow = _customerService.GetCustomerById(id);
