@@ -31,7 +31,6 @@ namespace TrustBankApp.Pages.Customers
             var customerToEdit = _customerService.GetCustomerById(customerId);
 
             _mapper.Map(customerToEdit, EditCustomerViewModel);
-
         }
         public IActionResult OnPost(int customerId)
         {

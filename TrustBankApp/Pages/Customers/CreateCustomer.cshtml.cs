@@ -28,7 +28,7 @@ namespace TrustBankApp.Pages.Customers
             {
                 _customerService.CreateNewCustomer(NewCustomerViewModel);
 
-                ViewData["successMessage"] = "New Customer created successfully!"; //use toastr notification service
+                TempData["success"] = "New Customer created successfully!"; //use toastr notification service
 
                 return RedirectToPage("/Customers/Customers");
             }

@@ -19,7 +19,7 @@ namespace TrustBankApp.Pages
             _customerService = customerService;
         }
 
-        public CustomerDetailViewModel Customer { get; set; } = new CustomerDetailViewModel();
+        public CustomerDetailViewModel CustomerVM { get; set; } = new CustomerDetailViewModel();
         public void OnGet(int customerId)
         {
             var customerToShow = _dbContext.Customers
@@ -30,25 +30,25 @@ namespace TrustBankApp.Pages
                 .Select(d => d.Account)
                 .ToList();
 
-            Customer.CustomerId = customerToShow.CustomerId;
-            Customer.NationalId = customerToShow.NationalId;
-            Customer.FullName = customerToShow.Givenname + " " + customerToShow.Surname;
-            Customer.Emailaddress = customerToShow.Emailaddress;
-            Customer.Address = customerToShow.Streetaddress;
-            Customer.City = customerToShow.City;
-            Customer.Country = customerToShow.Country;
-            Customer.CountryCode = customerToShow.CountryCode;
-            Customer.Gender = customerToShow.Gender;
-            Customer.Zipcode = customerToShow.Zipcode;
-            Customer.Telephonecountrycode = customerToShow.Telephonecountrycode;
-            Customer.Telephonenumber = customerToShow.Telephonenumber;
-            Customer.Accounts = customerAccounts;
-            Customer.TotalBalance = Customer.Accounts.Select(a => a.Balance).Sum();
-            Customer.Birthday = Convert.ToDateTime(customerToShow.Birthday);
-            Customer.PhoneNumber = customerToShow.Telephonecountrycode + 
+            CustomerVM.CustomerId = customerToShow.CustomerId;
+            CustomerVM.NationalId = customerToShow.NationalId;
+            CustomerVM.FullName = customerToShow.Givenname + " " + customerToShow.Surname;
+            CustomerVM.Emailaddress = customerToShow.Emailaddress;
+            CustomerVM.Address = customerToShow.Streetaddress;
+            CustomerVM.City = customerToShow.City;
+            CustomerVM.Country = customerToShow.Country;
+            CustomerVM.CountryCode = customerToShow.CountryCode;
+            CustomerVM.Gender = customerToShow.Gender;
+            CustomerVM.Zipcode = customerToShow.Zipcode;
+            CustomerVM.Telephonecountrycode = customerToShow.Telephonecountrycode;
+            CustomerVM.Telephonenumber = customerToShow.Telephonenumber;
+            CustomerVM.Accounts = customerAccounts;
+            CustomerVM.TotalBalance = CustomerVM.Accounts.Select(a => a.Balance).Sum();
+            CustomerVM.Birthday = Convert.ToDateTime(customerToShow.Birthday);
+            CustomerVM.PhoneNumber = customerToShow.Telephonecountrycode + 
                 customerToShow.Telephonenumber;
-            Customer.Age = Convert.ToInt32(DateTime.Now - customerToShow.Birthday);
-            Customer.AccountId = customerAccounts.Select(x => x.AccountId).First();
+            //Customer.Age = DateTime.Now - customerToShow.Birthday;
+            CustomerVM.AccountId = customerAccounts.Select(x => x.AccountId).First();
         }
 
     }

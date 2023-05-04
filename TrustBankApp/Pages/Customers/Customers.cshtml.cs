@@ -9,6 +9,7 @@ using TrustBankApp.ViewModels;
 namespace TrustBankApp.Pages
 {
     [Authorize(Roles = "Cashier")]
+    [BindProperties]
     public class CustomersModel : PageModel
     {
         private readonly ICustomerService _customerService;

@@ -1,22 +1,9 @@
 ﻿@page
 @model TrustBankApp.Pages.Customers.CreateCustomerModel
-@{
-}
-@{
-    ViewData["Title"] = "Create a New Customer";
-    var successMessage = ViewData["successMessage"]?.ToString();
-}
-
 
 <div class="container mt-5 pt-5">
     <div class="container mt-5 p-5 bg-dark text-light rounded-2" style="margin-bottom: 150px">
         <h1 class="pb-5 fs-1 fw-bolder">Create a <span class="text-success">NEW</span> Customer</h1>
-        @if (!string.IsNullOrWhiteSpace(successMessage))
-        {
-            <div class="alert alert-success" role="alert">
-                @successMessage
-            </div>
-        }
         <form class="" style="padding-left: 20px" method="post">
             <div class="row">
                 <div class="col-12 col-lg-6">
