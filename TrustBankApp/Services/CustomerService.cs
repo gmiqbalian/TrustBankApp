@@ -72,21 +72,18 @@ namespace TrustBankApp.Services
                     q.City.ToLower().Contains(searchText));
             }
 
-            var customerViewModelList = query.Select(c => new CustomerViewModel
+
+            var customerVMList = query.Select(c => new CustomerViewModel
             {
-                    CustomerId = c.CustomerId,
-                    NationalId = c.NationalId,
-                    FullName = c.Givenname + " " + c.Surname,
-                    Addres = c.Streetaddress,
-                    City = c.City,
-                    Country = c.Country,
+                CustomerId = c.CustomerId,
+                NationalId = c.NationalId,
+                FullName = c.Givenname + " " + c.Surname,
+                Addres = c.Streetaddress,
+                City = c.City,
+                Country = c.Country,
             });
 
-            
-            //var itemIndex = (pageNo - 1) * 30;
-            //query = query.Skip(itemIndex).Take(30);
-            
-            return customerViewModelList.GetPaged(pageNo, 30);
+            return customerVMList.GetPaged(pageNo, 50);
         }
 
         public List<SelectListItem> FillGenderDropDownList()

@@ -4,121 +4,88 @@
     ViewData["Title"] = "Home page";
 }
 
-<!-- Masthead-->
-<header class="masthead">
-    <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-        <div class="d-flex justify-content-center">
-            <div class="text-center">
-                <h1 class="mx-auto my-0 text-uppercase">Trust Your Bank</h1>
-                <h2 class="text-white-50 mx-auto mt-2 mb-5 fs-1">A bank for your sake</h2>
-                @*<a class="btn btn-primary" href="#about">Get Started</a>*@
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- About-->
-<section class="about-section text-center" id="about">
-    <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-lg-8">
-                <div class="card-group">
-                    <div class="card">
-                        <a 
-                            asp-page="TopTenAccounts/TopTenAccounts" 
-                            asp-route-countryName="Sweden">
-                            <img src="~/assets/img/sweden.png" class="card-img-top" alt="sweden-flag">
-                        </a>
-                        <div class="card-body">
-                            <h1 class="card-title text-center">Sweden</h1>
-                            <h5><i class="fa-solid fa-user"></i></h5>
-                            <h5 class="card-title">
-                                @Model.StatsSweden.Clients
-                            </h5>
-                            <h5>Clients</h5>
-                            <h5><i class="fa-solid fa-landmark"></i></h5>
-                            <h5 class="card-title">
-                                @Model.StatsSweden.Accounts
-                            </h5>
-                            <h5>Accounts</h5>
-                            <h5><i class="fa-solid fa-coins"></i></h5>
-                            <h5 class="card-title">
-                                @string.Format("{0:n0}", @Model.StatsSweden.Capital) kr
-                            </h5>
-                            <h5>Capital</h5>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <a asp-page="TopTenAccounts/TopTenAccounts" asp-route-countryName="Norway">
-                            <img src="~/assets/img/norway.png" class="card-img-top" alt="norway-flag">
-                        </a>
-                        <div class="card-body">
-                            <h1 class="card-title text-center">Norway</h1>
-                            <h5><i class="fa-solid fa-user"></i></h5>
-                            <h5 class="card-title">
-                                @Model.StatsNorway.Clients
-                            </h5>
-                            <h5>Clients</h5>
-                            <h5><i class="fa-solid fa-landmark"></i></h5>
-                            <h5 class="card-title">
-                                @Model.StatsNorway.Accounts
-                            </h5>
-                            <h5>Accounts</h5>
-                            <h5><i class="fa-solid fa-coins"></i></h5>
-                            <h5 class="card-title">
-                                @string.Format("{0:n0}", @Model.StatsNorway.Capital) kr
-                            </h5>
-                            <h5>Capital</h5>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <a asp-page="TopTenAccounts/TopTenAccounts" asp-route-countryName="Denmark">
-                            <img src="~/assets/img/denmark.png" class="card-img-top" alt="denmark-flag">
-                        </a>
-                        <div class="card-body">
-                            <h1 class="card-title text-center">Denmark</h1>
-                            <h5><i class="fa-solid fa-user"></i></h5>
-                            <h5 class="card-title">
-                                @Model.StatsDenmark.Clients
-                            </h5>
-                            <h5>Clients</h5>
-                            <h5><i class="fa-solid fa-landmark"></i></h5>
-                            <h5 class="card-title">
-                                @Model.StatsDenmark.Accounts
-                            </h5>
-                            <h5>Accounts</h5>
-                            <h5><i class="fa-solid fa-coins"></i></h5>
-                            <h5 class="card-title">
-                                @string.Format("{0:n0}", @Model.StatsDenmark.Capital) kr
-                            </h5>
-                            <h5>Capital</h5>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <a asp-page="TopTenAccounts/TopTenAccounts" asp-route-countryName="Finland">
-                            <img src="~/assets/img/finland.png" class="card-img-top" alt="finland-flag">
-                        </a>
-                        <div class="card-body">
-                            <h1 class="card-title text-center">Finland</h1>
-                            <h5><i class="fa-solid fa-user"></i></h5>
-                            <h5 class="card-title">
-                                @Model.StatsFinland.Clients
-                            </h5>
-                            <h5>Clients</h5>
-                            <h5><i class="fa-solid fa-landmark"></i></h5>
-                            <h5 class="card-title">
-                                @Model.StatsFinland.Accounts
-                            </h5>
-                            <h5>Accounts</h5>
-                            <h5><i class="fa-solid fa-coins"></i></h5>
-                            <h5 class="card-title">
-                                @string.Format("{0:n0}", @Model.StatsFinland.Capital) kr
-                            </h5>
-                            <h5>Capital</h5>
-                        </div>
-                    </div>
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="hero">
+    <div class="container position-relative">
+        <div class="row gy-5" data-aos="fade-in">
+            <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
+                <h2>Welcome to <span>TRUST BANK</span></h2>
+                <p>Trust Bank is entrusted by and prouldy serving its customers in all of SCANDINAVIA.</p>
+                <div class="d-flex justify-content-center justify-content-lg-start">
+                    <a href="#about" class="btn-get-started">Get Started</a>
+                    <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
+
+    <div class="icon-boxes position-relative">
+        <div class="container position-relative">
+            <div class="row gy-4 mt-5">
+
+                <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    @*SWEDEN Stats*@
+                    <div class="icon-box" style="">
+                        <h2 class="title" style="font-size: 40px">
+                            <a asp-page="/TopTenAccounts/TopTenAccounts" asp-route-countryName="Sweden" class="stretched-link text-warning">Sweden</a>
+                        </h2>
+                        <div class="icon"><i class="bi bi-people-fill"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">@Model.StatsSweden.Clients</a></h4>
+                        <div class="icon"><i class="bi bi-bank"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">@Model.StatsSweden.Accounts</a></h4>
+                        <div class="icon"><i class="bi bi-cash-stack"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">@Model.StatsSweden.Capital</a></h4>
+                    </div>
+                </div><!--End Icon Box -->
+
+                @*DENMARK Stats*@
+                <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-box">
+                        <h2 class="title" style="font-size: 40px">
+                            <a asp-page="/TopTenAccounts/TopTenAccounts" asp-route-countryName="Denmark" class="stretched-link text-warning">Denmark</a>
+                        </h2>
+                        <div class="icon"><i class="bi bi-people-fill"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">@Model.StatsDenmark.Clients</a></h4>
+                        <div class="icon"><i class="bi bi-bank"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">@Model.StatsDenmark.Accounts</a></h4>
+                        <div class="icon"><i class="bi bi-cash-stack"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">@Model.StatsDenmark.Capital</a></h4>
+                    </div>
+                </div><!--End Icon Box -->
+
+                @*FINLAND Stats*@
+                <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon-box">
+                        <h2 class="title" style="font-size: 40px">
+                            <a asp-page="/TopTenAccounts/TopTenAccounts" asp-route-countryName="Finland" class="stretched-link text-warning">Finland</a>
+                        </h2>
+                        <div class="icon"><i class="bi bi-people-fill"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">@Model.StatsFinland.Clients</a></h4>
+                        <div class="icon"><i class="bi bi-bank"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">@Model.StatsFinland.Accounts</a></h4>
+                        <div class="icon"><i class="bi bi-cash-stack"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">@Model.StatsFinland.Capital</a></h4>
+                    </div>
+                </div><!--End Icon Box -->
+
+                @*NORWAY Stats*@
+                <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="icon-box">
+                        <h2 class="title" style="font-size: 40px">
+                            <a asp-page="/TopTenAccounts/TopTenAccounts" asp-route-countryName="Norway" class="stretched-link text-warning">Norway</a>
+                        </h2>
+                        <div class="icon"><i class="bi bi-people-fill"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">@Model.StatsNorway.Clients</a></h4>
+                        <div class="icon"><i class="bi bi-bank"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">@Model.StatsNorway.Accounts</a></h4>
+                        <div class="icon"><i class="bi bi-cash-stack"></i></div>
+                        <h4 class="title"><a href="" class="stretched-link">@Model.StatsNorway.Capital</a></h4>
+                    </div>
+                </div><!--End Icon Box -->
+
+            </div>
+        </div>
+    </div>
+
 </section>
+<!-- End Hero Section -->
