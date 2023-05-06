@@ -2,21 +2,21 @@
 @model TrustBankApp.Pages.Customers.CreateCustomerModel
 
 <div class="container mt-5 pt-5">
-    <div class="container mt-5 p-5 bg-success text-light rounded-2" style="margin-bottom: 150px">
-        <h1 class="pb-5 fs-1 fw-bolder">Create a <span class="text-success">NEW</span> Customer</h1>
+    <div class="container mt-5 p-5 box-theme text-light rounded-2" style="margin-bottom: 150px">
+        <h1 class="pb-5 fs-1 fw-bolder">Create a <span class="text-warning">NEW</span> Customer</h1>
         <form class="" style="padding-left: 20px" method="post">
             <div class="row">
                 <div class="col-12 col-lg-6">
                     <div class="row col-12">
                         <div class="mb-3 col-12">
-                            <label asp-for="@Model.NewCustomerViewModel.GivenName" 
-                                class="form-label">
+                            <label asp-for="@Model.NewCustomerViewModel.GivenName"
+                                   class="form-label">
                                 First Name
                             </label>
                             <input type="text" class="form-control"
                                    asp-for="@Model.NewCustomerViewModel.GivenName">
-                            <span class="text-danger" 
-                                asp-validation-for="@Model.NewCustomerViewModel.GivenName"></span>
+                            <span class="text-danger"
+                                  asp-validation-for="@Model.NewCustomerViewModel.GivenName"></span>
                         </div>
                         <div class="mb-3 col-12">
                             <label for="exampleInputPassword1" class="form-label">Last Name</label>
@@ -32,15 +32,15 @@
                                    class="form-label">
                                 Social Security
                             </label>
-                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                asp-for="@Model.NewCustomerViewModel.NationalId">
-                            <span class="text-danger" 
-                                asp-validation-for="@Model.NewCustomerViewModel.NationalId"></span>
+                            <input type="text" class="form-control"
+                                   asp-for="@Model.NewCustomerViewModel.NationalId">
+                            <span class="text-danger"
+                                  asp-validation-for="@Model.NewCustomerViewModel.NationalId"></span>
                         </div>
                         <div class="mb-3 col-12">
                             <label asp-for="@Model.NewCustomerViewModel.Gender"
                                    class="form-label">Gender</label>
-                            <select type="text" class="form-control text-dark" id="gender"
+                            <select type="text" class="form-control text-dark"
                                     asp-for="@Model.NewCustomerViewModel.Gender"
                                     asp-items="@Model.NewCustomerViewModel.GendersDropDownList">
                             </select>
@@ -85,7 +85,7 @@
                                   asp-validation-for="@Model.NewCustomerViewModel.Country"></span>
                         </div>
                         <div class="mb-3 col-12 col-lg-6">
-                            <label asp-for="@Model.NewCustomerViewModel.ZipCode" class="form-label">Zip</label>
+                            <label asp-for="@Model.NewCustomerViewModel.ZipCode" class="form-label">Zip (without space)</label>
                             <input type="text" class="form-control" placeholder="3-5 digits"
                                    asp-for="@Model.NewCustomerViewModel.ZipCode">
                             <span class="text-danger"
@@ -110,19 +110,37 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-            <button type="submit" class="btn btn-primary">
-                <i class="fa-solid fa-save"></i>
-                Save
-            </button>
-            <button class="btn btn-primary" asp-page="/Customers/Customers">
-                <i class="fa-solid fa-arrow-left"></i>
-                Back
-            </button>
+            <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center gap-3 mt-3 justify-content-lg-start">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-save"></i>
+                    Save
+                </button>
+                <a class="btn btn-warning" asp-page="/Customers/Customers">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back
+                </a>
+            </div>            
         </form>
     </div>
+    @* <div class="col-12">
+    <div class="mb-3 col-12 col-lg-6">
+    <button type="submit" class="btn btn-success">
+    <i class="fa-solid fa-save"></i>
+    Save
+    </button>
+    </div>
+    <div class="mb-3 col-12 col-lg-6">
+    <a class="btn btn-warning" asp-page="/Customers/Customers">
+    <i class="fa-solid fa-arrow-left"></i>
+    Back
+    </a>
+    </div>
+    </div>*@
+</div>
 </div>
 
 
-@section scripts { <partial name="_ValidationScriptsPartial" /> }
+@section scripts {
+    <partial name="_ValidationScriptsPartial" />
+ }

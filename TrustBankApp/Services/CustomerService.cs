@@ -13,17 +13,18 @@ namespace TrustBankApp.Services
         private readonly IAccountService _accountService;
         private readonly IMapper _mapper;
 
-        public CustomerService(TrustBankDbContext dbContext, IMapper mapper)
+        public CustomerService(TrustBankDbContext dbContext, IAccountService accountService, IMapper mapper)
         {
             _dbContext = dbContext;
+            _accountService = accountService;
             _mapper = mapper;
         }
 
         public PagedResult<CustomerViewModel> GetCustomers(string sortColumn, string sortOrder, int pageNo, string searchText)
         {
             var query = _dbContext.Customers.AsQueryable();
-            
-            if(string.IsNullOrEmpty(searchText))
+
+            if (string.IsNullOrEmpty(searchText))
             {
                 if (sortColumn == "customerId")
                     if (sortOrder == "asc")
@@ -132,7 +133,6 @@ namespace TrustBankApp.Services
             _mapper.Map(newCustomerViewModel, newCustomer);
 
             var account = _accountService.GetNewAccount();
-
             var disposition = _accountService.GetNewDisposition(account);
 
             newCustomer.Dispositions.Add(disposition);

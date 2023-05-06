@@ -12,11 +12,13 @@ namespace TrustBankApp.Pages
     {
         private readonly TrustBankDbContext _dbContext;
         private readonly ICustomerService _customerService;
+        private readonly IAccountService _accountService;
 
-        public CustomerModel(TrustBankDbContext dbContext, ICustomerService customerService)
+        public CustomerModel(TrustBankDbContext dbContext, ICustomerService customerService, IAccountService accountService)
         {
             _dbContext = dbContext;
             _customerService = customerService;
+            _accountService = accountService;
         }
 
         public CustomerDetailViewModel CustomerVM { get; set; } = new CustomerDetailViewModel();
@@ -49,6 +51,7 @@ namespace TrustBankApp.Pages
                 customerToShow.Telephonenumber;
             //Customer.Age = DateTime.Now - customerToShow.Birthday;
             CustomerVM.AccountId = customerAccounts.Select(x => x.AccountId).First();
+            CustomerVM.Accounts = _accountService.GetAccountsById(CustomerVM.AccountId);
         }
 
     }

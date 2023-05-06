@@ -24,6 +24,10 @@ namespace TrustBankApp.Pages.Customers
         }
         public IActionResult OnPost()
         {
+            NewCustomerViewModel.GendersDropDownList = _customerService.FillGenderDropDownList();
+            NewCustomerViewModel.CountriesDropDownList = _customerService.FillCountryDropDownList();
+            NewCustomerViewModel.Birthday = new DateTime(1990, 01, 01);
+
             if (ModelState.IsValid)
             {
                 _customerService.CreateNewCustomer(NewCustomerViewModel);

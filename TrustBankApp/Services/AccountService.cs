@@ -213,6 +213,12 @@ namespace TrustBankApp.Services
         {
             return _dbContext.Accounts.First(x => x.AccountId == accountId);
         }
+        public IEnumerable<Account> GetAccountsById(int accountId)
+        {
+            return _dbContext.Dispositions
+                .Where(x => x.AccountId == accountId)
+                .Select(x => x.Account);
+        }
 
     }
 }

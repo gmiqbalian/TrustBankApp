@@ -2680,3 +2680,7 @@ section {
 .box-theme{
     background-color: var(--color-primary);
 }
+
+.customer-card {
+    background-color: #008374;
+}

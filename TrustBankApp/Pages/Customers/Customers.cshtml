@@ -1,15 +1,17 @@
 ﻿@page
 @model TrustBankApp.Pages.CustomersModel
-@{
-}
+
 @if (TempData["success"] != null)
 {
-    <div class="alert alert-success" role="alert">
-        @TempData["success"]
-    </div>
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.success('@TempData["success"]');
+    </script>*@
+    <h1>@TempData["success"]</h1>
 }
 
-<div class="container py-5">
+<div class="container py-5 mt-5">
     <h1>All Customers</h1>
     <h5>Total Records: @Model.Customers.TotalRows</h5>
     <h5>Page @Model.CurrentPageNumber of @Model.TotalPages</h5>
