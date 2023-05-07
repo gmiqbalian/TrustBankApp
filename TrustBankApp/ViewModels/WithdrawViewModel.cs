@@ -7,6 +7,7 @@ namespace TrustBankApp.ViewModels
     {
         public int AccountId { get; set; }
         public int CustomerId { get; set; }
+
         [Required]
         [PositiveNumber]
         [Range(10, 100000, ErrorMessage = "The amount should be between 10 to 100000")]

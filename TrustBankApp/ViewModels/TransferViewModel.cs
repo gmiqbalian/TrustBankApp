@@ -5,6 +5,7 @@ namespace TrustBankApp.ViewModels
 {
     public class TransferViewModel
     {
+        public int CustomerId { get; set; }
         public int ToAccountId { get; set; }
         public int FromAccountId { get; set; }
         public decimal FromAccountBalance { get; set; }

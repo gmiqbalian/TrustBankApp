@@ -17,22 +17,38 @@ namespace TrustBankApp.Pages.Accounts
         {
             _accountService = accountService;
         }
-        public TransferViewModel TransferViewModel { get; set; } = new TransferViewModel();
+        public TransferViewModel TransferVM { get; set; } = new TransferViewModel();
         public void OnGet(int customerId, int accountId)
         {
-            TransferViewModel.FromAccountId = accountId;
-            TransferViewModel.FromAccountBalance = _accountService
+            TransferVM.CustomerId = customerId;
+            TransferVM.FromAccountId = accountId;
+            TransferVM.FromAccountBalance = _accountService
                 .GetAccountById(accountId).Balance;
         }
         public IActionResult OnPost(int customerId, int accountId)
         {
-            TransferViewModel.FromAccountId = accountId;
+            TransferVM.CustomerId = customerId;
+            TransferVM.FromAccountId = accountId;
+            TransferVM.FromAccountBalance = _accountService
+                .GetAccountById(accountId).Balance;
+
+            var toAccount = _accountService.GetAccountById(TransferVM.ToAccountId);
+
+            if (toAccount == null)
+            { 
+                ModelState.AddModelError("TransferVM.ToAccountId", "Account not found.");
+            }
+
+            if (TransferVM.FromAccountBalance < TransferVM.Amount)
+            {
+                ModelState.AddModelError("TransferVM.Amount", "Current balance is not enough for this transaction.");
+            }
 
             if (ModelState.IsValid)
             {
-                _accountService.MakeTransfer(TransferViewModel);
+                _accountService.MakeTransfer(TransferVM);
 
-                return RedirectToPage("/Customers/Customer", new {customerId = customerId});
+                return RedirectToPage("/Customers/Customer", new { customerId = customerId });
             }
 
             return Page();

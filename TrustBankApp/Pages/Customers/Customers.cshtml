@@ -145,7 +145,7 @@
                         </a>
                     </td>
                     <td>
-                        <a id="show" title=""
+                        <a title="show quick info"
                            href="javascript:fetchInfo(@customer.CustomerId)">
                             <i class='fa-solid fa-circle-info'></i>
                         </a>
@@ -156,7 +156,7 @@
     </table>
     
     @*Extra Info*@
-    <div id="show" class="card text-light bg-dark">
+    <div id="show" class="card text-light bg-dark" style="display: none">
         <div class="card-header">
             <h1>Extra Info</h1>
         </div>
@@ -236,10 +236,10 @@
             fetch("/Customers/Customers?handler=FetchInfo&customerId=" + customerId)
                 .then((response) => response.json())
                 .then((json) => {
-                    document.getElementById('show').style.display = "grid";
+                    document.getElementById('show').style.display = "block";
                     document.getElementById('accountId').innerHTML = json.accountId;
                     document.getElementById('balance').innerHTML = json.balance;
-                })
+                });
         }
     </script>
 }

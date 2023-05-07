@@ -16,22 +16,31 @@ namespace TrustBankApp.Pages.Accounts
         {
             _accountService = accountService;
         }
-        public WithdrawViewModel WithdrawViewModel { get; set; } = new WithdrawViewModel();
+        public WithdrawViewModel WithdrawVM { get; set; } = new WithdrawViewModel();
         public void OnGet(int customerId, int accountId)
         {
-            WithdrawViewModel.AccountId = accountId;
-            WithdrawViewModel.Balance = _accountService
+            WithdrawVM.CustomerId = customerId;
+            WithdrawVM.AccountId = accountId;
+            WithdrawVM.Balance = _accountService
                 .GetAccountById(accountId).Balance;
         }
         public IActionResult OnPost(int customerId, int accountId) //control that customer do not withdraw more than the balance
         {
-            WithdrawViewModel.AccountId = accountId;
-            WithdrawViewModel.Balance = _accountService
+            var account = _accountService.GetAccountById(accountId);
+
+            WithdrawVM.CustomerId = customerId;
+            WithdrawVM.AccountId = accountId;
+            WithdrawVM.Balance = _accountService
                 .GetAccountById(accountId).Balance;
+            
+            if (WithdrawVM.Balance < WithdrawVM.Amount)
+            {
+                ModelState.AddModelError("WithdrawVM.Amount", "There is not enough balance in the account");
+            }
 
             if (ModelState.IsValid)
             {
-                _accountService.MakeWithdrawl(WithdrawViewModel);
+                _accountService.MakeWithdrawl(WithdrawVM);
                 return RedirectToPage("/Customers/Customer", new { customerId = customerId });
             }
 

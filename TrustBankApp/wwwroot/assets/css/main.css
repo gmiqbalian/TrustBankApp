@@ -2684,3 +2684,7 @@ section {
 .customer-card {
     background-color: #008374;
 }
+
+.back-button {
+    color: rgba(248, 90, 64, 0.8);
+}

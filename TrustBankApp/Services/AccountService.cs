@@ -143,6 +143,8 @@ namespace TrustBankApp.Services
             var toAccount = _dbContext.Accounts
                 .First(x => x.AccountId == depositViewModel.AccountId);
 
+            toAccount.Balance += depositViewModel.Amount;
+
             toAccount.Transactions.Add(new Transaction
             {
                 AccountId = depositViewModel.AccountId,
@@ -153,14 +155,14 @@ namespace TrustBankApp.Services
                 Balance = toAccount.Balance
             });
 
-            toAccount.Balance += depositViewModel.Amount;
-
             _dbContext.SaveChanges();
         }
         public void MakeWithdrawl(WithdrawViewModel withdrawViewModel)
         {
             var fromAccount = _dbContext.Accounts
                 .First(x => x.AccountId == withdrawViewModel.AccountId);
+            
+            fromAccount.Balance -= withdrawViewModel.Amount;
 
             fromAccount.Transactions.Add(new Transaction
             {
@@ -171,8 +173,6 @@ namespace TrustBankApp.Services
                 Amount = withdrawViewModel.Amount,
                 Balance = fromAccount.Balance
             });
-
-            fromAccount.Balance -= withdrawViewModel.Amount;
 
             _dbContext.SaveChanges();
         }
@@ -211,7 +211,8 @@ namespace TrustBankApp.Services
         }
         public Account GetAccountById(int accountId)
         {
-            return _dbContext.Accounts.First(x => x.AccountId == accountId);
+            //return _dbContext.Accounts.First(x => x.AccountId == accountId);
+            return _dbContext.Accounts.Find(accountId);
         }
         public List<Account> GetCustomerAccounts(int customerId)
         {
