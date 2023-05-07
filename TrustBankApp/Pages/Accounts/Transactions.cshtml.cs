@@ -31,9 +31,10 @@ namespace TrustBankApp.Pages.Accounts
         public int EndPage { get; set; }
         public int TotalPages { get; set; }
         public int AccountId { get; set; }
+        public int CustomerId { get; set; }
         public PagedResult<TransactionViewModel> Transactions { get; set; }
 
-        public void OnGet(int accountId, string sortColumn, string sortOrder, int pageNo, string searchText)
+        public void OnGet(int accountId, int customerId, string sortColumn, string sortOrder, int pageNo, string searchText)
         {
             if (pageNo <= 0)
                 pageNo = 1;
@@ -44,6 +45,7 @@ namespace TrustBankApp.Pages.Accounts
             CurrentPageNumber = pageNo;
 
             AccountId = accountId;
+            CustomerId = customerId;
 
             Transactions = _accountService.GetAllTransactions(accountId, sortColumn, sortOrder, pageNo, searchText);
             TotalPages = Transactions.TotalPages;

@@ -25,7 +25,7 @@ namespace TrustBankApp.Pages.Accounts
         public int EndPage { get; set; }
         public int TotalPages { get; set; }
         public int AccountId { get; set; }
-        public PagedResult<AccountDetailViewModel> AllAccountsList { get; set; }
+        public PagedResult<AccountDetailViewModel> Accounts { get; set; }
         public void OnGet(string sortColumn, string sortOrder, int pageNo, string searchText)
         {
             if(pageNo == 0)            
@@ -36,7 +36,9 @@ namespace TrustBankApp.Pages.Accounts
             CurrentPageNumber = pageNo;
             SearchText = searchText;
 
-            AllAccountsList = _accountService.GetAllAccounts(sortColumn, sortOrder, pageNo, searchText);
+            Accounts = _accountService.GetAllAccounts(sortColumn, sortOrder, pageNo, searchText);
+            
+            TotalPages = Accounts.TotalPages;
         }
     }
 }

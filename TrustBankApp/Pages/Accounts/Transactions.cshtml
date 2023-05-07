@@ -3,144 +3,42 @@
 @{
 }
 
-<div class="container mt-5 pt-5 d-flex flex-column gap-3">
-    <div class="section-title border border-danger">
-        <h1>All Transactions</h1>
-        <h3>Total Records: @Model.Transactions.TotalRows</h3>
+<div class="container py-5">
+
+    <h1 class="fw-bolder text-success">TRANSACTIONS</h1>
+    <h1 class="fw-bolder text-success">
+        CUSTOMER ID: <span class="text-warning">@Model.AccountId</span>
+    </h1>
+    <h3>Total Records: @Model.Transactions.TotalRows</h3>
+    <p class="fs-6 lh-1 fst-italic text-muted">
+        Last updated: @DateTime.Now
+    </p>
+    <p>
+        <a asp-page="/Customers/Customer"
+           asp-route-customerId="@Model.CustomerId"
+                class="btn btn-success">
+            <i class="fa-solid fa-arrow-left"></i>&nbsp;Back
+        </a>
+    </p>
+    <hr />
+    <table class="table table-success table-striped table-hover shadow">
+        <thead>
+            <tr>
+                <th>Serial</th>
+                <th>Transaction Id</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody id="myTable" class="table-group-divider">
+            
+        </tbody>
+    </table>
+    <div class="mt-3">
+        <a class="btn btn-primary" href="javascript:showMore();">Show More</a>
     </div>
-    <div class="d-flex justify-content-between border border-danger" style="border: 1px solid green;">
-        <form class=" d-flex align-items-center" method="get">
-            <div class="input-group">
-                <div class="form-outline">
-                    <input type="search" id="form1" class="form-control h-100"
-                           asp-for="@Model.SearchText" placeholder="" />
-                    <input type="hidden" asp-for="@Model.Transactions" />
-                </div>
-
-                <button type="submit" class="btn btn-primary p-2">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-            @*<input type="text" placeholder="enter number of records per page" asp-for-pageSize="">*@
-        </form>
-        <div>
-            <a class="btn btn-warning border-2 border-dark px-3 rounded-4" 
-                asp-page="/Index">
-                <i class="fa-solid fa-arrow-left"></i>
-                Back
-            </a>
-            <a class="btn btn-success border-2 border-dark px-3 rounded-4" 
-                asp-page="/Customers/CreateCustomer">
-                <i class="fa-solid fa-plus fa-lg"></i>
-                Create New
-            </a>
-        </div>
-    </div>
-    <div class="table-responsive border border-danger">
-        <table class="table table-dark table-striped p-0 m-0">
-            <thead>
-                <tr>
-                    <th scope="col">
-                        Serial
-                    </th>
-                    <th scope="col">
-                        Transaction Id
-                        <a asp-page="/Accounts/Transactions"
-                           asp-route-accountId="@Model.AccountId"
-                           asp-route-searchText="@Model.SearchText"
-                           asp-route-pageNo = "@Model.CurrentPageNumber"
-                           asp-route-sortColumn="transactionId"
-                           asp-route-sortOrder="asc">
-                            <i class="fa-solid fa-sort-up"></i>
-                        </a>
-                        <a asp-page="/Accounts/Transactions"
-                           asp-route-accountId="@Model.AccountId"
-                           asp-route-pageNo = "@Model.CurrentPageNumber"
-                           asp-route-searchText="@Model.SearchText"
-                           asp-route-sortColumn="transactionId"
-                           asp-route-sortOrder="desc">
-                            <i class="fa-solid fa-sort-down"></i>
-                        </a>
-                    </th>
-                    <th scope="col">
-                        Date
-                        <a asp-page="/Accounts/Transactions"
-                           asp-route-accountId="@Model.AccountId"
-                           asp-route-pageNo = "@Model.CurrentPageNumber"
-                           asp-route-sortColumn="Date"
-                           asp-route-sortOrder="asc">
-                            <i class="fa-solid fa-sort-up"></i>
-                        </a>
-                        <a asp-page="/Accounts/Transactions"
-                           asp-route-accountId="@Model.AccountId"
-                           asp-route-pageNo = "@Model.CurrentPageNumber"
-                           asp-route-sortColumn="Date"
-                           asp-route-sortOrder="desc">
-                            <i class="fa-solid fa-sort-down"></i>
-                        </a>
-                    </th>
-                    <th scope="col">
-                        Type
-                        <a asp-page="/Accounts/Transactions"
-                           asp-route-accountId="@Model.AccountId"
-                           asp-route-searchText="@Model.SearchText"
-                           asp-route-sortColumn="type"
-                           asp-route-sortOrder="asc">
-                            <i class="fa-solid fa-sort-up"></i>
-                        </a>
-                        <a asp-page="/Accounts/Transactions"
-                           asp-route-accountId="@Model.AccountId"
-                           asp-route-sortColumn="type"
-                           asp-route-sortOrder="desc">
-                            <i class="fa-solid fa-sort-down"></i>
-                        </a>
-                    </th>
-                    <th scope="col">
-                        Amount
-                        <a asp-page="/Accounts/Transactions"
-                           asp-route-accountId="@Model.AccountId"
-                           asp-route-searchText="@Model.SearchText"
-                           asp-route-sortColumn="amount"
-                           asp-route-sortOrder="asc">
-                            <i class="fa-solid fa-sort-up"></i>
-                        </a>
-                        <a asp-page="/Accounts/Transactions"
-                           asp-route-accountId="@Model.AccountId"
-                           asp-route-sortColumn="amount"
-                           asp-route-sortOrder="desc">
-                            <i class="fa-solid fa-sort-down"></i>
-                        </a>
-                    </th>
-                    <th scope="col">
-                        Balance
-                        <a asp-page="/Accounts/Transactions"
-                           asp-route-accountId="@Model.AccountId"
-                           asp-route-searchText="@Model.SearchText"
-                           asp-route-sortColumn="balance"
-                           asp-route-sortOrder="asc">
-                            <i class="fa-solid fa-sort-up"></i>
-                        </a>
-                        <a asp-page="/Accounts/Transactions"
-                           asp-route-accountId="@Model.AccountId"
-                           asp-route-sortColumn="balance"
-                           asp-route-sortOrder="desc">
-                            <i class="fa-solid fa-sort-down"></i>
-                        </a>
-                    </th>
-
-                </tr>
-            </thead>
-
-            <tbody id="myTable" class="table-group-divider">
-
-
-            </tbody>
-        </table>
-        <div class="mt-3">
-            <a class="btn btn-primary" href="javascript:showMore();">Show More</a>
-        </div>
-    </div>
-
 </div>
 
 

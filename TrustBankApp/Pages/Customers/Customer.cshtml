@@ -8,7 +8,7 @@
     <div class="col-md-10 offset-1">
         <h1>CUSTOMER PROFILE</h1>
         <hr />
-        <div class="customer-card rounded border border-success d-flex row p-3">
+        <div class="customer-card rounded shadow border border-success d-flex row p-3">
             <div class="border-lg-end col-lg-4 text-center p-3 d-flex flex-column align-items-center justify-content-between">
                 @if (Model.CustomerVM.Gender.ToLower() == "male")
                 {
@@ -125,6 +125,7 @@
                                     </a>
                                     <a class="text-dark"
                                    asp-page="/Accounts/Transactions"
+                                   asp-route-customerId=@Model.CustomerVM.CustomerId
                                    asp-route-accountId="@account.AccountId">
                                         <i class="fa-solid fa-circle-info fa-lg"></i>
                                     </a>

@@ -133,7 +133,7 @@ namespace TrustBankApp.Services
                 Type = x.Type,
                 Amount = x.Amount,
                 Balance = x.Balance,
-            }).OrderByDescending(x => x.Date);
+            }).OrderByDescending(x => x.TransactionId);
 
             return transactionsQueryList.GetPaged(pageNo, 30);
         }
