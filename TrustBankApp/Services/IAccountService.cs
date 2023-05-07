@@ -14,6 +14,7 @@ namespace TrustBankApp.Services
         void MakeWithdrawl(WithdrawViewModel withdrawViewModel);
         void MakeTransfer(TransferViewModel transferViewModel);
         Account GetAccountById(int accountId);
-        IEnumerable<Account> GetAccountsById(int accountId);
+        List<Account> GetCustomerAccounts(int customerId);
+        decimal GetCustomerAccountsBalance(int customerId);
     }
 }

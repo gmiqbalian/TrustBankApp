@@ -12,6 +12,10 @@ namespace TrustBankApp.Infrastructure.Automapping
                 .ReverseMap();
             CreateMap<EditCustomerViewModel, Customer>()
                 .ReverseMap();
+            CreateMap<Customer, CustomerDetailViewModel>()
+                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Streetaddress))
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.Givenname + " " + src.Surname))
+                .ReverseMap();
         }
     }
 }

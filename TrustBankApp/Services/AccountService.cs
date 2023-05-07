@@ -213,12 +213,21 @@ namespace TrustBankApp.Services
         {
             return _dbContext.Accounts.First(x => x.AccountId == accountId);
         }
-        public IEnumerable<Account> GetAccountsById(int accountId)
+        public List<Account> GetCustomerAccounts(int customerId)
         {
-            return _dbContext.Dispositions
-                .Where(x => x.AccountId == accountId)
-                .Select(x => x.Account);
+            var customerAccounts = _dbContext.Dispositions
+                .Where(d => d.CustomerId == customerId)
+                .Select(d => d.Account)
+                .ToList();
+
+            return customerAccounts;
         }
+        public decimal GetCustomerAccountsBalance(int customerId)
+        {
+            return GetCustomerAccounts(customerId).Select(x => x.Balance).Sum();
+        }
+
+
 
     }
 }

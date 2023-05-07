@@ -20,7 +20,7 @@ namespace TrustBankApp.ViewModels
         public string PhoneNumber { get; set; }
         public int Age { get; set; }
         public int AccountId { get; set; }
-        public IEnumerable<Account> Accounts { get; set; }
+        public List<Account> Accounts { get; set; }
         public decimal TotalBalance { get; set; }
     }
 }
