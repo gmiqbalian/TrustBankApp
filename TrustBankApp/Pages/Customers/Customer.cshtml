@@ -10,13 +10,17 @@
         <hr />
         <div class="customer-card rounded border border-success d-flex row p-3">
             <div class="border-lg-end col-lg-4 text-center p-3 d-flex flex-column align-items-center justify-content-between">
-                @if (Model.CustomerVM.Gender == "male")
+                @if (Model.CustomerVM.Gender.ToLower() == "male")
                 {
                     <img src="/assets/img/man.png" alt="Admin" class="rounded-circle" width="150">
                 }
-                else
+                else if (Model.CustomerVM.Gender.ToLower() == "female")
                 {
                     <img src="/assets/img/woman.png" alt="Admin" class="rounded-circle" width="150">
+                }
+                else
+                {
+                    <img src="/assets/img/user.png" alt="Admin" class="rounded-circle" width="150">
                 }
 
                 <h3 class="fs-1 m-0 text-warning text-wrap">@Model.CustomerVM.FullName</h3>
