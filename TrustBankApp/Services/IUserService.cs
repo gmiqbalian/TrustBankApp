@@ -8,5 +8,6 @@ namespace TrustBankApp.Services
     {
         PagedResult<IdentityUser> GetAllUsers(string sortColumn, string sortOrder, int pageNo, string searchText);
         string GetUserRole(string userId);
+        IdentityUser GetUserById(string userId);
     }
 }

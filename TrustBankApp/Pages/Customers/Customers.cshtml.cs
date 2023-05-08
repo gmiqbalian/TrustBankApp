@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Models;
 using TrustBankApp.Services;
-using TrustBankApp.ViewModels;
+using TrustBankApp.ViewModels.Customer;
 
 namespace TrustBankApp.Pages
 {

@@ -49,5 +49,9 @@ namespace TrustBankApp.Services
                 .First()
                 .ToString();
         }
+        public IdentityUser GetUserById(string userId)
+        {
+            return _userManager.Users.First(x => x.Id == userId);
+        }
     }
 }

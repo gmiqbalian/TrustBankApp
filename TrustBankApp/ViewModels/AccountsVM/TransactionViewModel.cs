@@ -1,4 +1,4 @@
-﻿namespace TrustBankApp.ViewModels
+﻿namespace TrustBankApp.ViewModels.AccountsVM
 {
     public class TransactionViewModel
     {

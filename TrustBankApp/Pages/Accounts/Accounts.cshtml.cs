@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Services;
-using TrustBankApp.ViewModels;
+using TrustBankApp.ViewModels.AccountsVM;
 
 namespace TrustBankApp.Pages.Accounts
 {

@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace TrustBankApp.ViewModels
+namespace TrustBankApp.ViewModels.Customer
 {
     public class EditCustomerViewModel
     {

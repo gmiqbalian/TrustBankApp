@@ -66,11 +66,18 @@
                             <a asp-page="/Accounts/Accounts">Accounts</a>
                         </li>
                     }
-@*                  <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="#contact">Contact</a></li>*@
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>
+                            <a asp-page="/Users/Users">
+                                <i class="fa-solid fa-users"></i>
+                                &nbsp;Users
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="Identity" asp-page="/Account/Register">Register</a>
+                        </li>
+                    }
                     <li>
                         <partial name="_LoginPartial" />
                     </li>

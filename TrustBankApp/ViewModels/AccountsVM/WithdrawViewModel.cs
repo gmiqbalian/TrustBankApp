@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TrustBankApp.Infrastructure.Validation;
 
-namespace TrustBankApp.ViewModels
+namespace TrustBankApp.ViewModels.AccountsVM
 {
     public class WithdrawViewModel
     {

@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using static TrustBankApp.Services.AccountService;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Services;
-using TrustBankApp.ViewModels;
 using TrustBankApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using TrustBankApp.ViewModels.AccountsVM;
 
 namespace TrustBankApp.Pages.Accounts
 {

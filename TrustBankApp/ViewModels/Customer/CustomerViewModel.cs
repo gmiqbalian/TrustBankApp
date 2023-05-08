@@ -1,4 +1,4 @@
-﻿namespace TrustBankApp.ViewModels
+﻿namespace TrustBankApp.ViewModels.Customer
 {
     public class CustomerViewModel
     {
@@ -8,6 +8,6 @@
         public string Addres { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        
+
     }
 }

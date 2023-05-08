@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using TrustBankApp.Models;
 using TrustBankApp.Services;
-using TrustBankApp.ViewModels;
+using TrustBankApp.ViewModels.Customer;
 
 namespace TrustBankApp.Pages.Customers
 {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using TrustBankApp.Infrastructure.Validation;
 
-namespace TrustBankApp.ViewModels
+namespace TrustBankApp.ViewModels.AccountsVM
 {
     public class DepositViewModel
     {

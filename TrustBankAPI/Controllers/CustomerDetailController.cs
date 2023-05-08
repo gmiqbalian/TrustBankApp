@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TrustBankApp.Models;
 using TrustBankApp.Services;
-using TrustBankApp.ViewModels;
+using TrustBankApp.ViewModels.AccountsVM;
+using TrustBankApp.ViewModels.Customer;
 
 namespace TrustBankAPI.Controllers
 {

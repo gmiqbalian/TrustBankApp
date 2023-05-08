@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Models;
-using TrustBankApp.ViewModels;
+using TrustBankApp.ViewModels.AccountsVM;
 
 namespace TrustBankApp.Services
 {

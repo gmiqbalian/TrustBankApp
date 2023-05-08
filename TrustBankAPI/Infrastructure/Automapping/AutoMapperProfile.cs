@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using TrustBankApp.Models;
-using TrustBankApp.ViewModels;
+using TrustBankApp.ViewModels.AccountsVM;
+using TrustBankApp.ViewModels.Customer;
 
 namespace TrustBankAPI.Infrastructure.Automapping
 {

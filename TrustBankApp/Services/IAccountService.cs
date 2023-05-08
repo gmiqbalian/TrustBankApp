@@ -1,6 +1,6 @@
 ﻿using TrustBankApp.Infrastructure.Pagination;
-using TrustBankApp.ViewModels;
 using TrustBankApp.Models;
+using TrustBankApp.ViewModels.AccountsVM;
 
 namespace TrustBankApp.Services
 {

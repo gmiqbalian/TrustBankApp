@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Models;
 using TrustBankApp.Models.DropDowns;
-using TrustBankApp.ViewModels;
+using TrustBankApp.ViewModels.Customer;
 
 namespace TrustBankApp.Services
 {
