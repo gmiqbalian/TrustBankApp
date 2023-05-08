@@ -15,7 +15,7 @@
             </button>
             <input type="search" id="form1" class="form-control"
                    asp-for="@Model.SearchText"
-                   placeholder="Id, Name, City" />
+                   placeholder="Enter account id to search" />
             <input type="hidden" asp-for="@Model.Accounts" />
         </div>
     </form>
@@ -60,13 +60,11 @@
                 <th>
                     Date Created
                     <a asp-page="/Accounts/Accounts"
-                       asp-route-searchText="@Model.SearchText"
                        asp-route-sortColumn="date"
                        asp-route-sortOrder="asc">
                         <i class="fa-solid fa-sort-up"></i>
                     </a>
                     <a asp-page="/Accounts/Accounts"
-                       asp-route-searchText="@Model.SearchText"
                        asp-route-sortColumn="date"
                        asp-route-sortOrder="desc">
                         <i class="fa-solid fa-sort-down"></i>
@@ -97,7 +95,7 @@
                 <tr>
                     <td>@account.AccountId</td>
                     <td>@account.Frequency</td>
-                    <td>@account.DateCreated</td>
+                    <td>@account.DateCreated.ToShortDateString()</td>
                     <td>@account.Balance</td>
                    <td>
                         <a title="show details" class="more"

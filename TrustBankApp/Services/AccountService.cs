@@ -49,7 +49,7 @@ namespace TrustBankApp.Services
 
                 if (sortColumn == "date")
                     if (sortOrder == "asc")
-                        query = query.OrderBy(c => c.Created.Date.Month);
+                        query = query.OrderBy(c => c.Created);
                     else if (sortOrder == "desc")
                         query = query.OrderByDescending(c => c.Created);
 
@@ -62,10 +62,7 @@ namespace TrustBankApp.Services
 
             else if (!string.IsNullOrEmpty(searchText))
             {
-                query = query.Where(q => q.AccountId.ToString() == searchText ||
-                    q.Frequency.ToString().ToLower().Contains(searchText.ToLower()) ||
-                    q.Balance.ToString().Contains(searchText) ||
-                    q.Created.ToString() == searchText);
+                query = query.Where(q => q.AccountId.ToString() == searchText);
             }
 
             var accountsQueryList = query.Select(x => new AccountDetailViewModel
@@ -83,48 +80,8 @@ namespace TrustBankApp.Services
         {
             var account = _dbContext.Accounts.Include(x => x.Transactions)
                 .First(x => x.AccountId == accountId);
+            
             var query = account.Transactions.AsQueryable();
-
-            if (string.IsNullOrEmpty(searchText))
-            {
-                if (sortColumn == "transactionId")
-                    if (sortOrder == "asc")
-                        query = query.OrderBy(c => c.TransactionId);
-                    else if (sortOrder == "desc")
-                        query = query.OrderByDescending(c => c.TransactionId);
-
-                if (sortColumn == "date")
-                    if (sortOrder == "asc")
-                        query = query.OrderBy(c => c.Date);
-                    else if (sortOrder == "desc")
-                        query = query.OrderByDescending(c => c.Date);
-
-                if (sortColumn == "type")
-                    if (sortOrder == "asc")
-                        query = query.OrderBy(c => c.Type);
-                    else if (sortOrder == "desc")
-                        query = query.OrderByDescending(c => c.Type);
-
-                if (sortColumn == "amount")
-                    if (sortOrder == "asc")
-                        query = query.OrderBy(c => c.Amount);
-                    else if (sortOrder == "desc")
-                        query = query.OrderByDescending(c => c.Amount);
-
-                if (sortColumn == "balance")
-                    if (sortOrder == "asc")
-                        query = query.OrderBy(c => c.Balance);
-                    else if (sortOrder == "desc")
-                        query = query.OrderByDescending(c => c.Balance);
-            }
-            else if (!string.IsNullOrEmpty(searchText))
-            {
-                query = query.Where(q => q.AccountId.ToString() == searchText ||
-                    q.Date.ToString().Contains(searchText) ||
-                    q.Type.ToLower().Contains(searchText) ||
-                    q.Amount.ToString().Contains(searchText) ||
-                    q.Balance.ToString().Contains(searchText));
-            }
 
             var transactionsQueryList = query.Select(x => new TransactionViewModel
             {
@@ -133,9 +90,9 @@ namespace TrustBankApp.Services
                 Type = x.Type,
                 Amount = x.Amount,
                 Balance = x.Balance,
-            }).OrderByDescending(x => x.TransactionId);
+            }).OrderByDescending(x => x.Date);
 
-            return transactionsQueryList.GetPaged(pageNo, 30);
+            return transactionsQueryList.GetPaged(pageNo, 20);
         }
 
         public void MakeDeposit(DepositViewModel depositViewModel)

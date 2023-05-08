@@ -32,6 +32,7 @@ namespace TrustBankApp.Pages.Accounts
         public int TotalPages { get; set; }
         public int AccountId { get; set; }
         public int CustomerId { get; set; }
+        public decimal Balance { get; set; }
         public PagedResult<TransactionViewModel> Transactions { get; set; }
 
         public void OnGet(int accountId, int customerId, string sortColumn, string sortOrder, int pageNo, string searchText)
@@ -46,6 +47,7 @@ namespace TrustBankApp.Pages.Accounts
 
             AccountId = accountId;
             CustomerId = customerId;
+            Balance = Math.Round(_accountService.GetAccountById(accountId).Balance);
 
             Transactions = _accountService.GetAllTransactions(accountId, sortColumn, sortOrder, pageNo, searchText);
             TotalPages = Transactions.TotalPages;

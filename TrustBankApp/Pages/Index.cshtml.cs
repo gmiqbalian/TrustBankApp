@@ -27,19 +27,19 @@ namespace TrustBankApp.Pages
         {
             StatsSweden.Clients = _statService.GetCustomersCountByCountry("Sweden");
             StatsSweden.Accounts = _statService.GetAccountsCountByCountry("Sweden");
-            StatsSweden.Capital = _statService.GetCapitalCountByCountry("Sweden");
+            StatsSweden.Capital = Math.Round(_statService.GetCapitalCountByCountry("Sweden"));
 
             StatsNorway.Clients = _statService.GetCustomersCountByCountry("Norway");
             StatsNorway.Accounts = _statService.GetAccountsCountByCountry("Norway");
-            StatsNorway.Capital = _statService.GetCapitalCountByCountry("Norway");
+            StatsNorway.Capital = Math.Round(_statService.GetCapitalCountByCountry("Norway"));
 
             StatsFinland.Clients = _statService.GetCustomersCountByCountry("Finland");
             StatsFinland.Accounts = _statService.GetAccountsCountByCountry("Finland");
-            StatsFinland.Capital = _statService.GetCapitalCountByCountry("Finland");
+            StatsFinland.Capital = Math.Round(_statService.GetCapitalCountByCountry("Finland"));
 
             StatsDenmark.Clients = _statService.GetCustomersCountByCountry("Denmark");
             StatsDenmark.Accounts = _statService.GetAccountsCountByCountry("Denmark");
-            StatsDenmark.Capital = _statService.GetCapitalCountByCountry("Denmark");
+            StatsDenmark.Capital = Math.Round(_statService.GetCapitalCountByCountry("Denmark"));
         }
     }
 }

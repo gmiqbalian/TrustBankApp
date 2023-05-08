@@ -6,10 +6,13 @@
 <div class="container py-5">
 
     <h1 class="fw-bolder text-success">TRANSACTIONS</h1>
-    <h1 class="fw-bolder text-success">
-        CUSTOMER ID: <span class="text-warning">@Model.AccountId</span>
-    </h1>
-    <h3>Total Records: @Model.Transactions.TotalRows</h3>
+    <h4 class="fw-bolder text-success">
+        ACCOUNT ID: <span class="text-warning">@Model.AccountId</span>
+    </h4>
+    <h4 class="fw-bolder text-success">
+        CURRENT BALANCE: <span class="text-warning">@Model.Balance</span>
+    </h4>
+    <h4>Total Records: @Model.Transactions.TotalRows</h4>
     <p class="fs-6 lh-1 fst-italic text-muted">
         Last updated: @DateTime.Now
     </p>
