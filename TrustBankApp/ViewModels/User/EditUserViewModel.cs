@@ -36,6 +36,7 @@ namespace TrustBankApp.ViewModels.User
         [DataType(DataType.Text)]
         public string UserRole { get; set; }
 
+        [Phone]
         [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
     }

@@ -11,6 +11,7 @@ using TrustBankApp.Models;
 using TrustBankApp.Services;
 using TrustBankApp.ViewModels.User;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace TrustBankApp.Pages.Users
 {
@@ -21,21 +22,16 @@ namespace TrustBankApp.Pages.Users
         private readonly IUserService _userService;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly ILogger<UpdateUserModel> _logger;
-        private readonly IMapper _mapper;
 
         public UpdateUserModel(IUserService userService, 
             IMapper mapper, 
             UserManager<IdentityUser> userManager, 
             SignInManager<IdentityUser> signInManager, 
-            ILogger<UpdateUserModel> logger, 
-            IEmailSender emailSender)
+            ILogger<UpdateUserModel> logger)
         {
             _userService = userService;
             _userManager = userManager;
             _signInManager = signInManager;
-            _logger = logger;
-            _mapper = mapper;
         }
         public string UserId { get; set; }
         public string Username { get; set; }
@@ -46,7 +42,6 @@ namespace TrustBankApp.Pages.Users
         public EditUserViewModel EditUserVM { get; set; } = new EditUserViewModel();
         private async Task LoadAsync(string userId)
         {
-
             var user = _userService.GetUserById(userId);
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
@@ -79,20 +74,24 @@ namespace TrustBankApp.Pages.Users
         }
         public async Task<IActionResult> OnPostAsync(string userId)
         {
-
             var singedInUser = await _userManager.GetUserAsync(User);
 
-            var userToChange = _userService.GetUserById(userId);
-            if (userToChange == null)
+            var user = _userService.GetUserById(userId);
+
+            if (!ModelState.IsValid)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                await LoadAsync(userId);
+                return Page();
             }
 
-            //Change Phone Number
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(userToChange);
+            if (user == null)
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+
+            //change phone number
+            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (EditUserVM.PhoneNumber != phoneNumber)
             {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(userToChange, EditUserVM.PhoneNumber);
+                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, EditUserVM.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
                     StatusMessage = "Unexpected error when trying to set phone number.";
@@ -100,10 +99,10 @@ namespace TrustBankApp.Pages.Users
                 }
             }
 
-            //Change Password
+            //change password
             if(EditUserVM.NewPassword != null)
             {
-                var changePasswordResult = await _userManager.ChangePasswordAsync(userToChange, EditUserVM.OldPassword, EditUserVM.NewPassword);
+                var changePasswordResult = await _userManager.ChangePasswordAsync(user, EditUserVM.OldPassword, EditUserVM.NewPassword);
                 if (!changePasswordResult.Succeeded)
                 {
                     foreach (var error in changePasswordResult.Errors)
@@ -114,17 +113,15 @@ namespace TrustBankApp.Pages.Users
                 }
             }
 
-            //Change User Role
-            var currentRole = _userManager.GetRolesAsync(userToChange).Result.First();
-            if(EditUserVM.UserRole != currentRole)
+            //change userrole
+            var currentRole = _userManager.GetRolesAsync(user).Result.First();
+            if (EditUserVM.UserRole != currentRole)
             {
-                await _userManager.RemoveFromRoleAsync(userToChange, currentRole);
-                await _userManager.AddToRoleAsync(userToChange, EditUserVM.UserRole);
+                _userManager.RemoveFromRoleAsync(user, currentRole).Wait();
+                _userManager.AddToRoleAsync(user, EditUserVM.UserRole).Wait();
             }
 
             await _signInManager.RefreshSignInAsync(singedInUser);
-            _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your profile has been updated";
             return RedirectToPage("/Users/Users");
         }
     }

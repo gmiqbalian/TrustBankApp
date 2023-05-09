@@ -1,20 +1,22 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Models;
-using TrustBankApp.ViewModels;
+using TrustBankApp.Pages.Users;
+using TrustBankApp.ViewModels.User;
 
 namespace TrustBankApp.Services
 {
     public class UserService : IUserService
     {
-        private readonly TrustBankDbContext _dbContext;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly ILogger<UpdateUserModel> _logger;
 
-        public UserService(TrustBankDbContext dbContext, UserManager<IdentityUser> userManager)
+        public UserService(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ILogger<UpdateUserModel> logger)
         {
-            _dbContext = dbContext;
             _userManager = userManager;
+            _signInManager = signInManager;
+            _logger = logger;
         }
         public PagedResult<IdentityUser> GetAllUsers(string sortColumn, string sortOrder, int pageNo, string searchText)
         {
@@ -39,6 +41,7 @@ namespace TrustBankApp.Services
                     query = query.OrderByDescending(x => x.Email);
 
             return query.GetPaged(pageNo, 10);
+            
         }
         public string GetUserRole(string userId)
         {

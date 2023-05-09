@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Services;
 using TrustBankApp.ViewModels.User;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace TrustBankApp.Pages
 {
@@ -30,15 +31,17 @@ namespace TrustBankApp.Pages
             if (pageNo <= 0)
                 pageNo = 1;
 
-            var userResult = _userService.GetAllUsers(sortColumn, sortOrder, pageNo, searchText);
-            
-            Users = userResult.Results.Select(x => new UserViewModel
+            var query = _userService.GetAllUsers(sortColumn, sortOrder, pageNo, searchText);
+
+            var userResult = query.Results.Select(x => new UserViewModel
             {
                 Id = x.Id,
                 UserName = x.UserName,
                 Email = x.Email,
                 Role = _userService.GetUserRole(x.Id)
             }).ToList();
+                        
+            Users = userResult;
         }
     }
 }

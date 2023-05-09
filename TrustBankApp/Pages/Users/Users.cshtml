@@ -6,16 +6,52 @@
 <div class="container py-5">    
     <h1 class="fw-bolder text-success">USERS</h1>
     <p class="fs-4 lh-sm fw-bold">List of Registered Users</p>
-    <p>
+    <p class="text-end">
         <a asp-page="/Index" class="btn btn-success"><i class="fa-solid fa-arrow-left"></i>&nbsp;Back</a>
-    </p>
+        <a class="btn btn-success" asp-area="Identity" asp-page="/Account/Register">
+            <i class="fa-solid fa-circle-plus"></i>&nbsp;Create New
+        </a>
+    </p>    
     <hr />
     <table class="table table-success table-striped table-hover shadow">
         <thead>
             <tr>                
-                <th>ID</th>
-                <th>User Name</th>
-                <th>Email</th>
+                <th>ID
+                    <a asp-page="/Users/Users"
+                       asp-route-sortColumn="userId"
+                       asp-route-sortOrder="asc">
+                        <i class="fa-solid fa-sort-up"></i>
+                    </a>
+                    <a asp-page="/Users/Users"
+                       asp-route-sortColumn="userId"
+                       asp-route-sortOrder="desc">
+                        <i class="fa-solid fa-sort-down"></i>
+                    </a>
+                </th>
+                <th>User Name
+                    <a asp-page="/Users/Users"
+                       asp-route-sortColumn="userName"
+                       asp-route-sortOrder="asc">
+                        <i class="fa-solid fa-sort-up"></i>
+                    </a>
+                    <a asp-page="/Users/Users"
+                       asp-route-sortColumn="userName"
+                       asp-route-sortOrder="desc">
+                        <i class="fa-solid fa-sort-down"></i>
+                    </a>
+                </th>
+                <th>Email
+                    <a asp-page="/Users/Users"
+                       asp-route-sortColumn="email"
+                       asp-route-sortOrder="asc">
+                        <i class="fa-solid fa-sort-up"></i>
+                    </a>
+                    <a asp-page="/Users/Users"
+                       asp-route-sortColumn="email"
+                       asp-route-sortOrder="desc">
+                        <i class="fa-solid fa-sort-down"></i>
+                    </a>
+                </th>
                 <th>Role</th>
                 <th></th>
             </tr>
