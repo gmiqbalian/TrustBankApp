@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace TrustBankApp.ViewModels.User
 {
@@ -26,9 +27,9 @@ namespace TrustBankApp.ViewModels.User
 
         public string CurrentEmail { get; set; }
 
-        //[Required]
-        //[EmailAddress]
-        //[Display(Name = "Email")]
+        [Required]
+        [EmailAddress]
+        [Display(Name = "New email")]
         public string NewEmail { get; set; }
 
         [Required]
