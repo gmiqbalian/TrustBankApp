@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Models;
 using TrustBankApp.Models.DropDowns;
@@ -173,5 +174,11 @@ namespace TrustBankApp.Services
         {
             return _dbContext.Customers.First(x => x.CustomerId == customerId);
         }
+        public List<Customer> GetCustomersByCountry(string countryName)
+        {
+            return _dbContext.Customers
+                .Where(x => x.Country == countryName).ToList();
+        }
+        
     }
 }

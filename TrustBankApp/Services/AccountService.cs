@@ -168,7 +168,6 @@ namespace TrustBankApp.Services
         }
         public Account GetAccountById(int accountId)
         {
-            //return _dbContext.Accounts.First(x => x.AccountId == accountId);
             return _dbContext.Accounts.Find(accountId);
         }
         public List<Account> GetCustomerAccounts(int customerId)
@@ -184,7 +183,21 @@ namespace TrustBankApp.Services
         {
             return GetCustomerAccounts(customerId).Select(x => x.Balance).Sum();
         }
+        public List<Transaction> GetAllTransactionsByAccountId(int accountId)
+        {
+            return _dbContext.Transactions.Where(x => x.AccountId == accountId).ToList();
+        }
+        public List<Account> GetCustomerAccountsWithTransactions(int customerId)
+        {
+            var customerAccounts = _dbContext.Dispositions
+                .Where(d => d.CustomerId == customerId)
+                .Include(x => x.Account)
+                .ThenInclude(x => x.Transactions)
+                .Select(d => d.Account)
+                .ToList();
 
+            return customerAccounts;
+        }
 
 
     }

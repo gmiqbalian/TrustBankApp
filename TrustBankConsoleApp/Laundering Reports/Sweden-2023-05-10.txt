@@ -1,0 +1,40 @@
+***Records for Sweden***
+***Generated on: 2023-05-10 21:19:20***
+***Total records: 5***
+=========================================================
+
+Serial: 1
+Customer Id: 8506
+Account Id: 7049
+Transaction Id: 707246
+Transaction Date: 2017-12-05
+Transaction Amount: 74278,00
+------------------------------------
+Serial: 2
+Customer Id: 8506
+Account Id: 7049
+Transaction Id: 878563
+Transaction Date: 2018-06-05
+Transaction Amount: 74278,00
+------------------------------------
+Serial: 3
+Customer Id: 8506
+Account Id: 7049
+Transaction Id: 1034323
+Transaction Date: 2018-12-05
+Transaction Amount: 74278,00
+------------------------------------
+Serial: 4
+Customer Id: 100011
+Account Id: 12264
+Transaction Id: 1060141
+Transaction Date: 2023-04-29
+Transaction Amount: 100000,00
+------------------------------------
+Serial: 5
+Customer Id: 100011
+Account Id: 12264
+Transaction Id: 1060145
+Transaction Date: 2023-05-01
+Transaction Amount: 100000,00
+------------------------------------

@@ -1,0 +1,432 @@
+***Records for Finland***
+***Generated on: 2023-05-10 21:21:34***
+***Total records: 61***
+=========================================================
+
+Serial: 1
+Customer Id: 255
+Account Id: 212
+Transaction Id: 3907
+Transaction Date: 2013-06-09
+Transaction Amount: 74385,00
+------------------------------------
+Serial: 2
+Customer Id: 255
+Account Id: 212
+Transaction Id: 23914
+Transaction Date: 2013-12-09
+Transaction Amount: 74385,00
+------------------------------------
+Serial: 3
+Customer Id: 255
+Account Id: 212
+Transaction Id: 64797
+Transaction Date: 2014-06-09
+Transaction Amount: 74385,00
+------------------------------------
+Serial: 4
+Customer Id: 255
+Account Id: 212
+Transaction Id: 112433
+Transaction Date: 2014-12-09
+Transaction Amount: 74385,00
+------------------------------------
+Serial: 5
+Customer Id: 255
+Account Id: 212
+Transaction Id: 175445
+Transaction Date: 2015-06-09
+Transaction Amount: 74385,00
+------------------------------------
+Serial: 6
+Customer Id: 255
+Account Id: 212
+Transaction Id: 242447
+Transaction Date: 2015-12-09
+Transaction Amount: 74385,00
+------------------------------------
+Serial: 7
+Customer Id: 255
+Account Id: 212
+Transaction Id: 331959
+Transaction Date: 2016-06-09
+Transaction Amount: 74385,00
+------------------------------------
+Serial: 8
+Customer Id: 255
+Account Id: 212
+Transaction Id: 433397
+Transaction Date: 2016-12-09
+Transaction Amount: 74385,00
+------------------------------------
+Serial: 9
+Customer Id: 255
+Account Id: 212
+Transaction Id: 570848
+Transaction Date: 2017-06-09
+Transaction Amount: 74385,00
+------------------------------------
+Serial: 10
+Customer Id: 255
+Account Id: 212
+Transaction Id: 712620
+Transaction Date: 2017-12-09
+Transaction Amount: 74385,00
+------------------------------------
+Serial: 11
+Customer Id: 255
+Account Id: 212
+Transaction Id: 884011
+Transaction Date: 2018-06-09
+Transaction Amount: 74385,00
+------------------------------------
+Serial: 12
+Customer Id: 255
+Account Id: 212
+Transaction Id: 1040014
+Transaction Date: 2018-12-09
+Transaction Amount: 74385,00
+------------------------------------
+Serial: 13
+Customer Id: 1239
+Account Id: 1032
+Transaction Id: 3567
+Transaction Date: 2013-06-05
+Transaction Amount: 74648,00
+------------------------------------
+Serial: 14
+Customer Id: 1239
+Account Id: 1032
+Transaction Id: 22854
+Transaction Date: 2013-12-05
+Transaction Amount: 74648,00
+------------------------------------
+Serial: 15
+Customer Id: 1239
+Account Id: 1032
+Transaction Id: 63236
+Transaction Date: 2014-06-05
+Transaction Amount: 74648,00
+------------------------------------
+Serial: 16
+Customer Id: 1239
+Account Id: 1032
+Transaction Id: 110555
+Transaction Date: 2014-12-05
+Transaction Amount: 74648,00
+------------------------------------
+Serial: 17
+Customer Id: 1239
+Account Id: 1032
+Transaction Id: 173309
+Transaction Date: 2015-06-05
+Transaction Amount: 74648,00
+------------------------------------
+Serial: 18
+Customer Id: 1239
+Account Id: 1032
+Transaction Id: 239853
+Transaction Date: 2015-12-05
+Transaction Amount: 74648,00
+------------------------------------
+Serial: 19
+Customer Id: 1239
+Account Id: 1032
+Transaction Id: 328898
+Transaction Date: 2016-06-05
+Transaction Amount: 74648,00
+------------------------------------
+Serial: 20
+Customer Id: 1239
+Account Id: 1032
+Transaction Id: 429315
+Transaction Date: 2016-12-05
+Transaction Amount: 74648,00
+------------------------------------
+Serial: 21
+Customer Id: 1239
+Account Id: 1032
+Transaction Id: 566175
+Transaction Date: 2017-06-05
+Transaction Amount: 74648,00
+------------------------------------
+Serial: 22
+Customer Id: 1239
+Account Id: 1032
+Transaction Id: 707263
+Transaction Date: 2017-12-05
+Transaction Amount: 74648,00
+------------------------------------
+Serial: 23
+Customer Id: 1239
+Account Id: 1032
+Transaction Id: 878575
+Transaction Date: 2018-06-05
+Transaction Amount: 74648,00
+------------------------------------
+Serial: 24
+Customer Id: 1239
+Account Id: 1032
+Transaction Id: 1034332
+Transaction Date: 2018-12-05
+Transaction Amount: 74648,00
+------------------------------------
+Serial: 25
+Customer Id: 2351
+Account Id: 1935
+Transaction Id: 430343
+Transaction Date: 2016-12-06
+Transaction Amount: 74812,00
+------------------------------------
+Serial: 26
+Customer Id: 2351
+Account Id: 1935
+Transaction Id: 567354
+Transaction Date: 2017-06-06
+Transaction Amount: 74812,00
+------------------------------------
+Serial: 27
+Customer Id: 2351
+Account Id: 1935
+Transaction Id: 708578
+Transaction Date: 2017-12-06
+Transaction Amount: 74812,00
+------------------------------------
+Serial: 28
+Customer Id: 2351
+Account Id: 1935
+Transaction Id: 879905
+Transaction Date: 2018-06-06
+Transaction Amount: 74812,00
+------------------------------------
+Serial: 29
+Customer Id: 2351
+Account Id: 1935
+Transaction Id: 1035757
+Transaction Date: 2018-12-06
+Transaction Amount: 74812,00
+------------------------------------
+Serial: 30
+Customer Id: 2626
+Account Id: 2170
+Transaction Id: 63679
+Transaction Date: 2014-06-06
+Transaction Amount: 74770,00
+------------------------------------
+Serial: 31
+Customer Id: 2626
+Account Id: 2170
+Transaction Id: 111077
+Transaction Date: 2014-12-06
+Transaction Amount: 74770,00
+------------------------------------
+Serial: 32
+Customer Id: 2626
+Account Id: 2170
+Transaction Id: 173913
+Transaction Date: 2015-06-06
+Transaction Amount: 74770,00
+------------------------------------
+Serial: 33
+Customer Id: 2626
+Account Id: 2170
+Transaction Id: 240577
+Transaction Date: 2015-12-06
+Transaction Amount: 74770,00
+------------------------------------
+Serial: 34
+Customer Id: 2626
+Account Id: 2170
+Transaction Id: 329719
+Transaction Date: 2016-06-06
+Transaction Amount: 74770,00
+------------------------------------
+Serial: 35
+Customer Id: 2626
+Account Id: 2170
+Transaction Id: 430453
+Transaction Date: 2016-12-06
+Transaction Amount: 74770,00
+------------------------------------
+Serial: 36
+Customer Id: 2626
+Account Id: 2170
+Transaction Id: 567465
+Transaction Date: 2017-06-06
+Transaction Amount: 74770,00
+------------------------------------
+Serial: 37
+Customer Id: 2626
+Account Id: 2170
+Transaction Id: 708720
+Transaction Date: 2017-12-06
+Transaction Amount: 74770,00
+------------------------------------
+Serial: 38
+Customer Id: 2626
+Account Id: 2170
+Transaction Id: 880041
+Transaction Date: 2018-06-06
+Transaction Amount: 74770,00
+------------------------------------
+Serial: 39
+Customer Id: 2626
+Account Id: 2170
+Transaction Id: 1035899
+Transaction Date: 2018-12-06
+Transaction Amount: 74770,00
+------------------------------------
+Serial: 40
+Customer Id: 6317
+Account Id: 5228
+Transaction Id: 22990
+Transaction Date: 2013-12-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 41
+Customer Id: 6317
+Account Id: 5228
+Transaction Id: 63448
+Transaction Date: 2014-06-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 42
+Customer Id: 6317
+Account Id: 5228
+Transaction Id: 110783
+Transaction Date: 2014-12-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 43
+Customer Id: 6317
+Account Id: 5228
+Transaction Id: 173585
+Transaction Date: 2015-06-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 44
+Customer Id: 6317
+Account Id: 5228
+Transaction Id: 240206
+Transaction Date: 2015-12-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 45
+Customer Id: 6317
+Account Id: 5228
+Transaction Id: 329280
+Transaction Date: 2016-06-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 46
+Customer Id: 6317
+Account Id: 5228
+Transaction Id: 429842
+Transaction Date: 2016-12-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 47
+Customer Id: 6317
+Account Id: 5228
+Transaction Id: 566785
+Transaction Date: 2017-06-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 48
+Customer Id: 6317
+Account Id: 5228
+Transaction Id: 707944
+Transaction Date: 2017-12-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 49
+Customer Id: 6317
+Account Id: 5228
+Transaction Id: 879279
+Transaction Date: 2018-06-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 50
+Customer Id: 6317
+Account Id: 5228
+Transaction Id: 1035075
+Transaction Date: 2018-12-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 51
+Customer Id: 6318
+Account Id: 5228
+Transaction Id: 22990
+Transaction Date: 2013-12-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 52
+Customer Id: 6318
+Account Id: 5228
+Transaction Id: 63448
+Transaction Date: 2014-06-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 53
+Customer Id: 6318
+Account Id: 5228
+Transaction Id: 110783
+Transaction Date: 2014-12-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 54
+Customer Id: 6318
+Account Id: 5228
+Transaction Id: 173585
+Transaction Date: 2015-06-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 55
+Customer Id: 6318
+Account Id: 5228
+Transaction Id: 240206
+Transaction Date: 2015-12-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 56
+Customer Id: 6318
+Account Id: 5228
+Transaction Id: 329280
+Transaction Date: 2016-06-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 57
+Customer Id: 6318
+Account Id: 5228
+Transaction Id: 429842
+Transaction Date: 2016-12-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 58
+Customer Id: 6318
+Account Id: 5228
+Transaction Id: 566785
+Transaction Date: 2017-06-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 59
+Customer Id: 6318
+Account Id: 5228
+Transaction Id: 707944
+Transaction Date: 2017-12-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 60
+Customer Id: 6318
+Account Id: 5228
+Transaction Id: 879279
+Transaction Date: 2018-06-05
+Transaction Amount: 74522,00
+------------------------------------
+Serial: 61
+Customer Id: 6318
+Account Id: 5228
+Transaction Id: 1035075
+Transaction Date: 2018-12-05
+Transaction Amount: 74522,00
+------------------------------------

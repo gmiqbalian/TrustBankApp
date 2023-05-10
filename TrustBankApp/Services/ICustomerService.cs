@@ -13,5 +13,6 @@ namespace TrustBankApp.Services
         List<SelectListItem> FillGenderDropDownList();
         List<SelectListItem> FillCountryDropDownList();
         Customer GetCustomerById(int customerId);
+        List<Customer> GetCustomersByCountry(string countryName);
     }
 }

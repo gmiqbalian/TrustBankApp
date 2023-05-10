@@ -1,0 +1,75 @@
+***Records for Denmark***
+***Generated on: 2023-05-10 21:20:46***
+***Total records: 10***
+=========================================================
+
+Serial: 1
+Customer Id: 321
+Account Id: 266
+Transaction Id: 65864
+Transaction Date: 2014-06-12
+Transaction Amount: 74628,00
+------------------------------------
+Serial: 2
+Customer Id: 321
+Account Id: 266
+Transaction Id: 113737
+Transaction Date: 2014-12-12
+Transaction Amount: 74628,00
+------------------------------------
+Serial: 3
+Customer Id: 321
+Account Id: 266
+Transaction Id: 176914
+Transaction Date: 2015-06-12
+Transaction Amount: 74628,00
+------------------------------------
+Serial: 4
+Customer Id: 321
+Account Id: 266
+Transaction Id: 244309
+Transaction Date: 2015-12-12
+Transaction Amount: 74628,00
+------------------------------------
+Serial: 5
+Customer Id: 321
+Account Id: 266
+Transaction Id: 334109
+Transaction Date: 2016-06-12
+Transaction Amount: 74628,00
+------------------------------------
+Serial: 6
+Customer Id: 321
+Account Id: 266
+Transaction Id: 436186
+Transaction Date: 2016-12-12
+Transaction Amount: 74628,00
+------------------------------------
+Serial: 7
+Customer Id: 321
+Account Id: 266
+Transaction Id: 574042
+Transaction Date: 2017-06-12
+Transaction Amount: 74628,00
+------------------------------------
+Serial: 8
+Customer Id: 321
+Account Id: 266
+Transaction Id: 716402
+Transaction Date: 2017-12-12
+Transaction Amount: 74628,00
+------------------------------------
+Serial: 9
+Customer Id: 321
+Account Id: 266
+Transaction Id: 887800
+Transaction Date: 2018-06-12
+Transaction Amount: 74628,00
+------------------------------------
+Serial: 10
+Customer Id: 321
+Account Id: 266
+Transaction Id: 1043906
+Transaction Date: 2018-12-12
+Transaction Amount: 74628,00
+------------------------------------

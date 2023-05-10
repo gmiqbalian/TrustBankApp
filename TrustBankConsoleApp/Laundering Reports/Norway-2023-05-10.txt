@@ -1,0 +1,117 @@
+***Records for Norway***
+***Generated on: 2023-05-10 21:20:02***
+***Total records: 16***
+=========================================================
+
+Serial: 1
+Customer Id: 2355
+Account Id: 1939
+Transaction Id: 333017
+Transaction Date: 2016-06-11
+Transaction Amount: 74529,00
+------------------------------------
+Serial: 2
+Customer Id: 2355
+Account Id: 1939
+Transaction Id: 434826
+Transaction Date: 2016-12-11
+Transaction Amount: 74529,00
+------------------------------------
+Serial: 3
+Customer Id: 2355
+Account Id: 1939
+Transaction Id: 572456
+Transaction Date: 2017-06-11
+Transaction Amount: 74529,00
+------------------------------------
+Serial: 4
+Customer Id: 2355
+Account Id: 1939
+Transaction Id: 714555
+Transaction Date: 2017-12-11
+Transaction Amount: 74529,00
+------------------------------------
+Serial: 5
+Customer Id: 2355
+Account Id: 1939
+Transaction Id: 885955
+Transaction Date: 2018-06-11
+Transaction Amount: 74529,00
+------------------------------------
+Serial: 6
+Customer Id: 2355
+Account Id: 1939
+Transaction Id: 1041989
+Transaction Date: 2018-12-11
+Transaction Amount: 74529,00
+------------------------------------
+Serial: 7
+Customer Id: 3962
+Account Id: 3273
+Transaction Id: 331551
+Transaction Date: 2016-06-09
+Transaction Amount: 74642,00
+------------------------------------
+Serial: 8
+Customer Id: 3962
+Account Id: 3273
+Transaction Id: 432915
+Transaction Date: 2016-12-09
+Transaction Amount: 74642,00
+------------------------------------
+Serial: 9
+Customer Id: 3962
+Account Id: 3273
+Transaction Id: 570240
+Transaction Date: 2017-06-09
+Transaction Amount: 74642,00
+------------------------------------
+Serial: 10
+Customer Id: 3962
+Account Id: 3273
+Transaction Id: 711962
+Transaction Date: 2017-12-09
+Transaction Amount: 74642,00
+------------------------------------
+Serial: 11
+Customer Id: 3962
+Account Id: 3273
+Transaction Id: 883354
+Transaction Date: 2018-06-09
+Transaction Amount: 74642,00
+------------------------------------
+Serial: 12
+Customer Id: 3962
+Account Id: 3273
+Transaction Id: 1039340
+Transaction Date: 2018-12-09
+Transaction Amount: 74642,00
+------------------------------------
+Serial: 13
+Customer Id: 13134
+Account Id: 10679
+Transaction Id: 569337
+Transaction Date: 2017-06-08
+Transaction Amount: 74176,00
+------------------------------------
+Serial: 14
+Customer Id: 13134
+Account Id: 10679
+Transaction Id: 710885
+Transaction Date: 2017-12-08
+Transaction Amount: 74176,00
+------------------------------------
+Serial: 15
+Customer Id: 13134
+Account Id: 10679
+Transaction Id: 882243
+Transaction Date: 2018-06-08
+Transaction Amount: 74176,00
+------------------------------------
+Serial: 16
+Customer Id: 13134
+Account Id: 10679
+Transaction Id: 1038204
+Transaction Date: 2018-12-08
+Transaction Amount: 74176,00
+------------------------------------
