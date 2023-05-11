@@ -1,0 +1,90 @@
+﻿@page
+@model TrustBankApp.Pages.Accounts.AccountDetailModel
+@{
+}
+
+@if (TempData["success"] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.success('@TempData["success"]');
+    </script>
+}
+
+<div class="container py-5">
+    <div class="col-md-10 offset-1">
+        <h1>ACCOUNT DETAIL</h1>
+        <hr />        
+        <div class="customer-card rounded shadow border border-success d-flex row py-5">
+            <div class="border-lg-end col-lg-4 text-center p-3 d-flex flex-column align-items-center justify-content-center">
+                <h3 class="text-light">Account Id</h3>
+                <h3 class="fs-1 text-warning">@Model.Account.AccountId</h3>
+                                
+                <h3 class="text-light">Balance</h3>
+                <h3 class="fs-1 text-warning">@Model.Account.Balance</h3>
+                                                
+                <p class="mt-5">
+                    <a class="btn btn-primary" asp-page="/Accounts/Accounts">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        &nbsp; BACK
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-lg-8">
+                <h3 class="pt-3 text-warning">Recent 10 Transactions</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Serial</th>
+                            <th>Id</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int serial = 0;
+                            foreach (var transaction in Model.Transactions)
+                            {
+                                serial += 1;
+                                <tr>
+                                    <td>@serial</td>
+                                    <td>@transaction.TransactionId</td>
+                                    @if(transaction.Amount > 0)
+                                    {
+                                        <td>@transaction.Amount</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-danger">@transaction.Amount</td>
+                                    }
+                                    <td>@transaction.Date.ToShortDateString()</td>
+                                    <td>@transaction.Balance</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

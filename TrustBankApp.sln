@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrustBankApp", "TrustBankAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrustBankAPI", "TrustBankAPI\TrustBankAPI.csproj", "{7117F811-53DA-4A8D-A4D9-91E81801AC0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrustBankConsoleApp", "TrustBankConsoleApp\TrustBankConsoleApp.csproj", "{60C7D6C4-8C54-4F50-8F3F-8835BCAC2D8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrustBankConsoleApp", "TrustBankConsoleApp\TrustBankConsoleApp.csproj", "{60C7D6C4-8C54-4F50-8F3F-8835BCAC2D8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

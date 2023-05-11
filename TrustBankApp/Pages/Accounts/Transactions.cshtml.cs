@@ -23,34 +23,23 @@ namespace TrustBankApp.Pages.Accounts
             _dbContext = dbContext;
         }
 
-        public string SortColumn { get; set; }
-        public string SortOrder { get; set; }
-        public string SearchText { get; set; }
         public int CurrentPageNumber { get; set; }
-        public int StartPage { get; set; }
-        public int EndPage { get; set; }
         public int TotalPages { get; set; }
         public int AccountId { get; set; }
         public int CustomerId { get; set; }
         public decimal Balance { get; set; }
-        public PagedResult<TransactionViewModel> Transactions { get; set; }
-
-        public void OnGet(int accountId, int customerId, string sortColumn, string sortOrder, int pageNo, string searchText)
+        public List<TransactionViewModel> Transactions { get; set; }
+        public void OnGet(int accountId, int customerId, int pageNo)
         {
             if (pageNo <= 0)
                 pageNo = 1;
 
-            SortColumn = sortColumn;
-            SortOrder = sortOrder; 
-            SearchText = searchText;
             CurrentPageNumber = pageNo;
-
             AccountId = accountId;
             CustomerId = customerId;
             Balance = Math.Round(_accountService.GetAccountById(accountId).Balance);
 
-            Transactions = _accountService.GetAllTransactions(accountId, sortColumn, sortOrder, pageNo, searchText);
-            TotalPages = Transactions.TotalPages;
+            Transactions = _accountService.GetAllTransactions(accountId);
         }
         public IActionResult OnGetShowMore(int pageNo, int accountId)
         {

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using TrustBankApp.Models;
+using TrustBankApp.ViewModels.AccountsVM;
 using TrustBankApp.ViewModels.Customer;
 using TrustBankApp.ViewModels.User;
 
@@ -22,6 +23,13 @@ namespace TrustBankApp.Infrastructure.Automapping
                 .ReverseMap();
 
             CreateMap<IdentityUser, EditUserViewModel>();
+
+            CreateMap<Account, AccountDetailViewModel>()
+                .ForMember(dest => dest.DateCreated, opt => opt.MapFrom(src => src.Created))
+                .ReverseMap();
+
+            CreateMap<Transaction, TransactionViewModel>()
+                .ReverseMap();
         }
     }
 }

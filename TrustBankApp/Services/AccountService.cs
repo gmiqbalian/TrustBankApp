@@ -76,11 +76,11 @@ namespace TrustBankApp.Services
             return accountsQueryList.GetPaged(pageNo, 20);
         }
 
-        public PagedResult<TransactionViewModel> GetAllTransactions(int accountId, string sortColumn, string sortOrder, int pageNo, string searchText)
+        public List<TransactionViewModel> GetAllTransactions(int accountId)
         {
             var account = _dbContext.Accounts.Include(x => x.Transactions)
                 .First(x => x.AccountId == accountId);
-            
+
             var query = account.Transactions.AsQueryable();
 
             var transactionsQueryList = query.Select(x => new TransactionViewModel
@@ -92,7 +92,7 @@ namespace TrustBankApp.Services
                 Balance = x.Balance,
             }).OrderByDescending(x => x.Date);
 
-            return transactionsQueryList.GetPaged(pageNo, 20);
+            return transactionsQueryList.ToList();
         }
 
         public void MakeDeposit(DepositViewModel depositViewModel)
@@ -185,7 +185,11 @@ namespace TrustBankApp.Services
         }
         public List<Transaction> GetAllTransactionsByAccountId(int accountId)
         {
-            return _dbContext.Transactions.Where(x => x.AccountId == accountId).ToList();
+            return _dbContext.Accounts
+                .Include(x => x.Transactions)
+                .First(x => x.AccountId == accountId)
+                .Transactions
+                .ToList();
         }
         public List<Account> GetCustomerAccountsWithTransactions(int customerId)
         {

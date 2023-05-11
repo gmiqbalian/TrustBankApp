@@ -8,7 +8,8 @@ namespace TrustBankApp.Services
     {
         Account GetNewAccount();
         Disposition GetNewDisposition(Account forAccount);
-        PagedResult<TransactionViewModel> GetAllTransactions(int accountId, string sortColumn, string sortOrder, int pageNo, string searchText);
+        //PagedResult<TransactionViewModel> GetAllTransactions(int accountId, int pageNo);
+        List<TransactionViewModel> GetAllTransactions(int accountId);
         PagedResult<AccountDetailViewModel> GetAllAccounts(string sortColumn, string sortOrder, int pageNo, string searchText);
         void MakeDeposit(DepositViewModel depositViewModel);
         void MakeWithdrawl(WithdrawViewModel withdrawViewModel);
