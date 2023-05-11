@@ -13,11 +13,13 @@ namespace TrustBankApp.Pages
     public class CustomersModel : PageModel
     {
         private readonly ICustomerService _customerService;
+        private readonly IAccountService _accountService;
 
-        public CustomersModel(ICustomerService customerService)
+        public CustomersModel(ICustomerService customerService, IAccountService accountService)
         {
             _customerService = customerService;
-        }       
+            _accountService = accountService;
+        }
         public PagedResult<CustomerViewModel> Customers { get; set; }
         public string SortColumn { get; set; }
         public string SortOrder { get; set; }
@@ -40,12 +42,12 @@ namespace TrustBankApp.Pages
         }
         public IActionResult OnGetFetchInfo(int customerId)
         {
-            var customer = _customerService.GetCustomerById(customerId);
-
+            var account = _accountService.GetCustomerAccounts(customerId).First();
+            
             return new JsonResult(new
             {
-                accountId = customer.CustomerId,
-                balance = customer.Zipcode,
+                accountId = account.AccountId,
+                balance = account.Balance,
             });
         }
     }

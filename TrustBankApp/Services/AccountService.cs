@@ -198,7 +198,16 @@ namespace TrustBankApp.Services
 
             return customerAccounts;
         }
+        public Customer GetOwnerOfAccount(int accountId)
+        {
+            var ownerOfAccount = _dbContext.Dispositions
+                .Where(d => d.AccountId == accountId)
+                .Where(d => d.Type == "Owner")
+                .Select(d => d.Customer)
+                .First();
 
+            return ownerOfAccount;
+        }
 
     }
 }

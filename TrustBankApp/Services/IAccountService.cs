@@ -18,5 +18,6 @@ namespace TrustBankApp.Services
         decimal GetCustomerAccountsBalance(int customerId);
         List<Transaction> GetAllTransactionsByAccountId(int accountId);
         List<Account> GetCustomerAccountsWithTransactions(int customerId);
+        Customer GetOwnerOfAccount(int accountId);
     }
 }

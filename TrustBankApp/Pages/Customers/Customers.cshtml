@@ -1,5 +1,32 @@
 ﻿@page
 @model TrustBankApp.Pages.CustomersModel
+
+@*toastr notification for quick info*@
+@{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "10000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
+}
+
+@*toastr notification for success message*@
 @if (TempData["success"] != null)
 {
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -151,14 +178,14 @@
                     <td>@customer.Addres</td>
                     <td>@customer.City</td>
                     <td>@customer.Country</td>
-                    <td>
+                    <td class="text-center">
                         <a title="show details" class="more"
                        asp-page="/Customers/Customer"
                        asp-route-customerId="@customer.CustomerId">
-                            <i class="fa-solid fa-circle-info"></i>
+                            <i class="fa-solid fa-magnifying-glass fa-lg"></i>
                         </a>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <a title="show quick info"
                            href="javascript:fetchInfo(@customer.CustomerId)">
                             <i class='fa-solid fa-circle-info'></i>
@@ -250,9 +277,13 @@
             fetch("/Customers/Customers?handler=FetchInfo&customerId=" + customerId)
                 .then((response) => response.json())
                 .then((json) => {
-                    document.getElementById('show').style.display = "block";
-                    document.getElementById('accountId').innerHTML = json.accountId;
-                    document.getElementById('balance').innerHTML = json.balance;
+                    toastr.info(
+                    `
+                        Account Detail<br><br>
+                        <h5>Account Id: ${json.accountId}<br></h5>
+                        <h5>Balance: ${json.balance}<br></h5>
+                    `
+                    );
                 });
         }
     </script>

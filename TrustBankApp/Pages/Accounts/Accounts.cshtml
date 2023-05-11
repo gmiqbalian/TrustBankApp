@@ -1,6 +1,27 @@
 ﻿@page
 @model TrustBankApp.Pages.Accounts.AccountsModel
 @{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "10000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
 }
 
 <div class="container py-5 mt-5">
@@ -94,15 +115,15 @@
                     <td>@account.Frequency</td>
                     <td>@account.DateCreated.ToShortDateString()</td>
                     <td>@account.Balance</td>
-                   <td>
+                    <td>
                         <a title="show details" class="more"
                        asp-page="/Accounts/Accounts"
                        asp-route-accountId="@account.AccountId">
-                            <i class="fa-solid fa-circle-info"></i>
+                            <i class="fa-solid fa-magnifying-glass fa-lg"></i>
                         </a>
                     </td>
                     <td>
-                        <a title="show quick info"
+                        <a id="quick-info" title="show quick info"
                            href="javascript:fetchInfo(@account.AccountId)">
                             <i class='fa-solid fa-circle-info'></i>
                         </a>
@@ -112,18 +133,7 @@
         </tbody>
     </table>
 
-    @*Extra Info*@
-    <div id="show" class="card text-light bg-dark" style="display: none">
-        <div class="card-header">
-            <h1>Extra Info</h1>
-        </div>
-        <div class="card-body">
-            <div>
-                <h3 class="">Account Id: <span id="accountId"></span></h3>
-                <h3>Account Balance: <span id="balance"></span></h3>
-            </div>
-        </div>
-    </div>
+
 
     @*pagination*@
     <div class="mt-5">
@@ -187,169 +197,21 @@
     </div>
 </div>
 
-@*<div class="container mt-5 pt-5 d-flex flex-column gap-3">
-    <div class="section-title border border-danger">
-        <h1>All Accounts</h1>
-        <h3>Page @Model.CurrentPageNumber of @Model.TotalPages</h3>
-    </div>
-    <div class="d-flex justify-content-between border border-danger" style="border: 1px solid green;">
-        <form class=" d-flex align-items-center" method="get">
-            <div class="input-group">
-                <div class="form-outline">
-                    <input type="search" id="form1" class="form-control h-100"
-                           asp-for="@Model.SearchText" placeholder="Id, Name, City or Address" />
-                    <input type="hidden" asp-for="@Model.AllAccountsList" />
-                </div>
-
-                <button type="submit" class="btn btn-primary p-2">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </form>
-        <div>
-            <a class="btn btn-warning border-2 border-dark px-3 rounded-4" asp-page="/Index">
-                <i class="fa-solid fa-arrow-left"></i>
-                Back
-            </a>
-            <a class="btn btn-success border-2 border-dark px-3 rounded-4" asp-page="/Customers/CreateCustomer">
-                <i class="fa-solid fa-plus fa-lg"></i>
-                Create New
-            </a>
-        </div>
-    </div>
-    <div class="table-responsive border border-danger">
-        <table class="table table-dark table-striped p-0 m-0">
-            <thead>
-                <tr>
-                    <th scope="col">
-                        Account Id
-                        <a asp-page="/Accounts/Accounts"
-                           asp-route-searchText="@Model.SearchText"
-                           asp-route-sortColumn="accountId"
-                           asp-route-sortOrder="asc">
-                            <i class="fa-solid fa-sort-up"></i>
-                        </a>
-                        <a asp-page="/Accounts/Accounts"
-                           asp-route-sortColumn="accountId"
-                           asp-route-searchText="@Model.SearchText"
-                           asp-route-sortOrder="desc">
-                            <i class="fa-solid fa-sort-down"></i>
-                        </a>
-                    </th>
-                    <th scope="col">
-                        Date
-                        <a asp-page="/Accounts/Accounts"
-                           asp-route-sortColumn="date"
-                           asp-route-sortOrder="asc">
-                            <i class="fa-solid fa-sort-up"></i>
-                        </a>
-                        <a asp-page="/Accounts/Accounts"
-                           asp-route-sortColumn="date"
-                           asp-route-sortOrder="desc">
-                            <i class="fa-solid fa-sort-down"></i>
-                        </a>
-                    </th>
-                    <th scope="col">
-                        Frequency
-                        <a asp-page="/Accounts/Accounts"
-                           asp-route-searchText="@Model.SearchText"
-                           asp-route-sortColumn="frequency"
-                           asp-route-sortOrder="asc">
-                            <i class="fa-solid fa-sort-up"></i>
-                        </a>
-                        <a asp-page="/Accounts/Accounts"
-                           asp-route-sortColumn="frequency"
-                           asp-route-sortOrder="desc">
-                            <i class="fa-solid fa-sort-down"></i>
-                        </a>
-                    </th>
-                    <th scope="col">
-                        Balance
-                        <a asp-page="/Accounts/Accounts"
-                           asp-route-searchText="@Model.SearchText"
-                           asp-route-sortColumn="balance"
-                           asp-route-sortOrder="asc">
-                            <i class="fa-solid fa-sort-up"></i>
-                        </a>
-                        <a asp-page="/Accounts/Accounts"
-                           asp-route-sortColumn="balance"
-                           asp-route-sortOrder="desc">
-                            <i class="fa-solid fa-sort-down"></i>
-                        </a>
-                    </th>
-
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                @foreach (var account in Model.AllAccountsList.Results)
-                {
-                    <tr>
-                        <td>@account.AccountId</td>
-                        <td>@account.DateCreated.ToShortDateString()</td>
-                        <td>@account.Frequency</td>
-                        <td>@account.Balance</td>
-
-                    </tr>
-                }
-
-            </tbody>
-        </table>
-    </div>
-
-    <div class="border border-danger">
-        <nav class="" aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                @if (Model.CurrentPageNumber != 1)
-                {
-                    <li class="page-item">
-                        <a class="page-link" asp-page="/Customers" asp-route-pageNo=0 aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link"
-                       asp-page="/Customers"
-                       asp-route-sortColumn="@Model.SortColumn"
-                       asp-route-sortOrder="@Model.SortOrder"
-                       asp-route-pageNo="@(Model.CurrentPageNumber-1)">
-                            Previous
-                        </a>
-                    </li>
-                }
-
-                @for (var i = Model.AllAccountsList.StartPage; i <= Model.AllAccountsList.EndPage; i++)
-                {
-                    <li class="page-item">
-                        <a class="page-link"
-                       asp-page="/Customers"
-                       asp-route-sortColumn="@Model.SortColumn"
-                       asp-route-sortOrder="@Model.SortOrder"
-                       asp-route-startPage="@Model.StartPage"
-                       asp-route-pageNo="@i">
-                            @i
-                        </a>
-                    </li>
-
-                }
-                @if (Model.CurrentPageNumber != Model.TotalPages)
-                {
-                    <li class="page-item">
-                        <a class="page-link"
-                       asp-page="/Customers"
-                       asp-route-sortColumn="@Model.SortColumn"
-                       asp-route-sortOrder="@Model.SortOrder"
-                       asp-route-pageNo="@(Model.CurrentPageNumber+1)">
-                            Next
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" asp-page="/Customers" asp-route-pageNo="@Model.TotalPages" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                }
-
-            </ul>
-        </nav>
-    </div>
-</div>*@
+@section Scripts {
+    <script>
+        function fetchInfo(accountId) {
+            fetch("/Accounts/Accounts?handler=FetchInfo&accountId=" + accountId)
+                .then((response) => response.json())
+                .then((json) => {
+                    toastr.info(
+                        `
+                        Account Owner Detail<br>
+                        Full Name: <h5>${json.fullName}</h5><br>
+                        Customer Id: ${json.customerId}<br>
+                        Country: ${json.country}<br>
+                        Email: ${json.email}<br>`
+                    );
+                });
+        }
+    </script>
+}

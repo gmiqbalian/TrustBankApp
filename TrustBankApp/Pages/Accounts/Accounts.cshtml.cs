@@ -40,5 +40,17 @@ namespace TrustBankApp.Pages.Accounts
             
             TotalPages = Accounts.TotalPages;
         }
+        public IActionResult OnGetFetchInfo(int accountId)
+        {
+            var account = _accountService.GetOwnerOfAccount(accountId);
+            
+            return new JsonResult(new
+            {
+                customerId = account.CustomerId,
+                fullName = account.Givenname + " " + account.Surname,
+                country = account.Country,
+                email = account.Emailaddress
+            });
+        }
     }
 }
