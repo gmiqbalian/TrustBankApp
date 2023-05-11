@@ -42,6 +42,8 @@ namespace TrustBankApp.Pages.Customers
                 EditCustomerVM.CustomerId = customerId;
                 _customerService.EditCustomer(EditCustomerVM);
 
+                TempData["success"] = "Customer edited successfully!";
+
                 return RedirectToPage("/Customers/Customer", new { customerId = customerId });
             }
 

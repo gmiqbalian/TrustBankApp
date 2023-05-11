@@ -1,14 +1,28 @@
 ﻿@page
 @model TrustBankApp.Pages.CustomersModel
-
 @if (TempData["success"] != null)
 {
-    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script type="text/javascript">
+    <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
         toastr.success('@TempData["success"]');
-    </script>*@
-    <h1>@TempData["success"]</h1>
+    </script>
 }
 
 <div class="container py-5 mt-5">
@@ -154,7 +168,7 @@
             }
         </tbody>
     </table>
-    
+
     @*Extra Info*@
     <div id="show" class="card text-light bg-dark" style="display: none">
         <div class="card-header">
