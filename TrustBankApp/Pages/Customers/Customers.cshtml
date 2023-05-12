@@ -165,7 +165,7 @@
                 <th>
                     Detail
                 </th>
-                <th>Quick Info</th>
+                <th>Quick A/C Info</th>
             </tr>
         </thead>
         <tbody>
@@ -175,7 +175,7 @@
                     <td>@customer.CustomerId</td>
                     <td>@customer.NationalId</td>
                     <td>@customer.FullName</td>
-                    <td>@customer.Addres</td>
+                    <td>@customer.StreetAddress</td>
                     <td>@customer.City</td>
                     <td>@customer.Country</td>
                     <td class="text-center">
@@ -218,6 +218,7 @@
                     <li class="page-item">
                         <a class="page-link"
                        asp-page="/Customers/Customers"
+                       asp-route-searchText="@Model.SearchText"
                        asp-route-pageNo=0 aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
@@ -227,13 +228,14 @@
                        asp-page="/Customers/Customers"
                        asp-route-sortColumn="@Model.SortColumn"
                        asp-route-sortOrder="@Model.SortOrder"
+                       asp-route-searchText="@Model.SearchText"
                        asp-route-pageNo="@(Model.CurrentPageNumber-1)">
                             Previous
                         </a>
                     </li>
                 }
 
-                @for (var i = Model.Customers.StartPage; i <= Model.Customers.EndPage; i++)
+                @for (var i = Model.StartPage; i <= Model.EndPage; i++)
                 {
                     <li class="page-item">
                         <a class="page-link"
@@ -241,6 +243,8 @@
                        asp-route-sortColumn="@Model.SortColumn"
                        asp-route-sortOrder="@Model.SortOrder"
                        asp-route-startPage="@Model.StartPage"
+                       asp-route-endPage="@Model.EndPage"
+                       asp-route-searchText="@Model.SearchText"
                        asp-route-pageNo="@i">
                             @i
                         </a>
@@ -254,6 +258,7 @@
                        asp-page="/Customers/Customers"
                        asp-route-sortColumn="@Model.SortColumn"
                        asp-route-sortOrder="@Model.SortOrder"
+                       asp-route-searchText="@Model.SearchText"
                        asp-route-pageNo="@(Model.CurrentPageNumber+1)">
                             Next
                         </a>
@@ -261,6 +266,7 @@
                     <li class="page-item">
                         <a class="page-link"
                        asp-page="/Customers/Customers"
+                       asp-route-searchText="@Model.SearchText"
                        asp-route-pageNo="@Model.TotalPages" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>

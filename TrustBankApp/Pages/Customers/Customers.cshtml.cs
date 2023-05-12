@@ -39,6 +39,8 @@ namespace TrustBankApp.Pages
             Customers = _customerService.GetCustomers(sortColumn, sortOrder, pageNo, searchText);
             
             TotalPages = Customers.TotalPages;
+            StartPage = Customers.StartPage;
+            EndPage = Customers.EndPage;
         }
         public IActionResult OnGetFetchInfo(int customerId)
         {

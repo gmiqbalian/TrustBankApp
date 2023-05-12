@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Models;
 using TrustBankApp.ViewModels.AccountsVM;
@@ -8,10 +9,12 @@ namespace TrustBankApp.Services
     public class AccountService : IAccountService
     {
         private readonly TrustBankDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public AccountService(TrustBankDbContext dbContext)
+        public AccountService(TrustBankDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
         public Account GetNewAccount()
         {
@@ -65,15 +68,9 @@ namespace TrustBankApp.Services
                 query = query.Where(q => q.AccountId.ToString() == searchText);
             }
 
-            var accountsQueryList = query.Select(x => new AccountDetailViewModel
-            {
-                AccountId = x.AccountId,
-                Frequency = x.Frequency,
-                DateCreated = x.Created,
-                Balance = x.Balance,
-            });
+            var accountsQueryList = _mapper.Map<List<AccountDetailViewModel>>(query);
 
-            return accountsQueryList.GetPaged(pageNo, 20);
+            return accountsQueryList.AsQueryable().GetPaged(pageNo, 20);
         }
 
         public List<TransactionViewModel> GetAllTransactions(int accountId)
@@ -83,15 +80,9 @@ namespace TrustBankApp.Services
 
             var query = account.Transactions.AsQueryable();
 
-            var transactionsQueryList = query.Select(x => new TransactionViewModel
-            {
-                TransactionId = x.TransactionId,
-                Date = x.Date,
-                Type = x.Type,
-                Amount = x.Amount,
-                Balance = x.Balance,
-            }).OrderByDescending(x => x.Date)
-            .ThenByDescending(x => x.TransactionId);
+            var transactionsQueryList = _mapper.Map<List<TransactionViewModel>>(query)
+                .OrderByDescending(x => x.Date)
+                .ThenByDescending(x => x.TransactionId);
 
             return transactionsQueryList.ToList();
         }

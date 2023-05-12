@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using TrustBankApp.Models;
 using TrustBankApp.ViewModels;
@@ -9,12 +10,14 @@ namespace TrustBankApp.Services
     {
         private readonly TrustBankDbContext _dbContext;
         private readonly string _countryName;
+        private readonly IMapper _mapper;
 
-        public StatService(TrustBankDbContext dbContext)
+        public StatService(TrustBankDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
-        
+
         public int GetCustomersCountByCountry(string countryName)
         {
             return _dbContext.Customers.Where(c => c.Country == countryName).Count();
@@ -38,26 +41,17 @@ namespace TrustBankApp.Services
         }
         public List<TopTenAccountsViewModel> GetTopTenAccountsByCountry(string countryName)
         {
-            var list = _dbContext.Customers
+
+            var list = _dbContext.Dispositions
                 .AsQueryable()
-                .Include(x => x.Dispositions)
-                .ThenInclude(x => x.Account)
-                .Where(x => x.Country == countryName)
-                .SelectMany(x => x.Dispositions)
+                .Include(x => x.Customer)
+                .Include(x => x.Account)
+                .Where(x => x.Customer.Country == countryName)                
                 .OrderByDescending(x => x.Account.Balance)
                 .Take(10);
-            
-            return list.Select(x => new TopTenAccountsViewModel
-                {
-                    AccountId = x.AccountId,
-                    CustomerId = x.CustomerId,
-                    Name = x.Customer.Givenname + " " + x.Customer.Surname,
-                    Email = x.Customer.Emailaddress,
-                    NationalId = x.Customer.NationalId,
-                    Balance = x.Account.Balance
-                }).ToList();
 
-                
+
+            return _mapper.Map<List<TopTenAccountsViewModel>>(list);
         }
     }
 }

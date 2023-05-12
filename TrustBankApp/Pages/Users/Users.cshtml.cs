@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,10 +13,12 @@ namespace TrustBankApp.Pages
     public class UsersModel : PageModel
     {
         private readonly IUserService _userService;
+        private readonly IMapper _mapper;
 
-        public UsersModel(IUserService userService)
+        public UsersModel(IUserService userService, IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
         }
         public string SortColumn { get; set; }
         public string SortOrder { get; set; }

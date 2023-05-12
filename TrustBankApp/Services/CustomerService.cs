@@ -74,20 +74,10 @@ namespace TrustBankApp.Services
                     q.City.ToLower().Contains(searchText));
             }
 
+            var result = _mapper.Map<List<CustomerViewModel>>(query);
 
-            var customerVMList = query.Select(c => new CustomerViewModel
-            {
-                CustomerId = c.CustomerId,
-                NationalId = c.NationalId,
-                FullName = c.Givenname + " " + c.Surname,
-                Addres = c.Streetaddress,
-                City = c.City,
-                Country = c.Country,
-            });
-
-            return customerVMList.GetPaged(pageNo, 50);
+            return result.AsQueryable().GetPaged(pageNo, 50);
         }
-
         public List<SelectListItem> FillGenderDropDownList()
         {
             return Enum.GetValues<Gender>()
@@ -106,7 +96,6 @@ namespace TrustBankApp.Services
                     Value = x.ToString()
                 }).ToList();
         }
-
         public void CreateNewCustomer(NewCustomerViewModel newCustomerViewModel)
         {
             var newCustomer = new Customer();
@@ -141,7 +130,7 @@ namespace TrustBankApp.Services
             _dbContext.Customers.Add(newCustomer);
             _dbContext.SaveChanges();
         }
-        public void EditCustomer(EditCustomerViewModel editCustomerViewModel) //add country code and telephone code switch
+        public void EditCustomer(EditCustomerViewModel editCustomerViewModel)
         {
             var customerToEdit = GetCustomerById(editCustomerViewModel.CustomerId);
 
@@ -179,6 +168,5 @@ namespace TrustBankApp.Services
             return _dbContext.Customers
                 .Where(x => x.Country == countryName).ToList();
         }
-        
     }
 }

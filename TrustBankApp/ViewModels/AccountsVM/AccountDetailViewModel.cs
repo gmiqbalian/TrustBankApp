@@ -4,7 +4,7 @@
     {
         public int AccountId { get; set; }
         public string Frequency { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTime Created { get; set; }
         public decimal Balance { get; set; }
     }
 }

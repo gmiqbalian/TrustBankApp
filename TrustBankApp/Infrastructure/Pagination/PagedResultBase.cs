@@ -6,23 +6,47 @@
         public int PageSize { get; set; }
         public int TotalPages { get; set; }
         public int StartPage 
-        { 
+        {
+            //get
+            //{
+            //    if (CurrentPage < TotalPages)
+            //        return EndPage - 5;
+            //    else
+            //        return CurrentPage - 5;
+            //}
             get
             {
-                if (CurrentPage < TotalPages)                
-                    return EndPage - 5;                
+                if(TotalPages > 5)
+                {
+                    if (CurrentPage > 5 && CurrentPage <= TotalPages)
+                        return CurrentPage - 5;
+                    else
+                        return CurrentPage;
+                }
                 else
-                    return CurrentPage - 5;
-            } 
+                    return CurrentPage;
+            }
         }
-        public int EndPage { 
-            get 
-            { 
-                if(CurrentPage == TotalPages)
-                    return TotalPages;
+        public int EndPage {
+            get
+            {
+                //if (TotalPages > 5)
+                //{
+                //    if (CurrentPage == TotalPages)
+                //        return TotalPages;
+                //    else
+                //        return CurrentPage + 5;
+                //}
+                if (TotalPages > 5)
+                {
+                    if (CurrentPage == TotalPages)
+                        return TotalPages;
+                    else
+                        return CurrentPage + 5;
+                }
                 else
-                    return CurrentPage + 5;
-            } 
+                    return CurrentPage;
+            }
         }
         public int TotalRows { get; set; }
         public int FirstRowOnPage 

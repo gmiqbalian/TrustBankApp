@@ -113,11 +113,12 @@
                 <tr>
                     <td>@account.AccountId</td>
                     <td>@account.Frequency</td>
-                    <td>@account.DateCreated.ToShortDateString()</td>
+                    <td>@account.Created.ToShortDateString()</td>
                     <td>@account.Balance</td>
                     <td>
                         <a title="show details" class="more"
                        asp-page="/Accounts/AccountDetail"
+                       asp-route-searchText="@Model.SearchText"
                        asp-route-accountId="@account.AccountId">
                             <i class="fa-solid fa-magnifying-glass fa-lg"></i>
                         </a>
@@ -144,6 +145,7 @@
                     <li class="page-item">
                         <a class="page-link"
                        asp-page="/Accounts/Accounts"
+                       asp-route-searchText="@Model.SearchText"
                        asp-route-pageNo=0 aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
@@ -153,6 +155,7 @@
                        asp-page="/Accounts/Accounts"
                        asp-route-sortColumn="@Model.SortColumn"
                        asp-route-sortOrder="@Model.SortOrder"
+                       asp-route-searchText="@Model.SearchText"
                        asp-route-pageNo="@(Model.CurrentPageNumber-1)">
                             Previous
                         </a>
@@ -166,6 +169,7 @@
                        asp-page="/Accounts/Accounts"
                        asp-route-sortColumn="@Model.SortColumn"
                        asp-route-sortOrder="@Model.SortOrder"
+                       asp-route-searchText="@Model.SearchText"
                        asp-route-startPage="@Model.StartPage"
                        asp-route-pageNo="@i">
                             @i
@@ -180,6 +184,7 @@
                        asp-page="/Accounts/Accounts"
                        asp-route-sortColumn="@Model.SortColumn"
                        asp-route-sortOrder="@Model.SortOrder"
+                       asp-route-searchText="@Model.SearchText"
                        asp-route-pageNo="@(Model.CurrentPageNumber+1)">
                             Next
                         </a>
@@ -187,6 +192,7 @@
                     <li class="page-item">
                         <a class="page-link"
                        asp-page="/Accounts/Accounts"
+                       asp-route-searchText="@Model.SearchText"
                        asp-route-pageNo="@Model.TotalPages" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
