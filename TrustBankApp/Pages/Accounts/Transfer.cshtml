@@ -23,7 +23,7 @@
                                        class="form-label">
                                     Amount
                                 </label>
-                                <input type="text" onchange="afterBalance" class="form-control" placeholder="Enter an amount between 10-100000 kr"
+                                <input id="amount" type="text" class="form-control" placeholder="Enter an amount between 10-100000 kr"
                                        asp-for="@Model.TransferVM.Amount">
                                 <span class="text-danger"
                                       asp-validation-for="@Model.TransferVM.Amount"></span>
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-                <h1>
+                <h1 id="after-balance-div" class="d-none">
                     BALANCE AFTER TRANSACTION:
                     <span id="after-balance" class="text-danger">@Model.TransferVM.FromAccountBalance</span>
                 </h1>
@@ -52,3 +52,28 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+
+    <script>
+        var element = document.getElementById('amount');
+        element.addEventListener("keyup", afterBalance);
+
+        function afterBalance(element) {
+            if (element.target.value > 0) {
+                var amount = parseFloat(element.target.value);
+                var currentBalance = parseFloat(@Model.TransferVM.FromAccountBalance)
+                var sum = currentBalance - amount;
+
+                document.getElementById('after-balance-div').className = "d-block";
+                document.getElementById('after-balance').innerHTML = sum;
+            }
+            else {
+                document.getElementById('after-balance-div').className = "d-block";
+                document.getElementById('after-balance').innerHTML = @Model.TransferVM.FromAccountBalance;
+            }
+        }
+    </script>
+
+    <partial name="_ValidationScriptsPartial" />
+}

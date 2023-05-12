@@ -8,7 +8,7 @@
 <div class="container py-5 w-50 mb-5">
     <h1>LOGIN</h1>
     <hr />
-    <div class="customer-card rounded shadow-2 d-flex row p-3">
+    <div class="customer-card rounded shadow-2 d-flex row p-5">
         <form id="account" method="post">
             <h2>Use a local account to log in.</h2>
             <hr />
@@ -38,10 +38,6 @@
                 <p>
                     <i class="fa-solid fa-unlock-keyhole"></i>
                     <a class="text-decoration-none text-dark" id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                </p>
-                <p>
-                    <i class="fa-solid fa-user"></i>
-                    <a class="text-decoration-none text-dark" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
                 </p>
                 <p>
                     <i class="fa-solid fa-envelope-circle-check"></i>

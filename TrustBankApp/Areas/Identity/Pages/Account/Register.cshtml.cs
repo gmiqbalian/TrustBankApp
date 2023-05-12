@@ -161,6 +161,7 @@ namespace TrustBankApp.Areas.Identity.Pages.Account
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
+                TempData["success"] = "New user created successfully! Click on the link to confirm your account";
             }
 
             // If we got this far, something failed, redisplay form

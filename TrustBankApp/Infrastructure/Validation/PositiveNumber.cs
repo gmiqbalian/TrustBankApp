@@ -4,6 +4,7 @@ namespace TrustBankApp.Infrastructure.Validation
 {
     public class PositiveNumber: ValidationAttribute
     {
+        public string ErrorMessage { get; set; }
         public PositiveNumber()
         {
             ErrorMessage = "Number must be positive and between 10 to 100000";

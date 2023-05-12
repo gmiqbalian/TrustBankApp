@@ -37,6 +37,7 @@ namespace TrustBankApp.Pages.Accounts
             if(ModelState.IsValid)
             {
                 _accountService.MakeDeposit(DepositViewModel);
+                TempData["success"] = "Deposited to account successfully!";
                 return RedirectToPage("/Customers/Customer", new {customerId = customerId});
             }
 

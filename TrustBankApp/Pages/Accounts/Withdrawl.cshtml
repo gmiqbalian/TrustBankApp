@@ -26,7 +26,8 @@
                         </div>
                     </div>
                 </div>
-                <h1>BALANCE AFTER TRANSACTION: 
+                <h1 id="after-balance-div" class="d-none">
+                    BALANCE AFTER TRANSACTION:
                     <span id="after-balance" class="text-danger">@Model.WithdrawVM.Balance</span>
                 </h1>
                 <div>
@@ -48,34 +49,27 @@
     </div>
 </div>
 
+@section Scripts {
 
-@*<div class="container mt-5 pt-5 d-flex flex-column gap-3">
-    <div class="section-title border border-danger">
-        <h1>Make a Withdrawl</h1>
-    </div>
-    <div class="d-flex flex-column align-items-center justify-content-between border border-danger p-lg-5 bg-dark rounded text-light" style="border: 1px solid green;">
-        <form class="" method="post">
-            <div class="input-group d-flex flex-column justify-content-center align-items-center">
-                <h1>Account Number</h1>
-                <h1>@Model.WithdrawViewModel.AccountId</h1>
-                <h1>Current Balance</h1>
-                <h1>@Model.WithdrawViewModel.Balance</h1>
-                <div class="form-outline">
-                    <input class="" type="text" style="width: auto;" 
-                    asp-for="@Model.WithdrawViewModel.Amount" />
-                    <span class="text-danger" asp-validation-for="@Model.WithdrawViewModel.Amount"></span>
-                </div>
-                <div class="d-block">
-                    <button type="submit" class="btn btn-primary p-2">
-                        Withdraw
-                    </button>
-                    <button type="submit" class="btn btn-primary p-2"
-                        asp-page="/Customers/Customer"
-                        asp-route-customerId="@Model.WithdrawViewModel.CustomerId">
-                        Back
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>*@
+    <script>
+        var element = document.getElementById('amount');
+        element.addEventListener("keyup", afterBalance);
+
+        function afterBalance(element) {
+            if (element.target.value > 0) {
+                var amount = parseFloat(element.target.value);
+                var currentBalance = parseFloat(@Model.WithdrawVM.Balance)
+                var sum = currentBalance - amount;
+
+                document.getElementById('after-balance-div').className = "d-block";
+                document.getElementById('after-balance').innerHTML = sum;
+            }
+            else {
+                document.getElementById('after-balance-div').className = "d-block";
+                document.getElementById('after-balance').innerHTML = @Model.WithdrawVM.Balance;
+            }
+        }
+    </script>
+
+    <partial name="_ValidationScriptsPartial" />
+}

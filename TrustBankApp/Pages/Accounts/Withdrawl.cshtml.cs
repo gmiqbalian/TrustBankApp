@@ -41,6 +41,7 @@ namespace TrustBankApp.Pages.Accounts
             if (ModelState.IsValid)
             {
                 _accountService.MakeWithdrawl(WithdrawVM);
+                TempData["success"] = "Withdrawl from account successfully!";
                 return RedirectToPage("/Customers/Customer", new { customerId = customerId });
             }
 

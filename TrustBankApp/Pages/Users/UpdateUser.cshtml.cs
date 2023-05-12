@@ -121,6 +121,7 @@ namespace TrustBankApp.Pages.Users
                 _userManager.AddToRoleAsync(user, EditUserVM.UserRole).Wait();
             }
 
+            TempData["success"] = "User edited successfully!";
             await _signInManager.RefreshSignInAsync(singedInUser);
             return RedirectToPage("/Users/Users");
         }

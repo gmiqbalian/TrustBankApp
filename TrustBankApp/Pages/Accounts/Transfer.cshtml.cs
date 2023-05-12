@@ -47,7 +47,7 @@ namespace TrustBankApp.Pages.Accounts
             if (ModelState.IsValid)
             {
                 _accountService.MakeTransfer(TransferVM);
-
+                TempData["success"] = "Transfered successfully!";
                 return RedirectToPage("/Customers/Customer", new { customerId = customerId });
             }
 

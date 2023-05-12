@@ -90,7 +90,8 @@ namespace TrustBankApp.Services
                 Type = x.Type,
                 Amount = x.Amount,
                 Balance = x.Balance,
-            }).OrderByDescending(x => x.Date);
+            }).OrderByDescending(x => x.Date)
+            .ThenByDescending(x => x.TransactionId);
 
             return transactionsQueryList.ToList();
         }
