@@ -1,0 +1,6 @@
+***REPORT TYPE: 72h Transactions***
+***Records for Denmark***
+***Generated on: 2023-05-14 18:42:21***
+***Total records: 0***
+=========================================================
+

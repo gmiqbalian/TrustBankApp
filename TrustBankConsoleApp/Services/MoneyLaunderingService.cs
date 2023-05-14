@@ -10,13 +10,13 @@ namespace TrustBankConsoleApp.Services
         private readonly ICustomerService _customerService;
         private readonly IAccountService _accountService;
 
-        public MoneyLaunderingService(TrustBankDbContext dbContext, ICustomerService customerService, IAccountService accountService)
+        public MoneyLaunderingService(ICustomerService customerService, IAccountService accountService)
         {
             _customerService = customerService;
             _accountService = accountService;
         }
-        
-        public List<CustomerConsoleViewModel> GetAllCustomersByCountry(string countryName)
+
+        public List<CustomerConsoleViewModel> GetAllCustomersByCountry(string countryName, DateTime checkedUpto)
         {
             var customersQuery = _customerService.GetCustomersByCountry(countryName);
             var customerConsoleVMList = new List<CustomerConsoleViewModel>();
@@ -24,14 +24,15 @@ namespace TrustBankConsoleApp.Services
             foreach (var customer in customersQuery)
             {
                 var customerVM = new CustomerConsoleViewModel();
-                
+
                 customerVM.CustomerId = customer.CustomerId;
                 customerVM.Country = customer.Country;
                 customerVM.Accounts = _accountService.GetCustomerAccounts(customer.CustomerId).ToList();
-                
+
                 foreach (var account in customerVM.Accounts)
                 {
-                    customerVM.Transactions = _accountService.GetAllTransactionsByAccountId(account.AccountId).ToList();
+                    customerVM.Transactions = _accountService.GetAllTransactionsByAccountId(account.AccountId)
+                        .Where(x => x.Date > checkedUpto).ToList();
                 }
 
                 customerConsoleVMList.Add(customerVM);
@@ -39,51 +40,15 @@ namespace TrustBankConsoleApp.Services
 
             return customerConsoleVMList;
         }
-        public List<LaunderingRecord> GetMoneyLaunderingRecords(List<CustomerConsoleViewModel> forCustomers, DateTime lastDate)
+        public List<LaunderingRecord> GetSingleMoneyLaunderingRecords(List<CustomerConsoleViewModel> forCustomers)
         {
             var launderingRecords = new List<LaunderingRecord>();
 
-
-            //to control that no account is checked doubled (one from owner side and one from diposer side)            
-            
-            //Account last = new Account();
-            
-            //var otherlist = new List<CustomerConsoleViewModel>();
-            //foreach(var customer in forCustomers)
-            //{
-            //    var accountslist = customer.Accounts.Select(x => x.AccountId);
-                
-            //    foreach(var no in accountslist)
-            //    {
-            //        if(last != null)
-            //        {
-            //            if(no != last.AccountId)
-            //            {
-            //                otherlist.Add(customer);
-            //            }
-            //            last.AccountId = no;
-            //        }
-            //    }
-            //}
-
-            foreach(var customer in forCustomers)
+            foreach (var customer in forCustomers)
             {
-                foreach(var transaction in customer.Transactions)
+                foreach (var transaction in customer.Transactions)
                 {
-                    if(transaction.Date > lastDate && transaction.Amount > 74000)
-                    {
-                        launderingRecords.Add(new LaunderingRecord
-                        {
-                            CustomerId = customer.CustomerId,
-                            AccountId = transaction.AccountId,
-                            TransactionsId = transaction.TransactionId,
-                            TransactionDate = transaction.Date,
-                            Amount = transaction.Amount
-                        });
-                    }
-
-                    var transactions72h = customer.Transactions.Where(x => x.Date <= lastDate.AddHours(-72));
-                    if (transactions72h.Sum(x => x.Amount) > 74000)
+                    if (transaction.Amount > 5000)
                     {
                         launderingRecords.Add(new LaunderingRecord
                         {
@@ -99,17 +64,45 @@ namespace TrustBankConsoleApp.Services
 
             return launderingRecords;
         }
-        public void GenerateMoneyLaunderinReport(List<LaunderingRecord> forMoneyLaunderRecords, string forCountry)
+        public List<LaunderingRecord> Get72hMoneyLaunderingRecords(List<CustomerConsoleViewModel> forCustomers)
+        {
+            var launderingRecords = new List<LaunderingRecord>();
+
+            foreach (var customer in forCustomers)
+            {
+                foreach (var transaction in customer.Transactions)
+                {
+                    var transactions72h = customer.Transactions.Where(x => x.Date >= transaction.Date.AddHours(-72));
+                    if (transactions72h.Sum(x => x.Amount) > 10000)
+                    {
+
+                        launderingRecords.Add(new LaunderingRecord
+                        {
+                            CustomerId = customer.CustomerId,
+                            AccountId = transaction.AccountId,
+                            TransactionsId = transaction.TransactionId,
+                            TransactionDate = transaction.Date,
+                            Amount = transaction.Amount
+                        });
+                    }
+                }
+            }
+
+            return launderingRecords;
+        }
+        public void GenerateMoneyLaunderinReport(List<LaunderingRecord> forMoneyLaunderRecords, string forCountry, string reportType)
         {
             var serial = 0;
-            using (var file = File.CreateText($"../../../Laundering Reports/{forCountry}-{DateTime.Now.ToShortDateString()}.txt"))
+            var path = @$"../../../Laundering Reports/{reportType}";
+            using (var file = File.CreateText($"{Directory.CreateDirectory(path)}/Report-{reportType}-{forCountry}-{DateTime.Now.ToShortDateString()}.txt"))
             {
+                file.WriteLine($"***REPORT TYPE: {reportType} Transactions***");
                 file.WriteLine($"***Records for {forCountry}***");
                 file.WriteLine($"***Generated on: {DateTime.Now}***");
-                file.WriteLine($"***Total records: {forMoneyLaunderRecords.Count()}***");                
+                file.WriteLine($"***Total records: {forMoneyLaunderRecords.Count()}***");
                 file.WriteLine("=========================================================" + Environment.NewLine);
 
-                foreach(var record in forMoneyLaunderRecords)
+                foreach (var record in forMoneyLaunderRecords)
                 {
                     serial += 1;
 

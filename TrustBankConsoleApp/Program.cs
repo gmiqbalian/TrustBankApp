@@ -21,8 +21,6 @@ IHost host = Host.CreateDefaultBuilder(args)
     .Build();
 
 
-
-
 using (var scope = host.Services.CreateScope())
 {
     scope.ServiceProvider.GetService<Application>().Run();

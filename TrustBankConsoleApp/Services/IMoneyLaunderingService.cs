@@ -9,8 +9,9 @@ namespace TrustBankConsoleApp.Services
 {
     internal interface IMoneyLaunderingService
     {
-        List<CustomerConsoleViewModel> GetAllCustomersByCountry(string countryName);
-        List<LaunderingRecord> GetMoneyLaunderingRecords(List<CustomerConsoleViewModel> forCustomers, DateTime lastDate);
-        void GenerateMoneyLaunderinReport(List<LaunderingRecord> forMoneyLaunderRecords, string forCountry);
+        List<CustomerConsoleViewModel> GetAllCustomersByCountry(string countryName, DateTime checkedUpto);
+        List<LaunderingRecord> GetSingleMoneyLaunderingRecords(List<CustomerConsoleViewModel> forCustomers);
+        List<LaunderingRecord> Get72hMoneyLaunderingRecords(List<CustomerConsoleViewModel> forCustomers);
+        void GenerateMoneyLaunderinReport(List<LaunderingRecord> forMoneyLaunderRecords, string forCountry, string reportType);
     }
 }

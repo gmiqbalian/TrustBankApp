@@ -21,17 +21,21 @@ namespace TrustBankConsoleApp
         {
             var reportingDate = File.ReadAllLines("../../../Laundering Reports/LastReportDate.txt").FirstOrDefault();
             
-            DateTime lastReportingDate;
-            lastReportingDate = DateTime.Parse(reportingDate);
+            DateTime checkedUpto;
+            checkedUpto = DateTime.Parse(reportingDate);
             
 
             var countriesToCheck = new[] { "Sweden", "Norway", "Denmark", "Finland" };
             
             foreach(var country in countriesToCheck)
             {
-                var forCustomers = _moneyLaunderingService.GetAllCustomersByCountry(country);
-                var moneyLaunderingRecords = _moneyLaunderingService.GetMoneyLaunderingRecords(forCustomers, lastReportingDate);
-                _moneyLaunderingService.GenerateMoneyLaunderinReport(moneyLaunderingRecords, country);
+                var forCustomers = _moneyLaunderingService.GetAllCustomersByCountry(country, checkedUpto);
+
+                var singleMoneyLaunderingRecords = _moneyLaunderingService.GetSingleMoneyLaunderingRecords(forCustomers);
+                _moneyLaunderingService.GenerateMoneyLaunderinReport(singleMoneyLaunderingRecords, country, "Single");
+
+                var moneyLaunderingRecords72h = _moneyLaunderingService.Get72hMoneyLaunderingRecords(forCustomers);
+                _moneyLaunderingService.GenerateMoneyLaunderinReport(moneyLaunderingRecords72h, country, "72h");
             }
          
             File.WriteAllText("../../../Laundering Reports/LastReportDate.txt", DateTime.Now.ToString());
