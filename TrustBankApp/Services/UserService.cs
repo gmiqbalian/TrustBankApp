@@ -56,5 +56,19 @@ namespace TrustBankApp.Services
         {
             return _userManager.Users.First(x => x.Id == userId);
         }
+        public string GetUserRoleByUserName(string userName)
+        {
+            var user = _userManager.Users.First(x => x.UserName == userName);
+            return _userManager.GetRolesAsync(user)
+                .GetAwaiter()
+                .GetResult()
+                .First()
+                .ToString();
+        }
+        public IEnumerable<IdentityUser> GetAllUsers()
+        {
+            var query = _userManager.Users;
+            return query;
+        }
     }
 }

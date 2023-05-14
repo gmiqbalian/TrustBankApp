@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using TrustBankAPI.User;
+using TrustBankApp.Models;
 using TrustBankApp.Pages;
+using TrustBankApp.Services;
 
 namespace TrustBankAPI.Controllers
 {
@@ -15,17 +20,20 @@ namespace TrustBankAPI.Controllers
     public class LoginController : ControllerBase
     {
         private IConfiguration _config;
+        private UserCredentials _userCredentials;
+        private PasswordHasher<UserModel> _passwordHasher;
 
-        public LoginController(IConfiguration config)
+        public LoginController(IConfiguration config, UserCredentials userCredentials, PasswordHasher<UserModel> passwordHasher)
         {
             _config = config;
+            _userCredentials = userCredentials;
+            _passwordHasher = passwordHasher;
         }
 
         [AllowAnonymous]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-
         public IActionResult Login([FromBody] UserLogin userLogin)
         {
             var user = Authenticate(userLogin);
@@ -41,18 +49,22 @@ namespace TrustBankAPI.Controllers
 
         private UserModel Authenticate(UserLogin userLogin)
         {
-            var currentUser = UserCredentials.Users
-                .FirstOrDefault(u =>
-                u.UserName.ToLower() == userLogin.UserName.ToLower() &&
-                u.Password == userLogin.Password);
+            
+            var currentUser = _userCredentials.GetUsers()
+                .First(x => x.UserName == userLogin.UserName);
+
 
             if (currentUser != null)
             {
-                return currentUser;
+                var result = _passwordHasher.VerifyHashedPassword(currentUser, currentUser.PasswordHash, userLogin.Password);
+
+                if (result == PasswordVerificationResult.Success)
+                    return currentUser;
+                else
+                    return null;
             }
             return null;
         }
-
         private string Generate(UserModel user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
@@ -61,9 +73,7 @@ namespace TrustBankAPI.Controllers
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.UserName),
-                new Claim(ClaimTypes.Email, user.EmailAddress),
-                new Claim(ClaimTypes.GivenName, user.GivenName),
-                new Claim(ClaimTypes.Surname, user.SurName),
+                new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Role, user.Role),
             };
 

@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
+using TrustBankAPI.User;
 using TrustBankApp.Models;
 using TrustBankApp.Services;
 
@@ -72,6 +74,9 @@ builder.Services.AddDbContext<TrustBankDbContext>(options => options.UseSqlServe
 //Services
 builder.Services.AddTransient<ICustomerService, CustomerService>();
 builder.Services.AddTransient<IAccountService, AccountService>();
+builder.Services.AddTransient<PasswordHasher<UserModel>>();
+builder.Services.AddTransient<UserCredentials>();
+
 
 //Automapper
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());

@@ -1,27 +1,33 @@
-﻿namespace TrustBankAPI.User
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using TrustBankApp.Models;
+using TrustBankApp.Services;
+
+namespace TrustBankAPI.User
 {
     public class UserCredentials
     {
-        public static List<UserModel> Users { get; set; } = new List<UserModel>()
+        private readonly TrustBankDbContext _dbContext;
+        public UserCredentials(TrustBankDbContext dbContext)
         {
-            new UserModel
-            {
-                GivenName = "ghazanfar",
-                SurName = "mahmood",
-                UserName = "gm-admin",
-                Password = "password",
-                EmailAddress = "email",
-                Role = "Admin"
-            },
-            new UserModel
-            {
-                GivenName = "ghazanfar",
-                SurName = "mahmood",
-                UserName = "gm-user",
-                Password = "password",
-                EmailAddress = "email",
-                Role = "User"
-            }
-        };
+            _dbContext = dbContext;
+        }
+
+        public List<UserModel> GetUsers()
+        {
+            var usersQuery = _dbContext.AspNetUsers.Include(x => x.Roles).AsQueryable();
+            var users = usersQuery
+                .Select(x => new UserModel
+                {
+                    Id = x.Id,
+                    UserName = x.UserName,
+                    Email = x.Email,
+                    PasswordHash = x.PasswordHash,
+                    Role = x.Roles.Select(x => x.Name).ToArray().First().ToString()
+                }).ToList();
+
+            return users;
+        }
     }
 }

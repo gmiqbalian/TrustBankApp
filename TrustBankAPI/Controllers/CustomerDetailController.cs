@@ -43,7 +43,7 @@ namespace TrustBankAPI.Controllers
         /// Successfully returned customer detail
         /// </response>
 
-        [Authorize (Roles = "Admin")]
+        [Authorize (Roles = "Cashier")]
         [HttpGet]
         [Route("customer/{id}")]
         public async Task<ActionResult<CustomerDetailViewModel>> GetCustomerDetail(int id)
@@ -56,18 +56,30 @@ namespace TrustBankAPI.Controllers
             _mapper.Map(customerToShow, Customer);
             return Ok(Customer);
         }
+
+        ///<summary>
+        ///Retrieve Transactions Detail by entering specific Account id.
+        ///</summary>
+        ///<returns>
+        ///Transactions Detail for a specific Account
+        ///</returns>
+        ///<remarks>
+        ///Endpoint(example): GET/api/account/id/{limit}/{offset}
+        /// </remarks>
+        /// <response code="200">
+        /// Successfully returned transactions detail
+        /// </response>
         [HttpGet]
         [Route("account/{id}/{limit}/{offset}")]
+        [Authorize(Roles = "Cashier")]
         public async Task<ActionResult<List<TransactionViewModel>>> GetAccountTransactions(int id, int limit, int offset)
         {
-            var account = _dbContext.Accounts
-                .Include(x => x.Transactions)
-                .First(x => x.AccountId == id);
-            
+            var account = _accountService.GetAccountById(id);
+
             if (account == null)
                 return BadRequest("Account not found");
             
-            var transactionsList = account.Transactions
+            var transactionsList = _accountService.GetAllTransactionsByAccountId(account.AccountId)
                 .OrderByDescending(x => x.Date)
                 .Take(limit)
                 .Skip(offset)
