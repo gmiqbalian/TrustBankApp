@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using TrustBankApp.Infrastructure.Pagination;
 using TrustBankApp.Models;
 using TrustBankApp.Pages.Users;
