@@ -48,7 +48,7 @@ namespace TrustBankConsoleApp.Services
             {
                 foreach (var transaction in customer.Transactions)
                 {
-                    if (transaction.Amount > 5000)
+                    if (transaction.Amount > 15000)
                     {
                         launderingRecords.Add(new LaunderingRecord
                         {
@@ -73,7 +73,7 @@ namespace TrustBankConsoleApp.Services
                 foreach (var transaction in customer.Transactions)
                 {
                     var transactions72h = customer.Transactions.Where(x => x.Date >= transaction.Date.AddHours(-72));
-                    if (transactions72h.Sum(x => x.Amount) > 10000)
+                    if (transactions72h.Sum(x => x.Amount) > 23000)
                     {
 
                         launderingRecords.Add(new LaunderingRecord

@@ -75,136 +75,139 @@
         </a>
         <a class="btn btn-warning" asp-page="/Index"><i class="fa-solid fa-arrow-left"></i>&nbsp;Back</a>
     </p>
-    <table class="table table-success table-hover table-striped shadow">
-        <thead>
-            <tr>
-                <th>
-                    Id
-                    <a asp-page="/Customers/Customers"
-                       asp-route-searchText="@Model.SearchText"
-                       asp-route-sortColumn="customerId"
-                       asp-route-sortOrder="asc">
-                        <i class="fa-solid fa-sort-up"></i>
-                    </a>
-                    <a asp-page="/Customers/Customers"
-                       asp-route-searchText="@Model.SearchText"
-                       asp-route-sortColumn="customerId"
-                       asp-route-sortOrder="desc">
-                        <i class="fa-solid fa-sort-down"></i>
-                    </a>
-                </th>
-                <th>
-                    Natoinal Id
-                    <a asp-page="/Customers/Customers"
-                       asp-route-sortColumn="nationalId"
-                       asp-route-sortOrder="asc">
-                        <i class="fa-solid fa-sort-up"></i>
-                    </a>
-                    <a asp-page="/Customers/Customers"
-                       asp-route-sortColumn="nationalId"
-                       asp-route-sortOrder="desc">
-                        <i class="fa-solid fa-sort-down"></i>
-                    </a>
-                </th>
-                <th>
-                    Full Name
-                    <a asp-page="/Customers/Customers"
-                       asp-route-searchText="@Model.SearchText"
-                       asp-route-sortColumn="name"
-                       asp-route-sortOrder="asc">
-                        <i class="fa-solid fa-sort-up"></i>
-                    </a>
-                    <a asp-page="/Customers/Customers"
-                       asp-route-searchText="@Model.SearchText"
-                       asp-route-sortColumn="name"
-                       asp-route-sortOrder="desc">
-                        <i class="fa-solid fa-sort-down"></i>
-                    </a>
-                </th>
-                <th>
-                    Address
-                    <a asp-page="/Customers/Customers"
-                       asp-route-sortColumn="address"
-                       asp-route-sortOrder="asc">
-                        <i class="fa-solid fa-sort-up"></i>
-                    </a>
-                    <a asp-page="/Customers/Customers"
-                       asp-route-sortColumn="address"
-                       asp-route-sortOrder="desc">
-                        <i class="fa-solid fa-sort-down"></i>
-                    </a>
-                </th>
-                <th>
-                    City
-                    <a asp-page="/Customers/Customers"
-                       asp-route-searchText="@Model.SearchText"
-                       asp-route-sortColumn="city"
-                       asp-route-sortOrder="asc">
-                        <i class="fa-solid fa-sort-up"></i>
-                    </a>
-                    <a asp-page="/Customers/Customers"
-                       asp-route-searchText="@Model.SearchText"
-                       asp-route-sortColumn="city"
-                       asp-route-sortOrder="desc">
-                        <i class="fa-solid fa-sort-down"></i>
-                    </a>
-                </th>
-                <th>
-                    Country
-                    <a asp-page="/Customers/Customers"
-                       asp-route-sortColumn="country"
-                       asp-route-sortOrder="asc">
-                        <i class="fa-solid fa-sort-up"></i>
-                    </a>
-                    <a asp-page="/Customers/Customers"
-                       asp-route-sortColumn="country"
-                       asp-route-sortOrder="desc">
-                        <i class="fa-solid fa-sort-down"></i>
-                    </a>
-                </th>
-                <th>
-                    Detail
-                </th>
-                <th>Quick A/C Info</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var customer in Model.Customers.Results)
-            {
+    <div class="table-responsive">
+        <table class="table table-success table-hover table-striped shadow">
+            <thead>
                 <tr>
-                    <td>@customer.CustomerId</td>
-                    <td>@customer.NationalId</td>
-                    <td>@customer.FullName</td>
-                    <td>@customer.StreetAddress</td>
-                    <td>@customer.City</td>
-                    <td>@customer.Country</td>
-                    <td class="text-center">
-                        <a title="show details" class="more"
-                       asp-page="/Customers/Customer"
-                       asp-route-customerId="@customer.CustomerId">
-                            <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+                    <th>
+                        Id
+                        <a asp-page="/Customers/Customers"
+                           asp-route-searchText="@Model.SearchText"
+                           asp-route-sortColumn="customerId"
+                           asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
                         </a>
-                    </td>
-                    <td class="text-center">
-                        <a title="show quick info"
-                           href="javascript:fetchInfo(@customer.CustomerId)">
-                            <i class='fa-solid fa-circle-info'></i>
+                        <a asp-page="/Customers/Customers"
+                           asp-route-searchText="@Model.SearchText"
+                           asp-route-sortColumn="customerId"
+                           asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
                         </a>
-                    </td>
+                    </th>
+                    <th>
+                        Natoinal Id
+                        <a asp-page="/Customers/Customers"
+                           asp-route-sortColumn="nationalId"
+                           asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Customers/Customers"
+                           asp-route-sortColumn="nationalId"
+                           asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th>
+                        Full Name
+                        <a asp-page="/Customers/Customers"
+                           asp-route-searchText="@Model.SearchText"
+                           asp-route-sortColumn="name"
+                           asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Customers/Customers"
+                           asp-route-searchText="@Model.SearchText"
+                           asp-route-sortColumn="name"
+                           asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th>
+                        Address
+                        <a asp-page="/Customers/Customers"
+                           asp-route-sortColumn="address"
+                           asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Customers/Customers"
+                           asp-route-sortColumn="address"
+                           asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th>
+                        City
+                        <a asp-page="/Customers/Customers"
+                           asp-route-searchText="@Model.SearchText"
+                           asp-route-sortColumn="city"
+                           asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Customers/Customers"
+                           asp-route-searchText="@Model.SearchText"
+                           asp-route-sortColumn="city"
+                           asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th>
+                        Country
+                        <a asp-page="/Customers/Customers"
+                           asp-route-sortColumn="country"
+                           asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Customers/Customers"
+                           asp-route-sortColumn="country"
+                           asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th>
+                        Detail
+                    </th>
+                    <th>Quick A/C Info</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var customer in Model.Customers.Results)
+                {
+                    <tr>
+                        <td>@customer.CustomerId</td>
+                        <td>@customer.NationalId</td>
+                        <td>@customer.FullName</td>
+                        <td>@customer.StreetAddress</td>
+                        <td>@customer.City</td>
+                        <td>@customer.Country</td>
+                        <td class="text-center">
+                            <a title="show details" class="more"
+                           asp-page="/Customers/Customer"
+                           asp-route-customerId="@customer.CustomerId">
+                                <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a title="show quick info"
+                               href="javascript:fetchInfo(@customer.CustomerId)">
+                                <i class='fa-solid fa-circle-info'></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-    @*Extra Info*@
-    <div id="show" class="card text-light bg-dark" style="display: none">
-        <div class="card-header">
-            <h1>Extra Info</h1>
-        </div>
-        <div class="card-body">
-            <div>
-                <h3 class="">Account Id: <span id="accountId"></span></h3>
-                <h3>Account Balance: <span id="balance"></span></h3>
+
+        @*Extra Info*@
+        <div id="show" class="card text-light bg-dark" style="display: none">
+            <div class="card-header">
+                <h1>Extra Info</h1>
+            </div>
+            <div class="card-body">
+                <div>
+                    <h3 class="">Account Id: <span id="accountId"></span></h3>
+                    <h3>Account Balance: <span id="balance"></span></h3>
+                </div>
             </div>
         </div>
     </div>
@@ -212,7 +215,7 @@
     @*pagination*@
     <div class="mt-5">
         <nav class="" aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
+            <ul class="pagination overflow-auto justify-content-sm-center">
                 @if (Model.CurrentPageNumber != 1)
                 {
                     <li class="page-item">
@@ -275,6 +278,7 @@
             </ul>
         </nav>
     </div>
+
 </div>
 
 @section Scripts {
@@ -284,11 +288,11 @@
                 .then((response) => response.json())
                 .then((json) => {
                     toastr.info(
-                    `
-                        Account Detail<br><br>
-                        <h5>Account Id: ${json.accountId}<br></h5>
-                        <h5>Balance: ${json.balance}<br></h5>
-                    `
+                        `
+                                                                Account Detail<br><br>
+                                                                <h5>Account Id: ${json.accountId}<br></h5>
+                                                                <h5>Balance: ${json.balance}<br></h5>
+                                                            `
                     );
                 });
         }

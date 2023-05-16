@@ -7,19 +7,12 @@
         public int TotalPages { get; set; }
         public int StartPage 
         {
-            //get
-            //{
-            //    if (CurrentPage < TotalPages)
-            //        return EndPage - 5;
-            //    else
-            //        return CurrentPage - 5;
-            //}
             get
             {
-                if(TotalPages > 5)
+                if(TotalPages > 3)
                 {
-                    if (CurrentPage > 5 && CurrentPage <= TotalPages)
-                        return CurrentPage - 5;
+                    if (CurrentPage > 3 && CurrentPage <= TotalPages)
+                        return CurrentPage - 3;
                     else
                         return CurrentPage;
                 }
@@ -30,19 +23,12 @@
         public int EndPage {
             get
             {
-                //if (TotalPages > 5)
-                //{
-                //    if (CurrentPage == TotalPages)
-                //        return TotalPages;
-                //    else
-                //        return CurrentPage + 5;
-                //}
-                if (TotalPages > 5)
+                if (TotalPages > 3)
                 {
                     if (CurrentPage == TotalPages)
                         return TotalPages;
                     else
-                        return CurrentPage + 5;
+                        return CurrentPage + 3;
                 }
                 else
                     return CurrentPage;

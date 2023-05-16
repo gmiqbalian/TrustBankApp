@@ -13,29 +13,31 @@
         <a asp-page="/Index" class="btn btn-success"><i class="fa-solid fa-arrow-left"></i>&nbsp;Back</a>
     </p>
     <hr />
-    <table class="table table-success table-striped table-hover shadow">
-        <thead>
-            <tr>
-                <th>Customer Id</th>
-                <th>Name</th>
-                <th>Social Security</th>
-                <th>Email</th>
-                <th>Account</th>
-                <th>Balance</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var account in Model.TopTenAccounts)
-            {
+    <div class="table-responsive">
+        <table class="table table-success table-striped table-hover shadow">
+            <thead>
                 <tr>
-                    <td>@account.CustomerId</td>
-                    <td>@account.Name</td>
-                    <td>@account.NationalId</td>
-                    <td>@account.Emailaddress</td>
-                    <td>@account.AccountId</td>
-                    <td>@account.Balance (kr)</td>
+                    <th>Customer Id</th>
+                    <th>Name</th>
+                    <th>Social Security</th>
+                    <th>Email</th>
+                    <th>Account</th>
+                    <th>Balance</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var account in Model.TopTenAccounts)
+                {
+                    <tr>
+                        <td>@account.CustomerId</td>
+                        <td>@account.Name</td>
+                        <td>@account.NationalId</td>
+                        <td>@account.Emailaddress</td>
+                        <td>@account.AccountId</td>
+                        <td>@account.Balance (kr)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

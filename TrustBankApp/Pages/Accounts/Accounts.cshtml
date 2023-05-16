@@ -44,102 +44,103 @@
     <p class="text-end">
         <a class="btn btn-warning" asp-page="/Index"><i class="fa-solid fa-arrow-left"></i>&nbsp;Back</a>
     </p>
-    <table class="table table-success table-hover table-striped shadow">
-        <thead>
-            <tr>
-                <th>
-                    AccountId
-                    <a asp-page="/Accounts/Accounts"
-                       asp-route-searchText="@Model.SearchText"
-                       asp-route-sortColumn="accountId"
-                       asp-route-sortOrder="asc">
-                        <i class="fa-solid fa-sort-up"></i>
-                    </a>
-                    <a asp-page="/Accounts/Accounts"
-                       asp-route-searchText="@Model.SearchText"
-                       asp-route-sortColumn="accountId"
-                       asp-route-sortOrder="desc">
-                        <i class="fa-solid fa-sort-down"></i>
-                    </a>
-                </th>
-                <th>
-                    Frequency
-                    <a asp-page="/Accounts/Accounts"
-                       asp-route-sortColumn="frequency"
-                       asp-route-sortOrder="asc">
-                        <i class="fa-solid fa-sort-up"></i>
-                    </a>
-                    <a asp-page="/Accounts/Accounts"
-                       asp-route-sortColumn="frequency"
-                       asp-route-sortOrder="desc">
-                        <i class="fa-solid fa-sort-down"></i>
-                    </a>
-                </th>
-                <th>
-                    Date Created
-                    <a asp-page="/Accounts/Accounts"
-                       asp-route-sortColumn="date"
-                       asp-route-sortOrder="asc">
-                        <i class="fa-solid fa-sort-up"></i>
-                    </a>
-                    <a asp-page="/Accounts/Accounts"
-                       asp-route-sortColumn="date"
-                       asp-route-sortOrder="desc">
-                        <i class="fa-solid fa-sort-down"></i>
-                    </a>
-                </th>
-                <th>
-                    Balance
-                    <a asp-page="/Accounts/Accounts"
-                       asp-route-sortColumn="balance"
-                       asp-route-sortOrder="asc">
-                        <i class="fa-solid fa-sort-up"></i>
-                    </a>
-                    <a asp-page="/Accounts/Accounts"
-                       asp-route-sortColumn="balance"
-                       asp-route-sortOrder="desc">
-                        <i class="fa-solid fa-sort-down"></i>
-                    </a>
-                </th>
-                <th>
-                    Detail
-                </th>
-                <th>Owner Info</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var account in Model.Accounts.Results)
-            {
+    <div class="table-responsive">
+        <table class="table table-success table-hover table-striped shadow">
+            <thead>
                 <tr>
-                    <td>@account.AccountId</td>
-                    <td>@account.Frequency</td>
-                    <td>@account.Created.ToShortDateString()</td>
-                    <td>@account.Balance</td>
-                    <td>
-                        <a title="show details" class="more"
-                       asp-page="/Accounts/AccountDetail"
-                       asp-route-searchText="@Model.SearchText"
-                       asp-route-accountId="@account.AccountId">
-                            <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+                    <th>
+                        AccountId
+                        <a asp-page="/Accounts/Accounts"
+                           asp-route-searchText="@Model.SearchText"
+                           asp-route-sortColumn="accountId"
+                           asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
                         </a>
-                    </td>
-                    <td>
-                        <a id="quick-info" title="show quick info"
-                           href="javascript:fetchInfo(@account.AccountId)">
-                            <i class='fa-solid fa-circle-info'></i>
+                        <a asp-page="/Accounts/Accounts"
+                           asp-route-searchText="@Model.SearchText"
+                           asp-route-sortColumn="accountId"
+                           asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
                         </a>
-                    </td>
+                    </th>
+                    <th>
+                        Frequency
+                        <a asp-page="/Accounts/Accounts"
+                           asp-route-sortColumn="frequency"
+                           asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Accounts/Accounts"
+                           asp-route-sortColumn="frequency"
+                           asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th>
+                        Date Created
+                        <a asp-page="/Accounts/Accounts"
+                           asp-route-sortColumn="date"
+                           asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Accounts/Accounts"
+                           asp-route-sortColumn="date"
+                           asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th>
+                        Balance
+                        <a asp-page="/Accounts/Accounts"
+                           asp-route-sortColumn="balance"
+                           asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Accounts/Accounts"
+                           asp-route-sortColumn="balance"
+                           asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th>
+                        Detail
+                    </th>
+                    <th>Owner Info</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-
+            </thead>
+            <tbody>
+                @foreach (var account in Model.Accounts.Results)
+                {
+                    <tr>
+                        <td>@account.AccountId</td>
+                        <td>@account.Frequency</td>
+                        <td>@account.Created.ToShortDateString()</td>
+                        <td>@account.Balance</td>
+                        <td>
+                            <a title="show details" class="more"
+                           asp-page="/Accounts/AccountDetail"
+                           asp-route-searchText="@Model.SearchText"
+                           asp-route-accountId="@account.AccountId">
+                                <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a id="quick-info" title="show quick info"
+                               href="javascript:fetchInfo(@account.AccountId)">
+                                <i class='fa-solid fa-circle-info'></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
 
     @*pagination*@
     <div class="mt-5">
         <nav class="" aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
+            <ul class="pagination justify-content-sm-center overflow-auto">
                 @if (Model.CurrentPageNumber != 1)
                 {
                     <li class="page-item">
@@ -211,11 +212,11 @@
                 .then((json) => {
                     toastr.info(
                         `
-                        Account Owner Detail<br>
-                        Full Name: <h5>${json.fullName}</h5><br>
-                        Customer Id: ${json.customerId}<br>
-                        Country: ${json.country}<br>
-                        Email: ${json.email}<br>`
+                                Account Owner Detail<br>
+                                Full Name: <h5>${json.fullName}</h5><br>
+                                Customer Id: ${json.customerId}<br>
+                                Country: ${json.country}<br>
+                                Email: ${json.email}<br>`
                     );
                 });
         }

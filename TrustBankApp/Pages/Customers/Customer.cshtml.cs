@@ -29,6 +29,7 @@ namespace TrustBankApp.Pages
             
             _mapper.Map(customerToShow, CustomerVM);
 
+            CustomerVM.Age = DateTime.Now.Year - CustomerVM.Birthday.Year;
             CustomerVM.Accounts = _accountService.GetCustomerAccounts(customerId);
             CustomerVM.TotalBalance = _accountService.GetCustomerAccountsBalance(customerId);
         }

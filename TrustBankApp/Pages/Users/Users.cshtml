@@ -3,7 +3,7 @@
 @{
 }
 
-<div class="container py-5">    
+<div class="container py-5">
     <h1 class="fw-bolder text-success">USERS</h1>
     <p class="fs-4 lh-sm fw-bold">List of Registered Users</p>
     <p class="text-end">
@@ -11,67 +11,72 @@
         <a class="btn btn-success" asp-area="Identity" asp-page="/Account/Register">
             <i class="fa-solid fa-circle-plus"></i>&nbsp;Create New
         </a>
-    </p>    
+    </p>
     <hr />
-    <table class="table table-success table-striped table-hover shadow">
-        <thead>
-            <tr>                
-                <th>ID
-                    <a asp-page="/Users/Users"
-                       asp-route-sortColumn="userId"
-                       asp-route-sortOrder="asc">
-                        <i class="fa-solid fa-sort-up"></i>
-                    </a>
-                    <a asp-page="/Users/Users"
-                       asp-route-sortColumn="userId"
-                       asp-route-sortOrder="desc">
-                        <i class="fa-solid fa-sort-down"></i>
-                    </a>
-                </th>
-                <th>User Name
-                    <a asp-page="/Users/Users"
-                       asp-route-sortColumn="userName"
-                       asp-route-sortOrder="asc">
-                        <i class="fa-solid fa-sort-up"></i>
-                    </a>
-                    <a asp-page="/Users/Users"
-                       asp-route-sortColumn="userName"
-                       asp-route-sortOrder="desc">
-                        <i class="fa-solid fa-sort-down"></i>
-                    </a>
-                </th>
-                <th>Email
-                    <a asp-page="/Users/Users"
-                       asp-route-sortColumn="email"
-                       asp-route-sortOrder="asc">
-                        <i class="fa-solid fa-sort-up"></i>
-                    </a>
-                    <a asp-page="/Users/Users"
-                       asp-route-sortColumn="email"
-                       asp-route-sortOrder="desc">
-                        <i class="fa-solid fa-sort-down"></i>
-                    </a>
-                </th>
-                <th>Role</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in Model.Users)
-            {
+    <div class="table-responsive">
+        <table class="table table-success table-striped table-hover table-responsive shadow">
+            <thead>
                 <tr>
-                    <td>@user.Id</td>
-                    <td>@user.UserName</td>
-                    <td>@user.Email</td>
-                    <td>@user.Role</td>
-                    <td>
-                        <a  class="text-secondary" asp-page="UpdateUser" asp-route-userId="@user.Id">
-                            <i class="fa-solid fa-user-pen px-3"></i>
-                            &nbsp;Update
+                    <th>
+                        ID
+                        <a asp-page="/Users/Users"
+                           asp-route-sortColumn="userId"
+                           asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
                         </a>
-                    </td>
+                        <a asp-page="/Users/Users"
+                           asp-route-sortColumn="userId"
+                           asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th>
+                        User Name
+                        <a asp-page="/Users/Users"
+                           asp-route-sortColumn="userName"
+                           asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Users/Users"
+                           asp-route-sortColumn="userName"
+                           asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th>
+                        Email
+                        <a asp-page="/Users/Users"
+                           asp-route-sortColumn="email"
+                           asp-route-sortOrder="asc">
+                            <i class="fa-solid fa-sort-up"></i>
+                        </a>
+                        <a asp-page="/Users/Users"
+                           asp-route-sortColumn="email"
+                           asp-route-sortOrder="desc">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </a>
+                    </th>
+                    <th>Role</th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.Users)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.UserName</td>
+                        <td>@user.Email</td>
+                        <td>@user.Role</td>
+                        <td>
+                            <a class="text-secondary" asp-page="UpdateUser" asp-route-userId="@user.Id">
+                                <i class="fa-solid fa-user-pen px-3"></i>
+                                &nbsp;Update
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
