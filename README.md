@@ -5,7 +5,7 @@ This Solution has 3 projects: <br>
 2- Trust Bank API <br>
 3- Trust Bank Console App <br>
 
-AZURE:
+AZURE:https://trustbank.azurewebsites.net/
 
 # 1- Trust Bank WebApp:
 (using Razor Pages) <br>
